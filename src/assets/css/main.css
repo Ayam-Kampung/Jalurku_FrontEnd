@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Custom Scrollbar Style ========== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* warna latar belakang scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ef4444; /* merah dari Tailwind => bg-red-500 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626; /* lebih gelap saat hover => bg-red-600 */
+}
+
+/* Untuk Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ef4444 #f1f1f1;
+}
