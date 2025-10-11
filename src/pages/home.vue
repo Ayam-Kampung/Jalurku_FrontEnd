@@ -1,6 +1,6 @@
 <template>
   <section
-    class="h-[calc(100vh-6em)] bg-[url('/images/bg-home.jpg')] bg-fixed bg-no-repeat bg-cover bg-center"
+    class="h-screen bg-[url('/images/bg-home.jpg')] bg-fixed bg-no-repeat bg-cover bg-center"
   >
     <div
       class="flex flex-col items-center justify-center text-center mx-auto max-w-5xl h-full text-gray-800"
@@ -17,13 +17,14 @@
       </div>
 
       <RouterLink
-        to="/rencanaku"
+        to="/jalurku"
         class="mt-10 py-3 px-8 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all duration-300 mx-auto w-fit"
       >
         Kunjungi Jalurku →
       </RouterLink>
     </div>
   </section>
+        
     <div class="mx-auto max-w-7xl gap-10 lg:gap-0 px-5 py-10">
       <div class="grid lg:grid-cols-3 gap-5 justify-center">
           <div class="shadow-md grid place-content-center">
@@ -51,19 +52,19 @@
               </p>
           </div>
       </div>
-     
+      <LogoSlider />
   </div>
-    <TestimoniSlider />
+    
 
 
 </template>
 
 <script setup>
-import TestimoniSlider from '@/components/TestimoniSlider.vue'
+import LogoSlider from '@/components/LogoSlider.vue'
 </script>
 
 <style scoped>
-/* Opsional: tambahkan efek kecil */
+
 #heading span {
   font-weight: 600;
 }
