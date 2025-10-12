@@ -31,8 +31,8 @@ const routes = [
   },
 
   //auth
-  { path: '/login', name: 'login', component: Login },
-  { path: '/register', name: 'register', component: Register },
+  { path: '/auth/login', name: 'login', component: Login },
+  { path: '/auth/register', name: 'register', component: Register },
 
   //jalurku
   { path: '/jalurku', name: 'jalurku', component: jalurku },
