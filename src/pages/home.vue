@@ -12,7 +12,7 @@
         </h1>
 
         <p class="text-lg inter">
-          Berdasarkan ahli untuk anda.
+          Berdasarkan ahli untuk anda
         </p>
       </div>
 
@@ -24,7 +24,6 @@
       </RouterLink>
     </div>
   </section>
-        
     <div class="mx-auto max-w-7xl gap-10 lg:gap-0 px-5 py-10">
       <div class="grid lg:grid-cols-3 gap-5 justify-center">
           <div class="shadow-md grid place-content-center">
@@ -54,9 +53,6 @@
       </div>
       <LogoSlider />
   </div>
-    
-
-
 </template>
 
 <script setup>
