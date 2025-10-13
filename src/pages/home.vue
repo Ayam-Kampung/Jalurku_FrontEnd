@@ -12,10 +12,10 @@
         </h1>
 
         <p class="text-lg inter">
-          Berdasarkan ahli untuk anda
+          Berdasarkan ahli untuk kamu.
         </p>
       </div>
-
+      
       <RouterLink
         to="/jalurku"
         class="mt-10 py-3 px-8 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all duration-300 mx-auto w-fit"
@@ -24,7 +24,7 @@
       </RouterLink>
     </div>
   </section>
-    <div class="mx-auto max-w-7xl gap-10 lg:gap-0 px-5 py-10">
+    <div class="mx-auto bg-red-500 max-w-7xl gap-10 lg:gap-0 px-5 py-10">
       <div class="grid lg:grid-cols-3 gap-5 justify-center">
           <div class="shadow-md grid place-content-center">
               <p class="inter text-gray-800 text-6xl p-5">1.</p>
@@ -51,8 +51,9 @@
               </p>
           </div>
       </div>
-      <LogoSlider />
+    
   </div>
+    <LogoSlider />
 </template>
 
 <script setup>

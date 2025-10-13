@@ -74,26 +74,26 @@ const router = createRouter({
 })
 
 // Navigation Guard (proteksi admin)
-router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token')
-  const role = localStorage.getItem('role')
+// router.beforeEach((to, from, next) => {
+//   const token = localStorage.getItem('token')
+//   const role = localStorage.getItem('role')
 
-  // kalau rute butuh autentikasi
-  if (to.meta.requiresAuth) {
-    if (!token) {
-      // belum login → ke halaman login
-      return next('/auth/login')
-    }
+//   // kalau rute butuh autentikasi
+//   if (to.meta.requiresAuth) {
+//     if (!token) {
+//       // belum login → ke halaman login
+//       return next('/auth/login')
+//     }
 
-    // kalau butuh role tertentu (misal admin)
-    if (to.meta.role && to.meta.role !== role) {
-      // misal user biasa coba buka /admin
-      return next('/')
-    }
-  }
+//     // kalau butuh role tertentu (misal admin)
+//     if (to.meta.role && to.meta.role !== role) {
+//       // misal user biasa coba buka /admin
+//       return next('/')
+//     }
+//   }
 
-  next()
-})
+//   next()
+// })
 
 // Export router
 export default router

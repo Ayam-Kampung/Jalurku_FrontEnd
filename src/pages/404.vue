@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen mx-5 mb-10 flex flex-col justify-center gap-4 md:mx-auto max-w-3xl text-center">
     <div class="grid gap-5 justify-center">
-      <img class="h-32 mx-auto" :src="NotFoundImage" alt="404 Not Found" />
+      <!-- <img class="h-32 mx-auto" :src="NotFoundImage" alt="404 Not Found" /> -->
       <h1 class="font-sans text-4xl md:text-5xl font-bold text-gray-800">Hmmm, mau nyari apa ya?</h1>
     </div>
 

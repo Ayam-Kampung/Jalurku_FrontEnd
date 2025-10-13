@@ -8,7 +8,6 @@
       <!-- Logo -->
       <div class="roboto-mono text-sm flex items-center gap-3">
         <img :src="LogoSMK" alt="Logo SMK TELKOM" class="h-8" />
-        <img :src="Logo" alt="Logo template" class="h-8" />
       </div>
 
       <!-- Tombol Hamburger -->
@@ -23,15 +22,16 @@
 
       <!-- Menu Utama -->
       <div
-        :class="[
+        :class="[ 
           'roboto-mono text-sm flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10 absolute lg:static top-20 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none px-5 py-4 lg:p-0 z-[1000] transition-all duration-300',
           menuOpen ? 'flex' : 'hidden lg:flex'
         ]"
       >
+
         <!-- BERANDA -->
         <RouterLink
           to="/"
-          class="block w-full lg:w-auto hover:text-red-600 py-2 border-b lg:border-none"
+          class="nav-link"
         >
           BERANDA
         </RouterLink>
@@ -39,16 +39,20 @@
         <!-- JELAJAH -->
         <a
           href="https://tour.smktelkom-pwt.sch.id/"
-          class="block w-full lg:w-auto hover:text-red-600 py-2 border-b lg:border-none"
+          class="nav-link"
         >
           JELAJAH
         </a>
 
         <!-- JURUSAN -->
-        <div class="w-full lg:w-auto relative">
+        <div
+          class="w-full lg:w-auto relative"
+          @mouseenter="openDropdown('jurusan')"
+          @mouseleave="closeDropdown"
+        >
           <button
             @click="toggleDropdown('jurusan')"
-            class="flex justify-between w-full lg:w-auto items-center hover:text-red-600 py-2 border-b lg:border-none transition-all duration-300"
+            class="nav-link flex justify-between w-full lg:w-auto items-center"
           >
             <span>JURUSAN</span>
             <!-- Arrow hanya di mobile -->
@@ -69,25 +73,29 @@
             </svg>
           </button>
 
-          <!-- Dropdown muncul di semua device -->
+          <!-- Dropdown muncul -->
           <transition name="fade">
             <div
               v-show="activeDropdown === 'jurusan'"
-              class="lg:absolute lg:right-0 mt-2 w-full lg:w-40 bg-white rounded-md shadow-xl border border-gray-200 z-[9999] overflow-hidden"
+              class="absolute top-full left-0 mt-[6px] w-full lg:w-40 bg-white rounded-md shadow-xl border border-gray-200 z-[99999] overflow-visible"
             >
-              <DropdownLink href="/jurusan/rpl" label="RPL" />
-              <DropdownLink href="/jurusan/pg" label="PG" />
-              <DropdownLink href="/jurusan/tkj" label="TKJ" />
-              <DropdownLink href="/jurusan/tja" label="TJA" />
+              <a href="/jurusan/rpl" class="dropdown-item">RPL</a>
+              <a href="/jurusan/pg" class="dropdown-item">PG</a>
+              <a href="/jurusan/tkj" class="dropdown-item">TKJ</a>
+              <a href="/jurusan/tja" class="dropdown-item">TJA</a>
             </div>
           </transition>
         </div>
 
         <!-- TENTANG -->
-        <div class="w-full lg:w-auto relative">
+        <div
+          class="w-full lg:w-auto relative"
+          @mouseenter="openDropdown('tentang')"
+          @mouseleave="closeDropdown"
+        >
           <button
             @click="toggleDropdown('tentang')"
-            class="flex justify-between w-full lg:w-auto items-center hover:text-red-600 py-2 border-b lg:border-none transition-all duration-300"
+            class="nav-link flex justify-between w-full lg:w-auto items-center"
           >
             <span>TENTANG</span>
             <svg
@@ -98,12 +106,7 @@
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
@@ -112,33 +115,22 @@
               v-show="activeDropdown === 'tentang'"
               class="lg:absolute lg:right-0 mt-2 w-full lg:w-48 bg-white rounded-md shadow-xl border border-gray-200 z-[9999]"
             >
-              <a
-                href="/tentang/sekolah"
-                class="dropdown-item"
-              >
-                Tentang Sekolah
-              </a>
-              <a
-                href="/tentang/visi-misi"
-                class="dropdown-item"
-              >
-                Visi & Misi
-              </a>
-              <a
-                href="/tentang/prestasi"
-                class="dropdown-item"
-              >
-                Prestasi
-              </a>
+              <a href="/tentang/sekolah" class="dropdown-item">Tentang Sekolah</a>
+              <a href="/tentang/visi-misi" class="dropdown-item">Visi & Misi</a>
+              <a href="/tentang/prestasi" class="dropdown-item">Prestasi</a>
             </div>
           </transition>
         </div>
 
         <!-- HUBUNGI -->
-        <div class="w-full lg:w-auto relative">
+        <div
+          class="w-full lg:w-auto relative"
+          @mouseenter="openDropdown('hubungi')"
+          @mouseleave="closeDropdown"
+        >
           <button
             @click="toggleDropdown('hubungi')"
-            class="flex justify-between w-full lg:w-auto items-center hover:text-red-600 py-2 border-b lg:border-none transition-all duration-300"
+            class="nav-link flex justify-between w-full lg:w-auto items-center"
           >
             <span>HUBUNGI</span>
             <svg
@@ -149,7 +141,7 @@
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-             
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
@@ -171,7 +163,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import LogoSMK from '@/assets/images/Logo-SMK.png'
-import Logo from '@/assets/images/Logo.png'
 
 const menuOpen = ref(false)
 const activeDropdown = ref(null)
@@ -184,24 +175,22 @@ function toggleMenu() {
 }
 
 function toggleDropdown(menu) {
-  // hanya aktif di mobile, atau tetap di desktop
-  if (activeDropdown.value === menu) {
-    activeDropdown.value = null
-  } else {
-    activeDropdown.value = menu
-  }
+  activeDropdown.value = activeDropdown.value === menu ? null : menu
+}
+
+function openDropdown(menu) {
+  if (window.innerWidth >= 1024) activeDropdown.value = menu
+}
+
+function closeDropdown() {
+  if (window.innerWidth >= 1024) activeDropdown.value = null
 }
 
 function handleScroll() {
   const currentY = window.scrollY
   isScrolling.value = currentY > 50
-
-  if (currentY > lastScrollY.value && currentY > 150) {
-    isVisible.value = false
-  } else if (currentY < lastScrollY.value) {
-    isVisible.value = true
-  }
-
+  if (currentY > lastScrollY.value && currentY > 150) isVisible.value = false
+  else if (currentY < lastScrollY.value) isVisible.value = true
   lastScrollY.value = currentY
 }
 
@@ -210,7 +199,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <style scoped>
-/* Navbar animasi */
+
+/* Navbar slide anim */
 .navbar-slide-enter-active,
 .navbar-slide-leave-active {
   transition: all 0.4s ease;
@@ -231,11 +221,10 @@ onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
   opacity: 0;
 }
 
-/* Hover underline untuk dropdown item */
+/* Dropdown items underline */
 .dropdown-item {
   @apply block px-4 py-2 border-b border-gray-200 hover:text-red-500 relative transition-all duration-300;
 }
-
 .dropdown-item::after {
   content: "";
   position: absolute;
@@ -243,12 +232,29 @@ onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
   left: 16px;
   width: 0;
   height: 2px;
-  background-color: #ef4444; /* merah Tailwind */
+  background-color: #ef4444;
   transition: width 0.3s ease;
 }
-
 .dropdown-item:hover::after {
   width: calc(100% - 32px);
+}
+
+/* Nav link underline animasi */
+.nav-link {
+  @apply relative py-2 border-b lg:border-none hover:text-red-600 cursor-pointer transition-all;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #ef4444;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
 }
 </style>
 
@@ -258,12 +264,7 @@ export default {
     DropdownLink: {
       props: ['href', 'label'],
       template: `
-        <a
-          :href="href"
-          class="dropdown-item"
-        >
-          {{ label }}
-        </a>
+        <a :href="href" class="dropdown-item">{{ label }}</a>
       `,
     },
   },

@@ -21,7 +21,7 @@ import Footer from '@/components/partials/Footer.vue'
 const route = useRoute()
 
 // Daftar halaman yang TIDAK menampilkan layout utama
-const noLayoutRoutes = ['404', 'login', 'register']
+const noLayoutRoutes = ['404', 'login', 'register', 'AdminDashboard']
 
 // Jika route.name ada di daftar di atas → sembunyikan Navbar & Footer
 const hideLayout = computed(() => noLayoutRoutes.includes(route.name))

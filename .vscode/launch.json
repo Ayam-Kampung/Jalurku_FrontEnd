@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "frontend: Vue Dev",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "frontend: Tailwind Build (optional)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npx tailwindcss -i ./src/style.css -o ./dist/output.css --watch",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "frontend: Full Dev",
+      "configurations": [
+        "frontend: Vue Dev",
+        "frontend: Tailwind Build (optional)"
+      ],
+      "stopAll": true
+    }
+  ]
+}
+
+
