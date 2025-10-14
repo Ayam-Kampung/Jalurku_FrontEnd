@@ -5,10 +5,10 @@ import Home from '@/pages/Home.vue'
 import NotFound from '@/pages/404.vue'
 
 // Jurusan Pages
-import rpl from '@/pages/jurusan/rpl.vue'
-import pg from '@/pages/jurusan/pg.vue'
-import tkj from '@/pages/jurusan/tkj.vue'
-import tja from '@/pages/jurusan/tja.vue'
+import rpl from '@/pages/jurusan/RPL.vue'
+import pg from '@/pages/jurusan/PG.vue'
+import tkj from '@/pages/jurusan/TKJ.vue'
+import tja from '@/pages/jurusan/TJA.vue'
 
 // Auth Pages
 import Login from '@/pages/auth/Login.vue'
@@ -16,6 +16,7 @@ import Register from '@/pages/auth/Register.vue'
 
 // Jalurku Pages
 import jalurku from '@/pages/jalurku/Quiz.vue'
+import Rencanaku from '@/pages/jurusan/Rencanaku.vue'
 
 // Admin Pages
 import AdminDashboard from '@/pages/admin/Dashboard.vue'
@@ -30,10 +31,10 @@ const routes = [
     path: '/jurusan',
     name: 'Jurusan',
     children: [
-      { path: 'rpl', name: 'rpl', component: rpl },
-      { path: 'pg', name: 'pg', component: pg },
-      { path: 'tkj', name: 'tkj', component: tkj },
-      { path: 'tja', name: 'tja', component: tja },
+      { path: 'RPL', name: 'RPL', component: rpl },
+      { path: 'PG', name: 'PG', component: pg },
+      { path: 'TKJ', name: 'TKJ', component: tkj },
+      { path: 'TJA', name: 'TJA', component: tja },
     ],
   },
 
@@ -49,6 +50,10 @@ const routes = [
 
   // --- Jalurku
   { path: '/jalurku', name: 'jalurku', component: jalurku },
+
+    // Rencanaku
+  { path: '/rencanaku', name: 'rencanaku', component: Rencanaku },
+
 
   // --- Admin
   {
