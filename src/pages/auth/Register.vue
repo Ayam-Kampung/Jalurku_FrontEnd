@@ -15,7 +15,7 @@
         <div>
           <label class="block text-sm font-semibold mb-1">Username</label>
           <input
-            v-model="username"
+            v-model="registerForm.name"
             type="text"
             placeholder="Masukkan username kamu"
             class="w-full px-4 py-3 bg-white rounded-md border border text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -27,7 +27,7 @@
         <div>
           <label class="block text-sm font-semibold mb-1">Email</label>
           <input
-            v-model="email"
+            v-model="registerForm.email"
             type="email"
             placeholder="Masukkan email aktif kamu"
             class="w-full px-4 py-3 bg-white rounded-md border border text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -39,7 +39,7 @@
         <div>
           <label class="block text-sm font-semibold mb-1">Password</label>
           <input
-            v-model="password"
+            v-model="registerForm.password"
             type="password"
             placeholder="Masukkan password kamu"
             class="w-full px-4 py-3 bg-white rounded-md border border text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -79,58 +79,26 @@
 
 <script setup>
 import { ref } from 'vue'
+import { authAPI } from '@/services/api';
+import { storage } from '@/utils/storage';
+import { useRouter } from 'vue-router'
 
-const username = ref('')
-const email = ref('')
-const password = ref('')
-const message = ref('')
-const success = ref(false)
-const loading = ref(false)
+const registerForm = ref({ name: '', email: '', password: '' });
+const router = useRouter()
 
-async function handleRegister() {
-  loading.value = true
-  message.value = ''
-  success.value = false
-
+const handleRegister = async () => {
   try {
-    const res = await fetch('http://localhost:8080/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username.value,
-        email: email.value,
-        password: password.value
-      })
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      message.value = data.message || 'Gagal mendaftar.'
-      success.value = false
-      loading.value = false
-      return
+    const data = await authAPI.register(registerForm.value);
+    if (data.status === 'success') {
+      alert('Registrasi berhasil! Silakan login.');
+      router.push('/auth/login')
+    } else {
+      alert('Registrasi gagal: ' + data.message);
     }
-
-    // ✅ Register sukses
-    message.value = 'Pendaftaran berhasil! Silakan login.'
-    success.value = true
-
-    // reset field
-    username.value = ''
-    email.value = ''
-    password.value = ''
-
-    // otomatis ke login setelah 2 detik
-    setTimeout(() => {
-      window.location.href = '/login'
-    }, 2000)
   } catch (err) {
-    message.value = 'Tidak dapat terhubung ke server.'
-  } finally {
-    loading.value = false
+    alert('Error: ' + err.message);
   }
-}
+};
 </script>
 
 <style scoped>

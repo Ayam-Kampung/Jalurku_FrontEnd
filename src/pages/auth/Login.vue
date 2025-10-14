@@ -13,9 +13,9 @@
         <div>
           <label class="block text-sm font-semibold mb-1">Username</label>
           <input
-            v-model="username"
-            type="text"
-            placeholder="Masukkan username kamu"
+            v-model="loginForm.identity"
+            type="email"
+            placeholder="Masukkan email kamu"
             class="w-full px-4 py-3 bg-white rounded-md border border-red text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500"
             required
           />
@@ -25,7 +25,7 @@
         <div>
           <label class="block text-sm font-semibold mb-1">Password</label>
           <input
-            v-model="password"
+            v-model="loginForm.password"
             type="password"
             placeholder="Masukkan password kamu"
             class="w-full px-4 py-3 bg-white rounded-md border border-red text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -63,51 +63,31 @@
 <script setup>
 import LogoSlider from '@/components/LogoSlider.vue'
 import { ref } from 'vue'
+import { authAPI } from '@/services/api';
+import { storage } from '@/utils/storage';
+import { useRouter } from 'vue-router'
 
-const username = ref('')
-const password = ref('')
-const errorMessage = ref('')
-const loading = ref(false)
+const loginForm = ref({ identity: '', password: '' });
+const router = useRouter()
 
-async function handleLogin() {
-  loading.value = true
-  errorMessage.value = ''
+const user = ref(null);
+const token = ref(storage.getToken());
 
+const handleLogin = async () => {
   try {
-    const res = await fetch('http://localhost:8080/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value
-      })
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      // backend kasih pesan error misal: "username tidak ditemukan" / "password salah"
-      errorMessage.value = data.message || 'Terjadi kesalahan login'
-      loading.value = false
-      return
-    }
-
-    // ✅ Login sukses
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('role', data.role)
-
-    // Arahkan user
-    if (data.role === 'admin') {
-      window.location.href = '/admin'
+    const data = await authAPI.login(loginForm.value);
+    if (data.status === 'success') {
+      token.value = data.data.token;
+      user.value = data.data.user;
+      storage.setToken(data.data.token);
+      router.push('/')
     } else {
-      window.location.href = '/'
+      alert('Login gagal: ' + data.message);
     }
   } catch (err) {
-    errorMessage.value = 'Gagal Login'
-  } finally {
-    loading.value = false
+    alert('Error: ' + err.message);
   }
-}
+};
 </script>
 
 <style scoped>
