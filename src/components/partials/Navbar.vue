@@ -41,8 +41,8 @@
         <!-- BERANDA -->
         <RouterLink to="/" class="nav-link">BERANDA</RouterLink>
 
-        <!-- JELAJAH -->
-        <a href="https://tour.smktelkom-pwt.sch.id/" class="nav-link">JELAJAH</a>
+        <!-- PLAYGROUND -->
+        <RouterLink to="/playground" class="nav-link">PLAYGROUND</RouterLink>
 
         <!-- JURUSAN -->
         <div
