@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { adminAPI } from '@/services/api'
 
 // Public Pages
 import Home from '@/pages/Home.vue'
@@ -20,9 +21,6 @@ import Rencanaku from '@/pages/jurusan/Rencanaku.vue'
 
 // Admin Pages
 import AdminDashboard from '@/pages/admin/Dashboard.vue'
-
-import Tentang from '@/pages/tentang.vue'
-  
 
 // Routes Config
 const routes = [
@@ -57,16 +55,12 @@ const routes = [
     // Rencanaku
   { path: '/rencanaku', name: 'rencanaku', component: Rencanaku },
 
-  // Tentang
-  { path: '/tentang', name: 'about', component: Tentang },
-
-
 
   // --- Admin
   {
     path: '/admin',
     name: 'Admin',
-    meta: { requiresAuth: true, role: 'admin' },
+    meta: { requiresAdmin: true },
     children: [
       { path: '', name: 'AdminDashboard', component: AdminDashboard },
     ],
@@ -83,6 +77,29 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   },
+})
+
+// Navigation guard untuk cek admin
+router.beforeEach(async (to, _from, next) => {
+  // Jika route membutuhkan admin access
+  if (to.meta.requiresAdmin) {
+    try {
+      // Cek ke backend apakah user adalah admin
+      const response = await adminAPI.checkAdmin()
+      console.log(response)
+
+      // Cek response apakah user adalah admin
+      if (response.is_admin === true && response.status === 'success') {
+        next()
+      } else {
+        next({ name: '404' })
+      }
+    } catch (error) {
+      next({ name: '404' })
+    }
+  } else {
+    next()
+  }
 })
 
 // Navigation Guard (proteksi admin)
