@@ -3,10 +3,22 @@
     <!-- Pengenalan -->
     <div class="flex flex-col items-center space-y-4">
       <!-- Gambar -->
-      <div id="fadeIn" class="w-full relative ">
-        <div class="w-full h-60 md:h-[300px] bg-cover bg-center transition-all duration-500"
-          :style="{ backgroundImage: `url(${pgImage})` }"></div>
-      </div>
+     <div id="fadeIn" class="w-full mt-20 relative group overflow-hidden rounded-xl shadow-lg">
+    <div
+    class="w-full h-60 md:h-[300px] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+    :style="{ backgroundImage: `url(${pgImage})` }"
+    ></div>
+
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+
+  <!-- Optional Text Overlay -->
+  <div class="absolute bottom-4 left-6 text-white">
+    <h2 class="text-2xl font-bold tracking-wide drop-shadow-lg">Lorem Ipsum</h2>
+    <p class="text-sm opacity-90">Lorem Ipsum </p>
+  </div>
+</div>
+
       <!-- Teks -->
       <div class="text-left lg:max-w-7xl lg:mx-auto py-6 gap-2 space-y-4 w-full">
         <!-- Judul -->
@@ -65,61 +77,9 @@
         </div>
       </div>
     </div>
-
-    <!-- Bagian Alumni (Carousel) -->
-    <div class="bg-white py-16 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-5 relative">
-        <h2 class="text-3xl font-bold text-center mb-10 inter text-gray-800">
-          ALUMNI PG
-        </h2>
-
-        <!-- Wrapper Carousel -->
-        <div class="overflow-hidden relative">
-          <div class="flex transition-transform duration-700 ease-in-out"
-            :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-            <!-- Card Alumni -->
-            <div v-for="(alumni, index) in alumnis" :key="index"
-              class="flex-shrink-0 w-full flex flex-col lg:flex-row items-center gap-10">
-              <!-- Foto -->
-              <div class="relative w-full lg:w-1/2 flex justify-center">
-                <img :src="alumni.image" :alt="alumni.name"
-                  class="relative z-10 w-64 h-64 object-cover rounded-xl shadow-lg" />
-              </div>
-
-              <!-- Info -->
-              <div class="w-full lg:w-1/2 text-gray-800">
-                <h3 class="text-2xl font-bold mb-3 inter text-red-600">{{ alumni.title }}</h3>
-                <p class="text-sm md:text-base leading-relaxed mb-4">
-                  {{ alumni.quote1 }}
-                </p>
-                <p class="text-sm md:text-base leading-relaxed mb-6">
-                  {{ alumni.quote2 }}
-                </p>
-                <span class="font-semibold text-gray-600 block mb-6">
-                  — {{ alumni.name }}, Alumni PG {{ alumni.year }}
-                </span>
-
-                <!-- Logo Universitas -->
-                <div class="flex items-center gap-6 mt-4">
-                  <img v-for="(logo, i) in alumni.universities" :key="i" :src="logo.src" :alt="logo.alt"
-                    class="w-50 h-16 object-contain" :title="logo.title" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tombol Navigasi -->
-          <button @click="prevSlide"
-            class="absolute left-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
-            < </button>
-              <button @click="nextSlide"
-                class="absolute right-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
-                >
-              </button>
-        </div>
-      </div>
-    </div>
+    
   </section>
+  <AlumniSlider :alumnis="alumnis" />
 </template>
 
 <script setup>
@@ -131,6 +91,7 @@ import undip from '@/assets/images/undip_logo.png'
 import google from '@/assets/images/google_logo.png'
 import meta from '@/assets/images/meta_logo.png'
 import ayamkampung from '@/assets/images/favicon.png'
+import AlumniSlider from '@/components/AlumniSlider.vue'
 
 const jobs = [
   'Game Developer',
@@ -148,7 +109,6 @@ const jobs = [
 // Data alumni carousel
 const alumnis = [
   {
-    // berupa sample alumni
     name: 'Mauuren Greneman',
     year: '2022',
     title: 'Game Developer',
@@ -159,9 +119,9 @@ const alumnis = [
     image: alumni1,
     universities: [
       { src: ugm, alt: 'UGM', title: 'Universitas Gadjah Mada' },
-      { src: google, alt: 'GOOGLE', title: 'google' },
-      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'AYAMKAMPUNG' }
-    ]
+      { src: google, alt: 'GOOGLE', title: 'Google' },
+      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'AYAMKAMPUNG' },
+    ],
   },
   {
     name: 'Rangga Zeevier',
@@ -175,10 +135,9 @@ const alumnis = [
     universities: [
       { src: undip, alt: 'UNDIP', title: 'Universitas Diponegoro' },
       { src: meta, alt: 'META', title: 'Meta' },
-      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'AYAMKAMPUNG' }
-
-    ]
-  }
+      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'AYAMKAMPUNG' },
+    ],
+  },
 ]
 
 // Logika carousel
