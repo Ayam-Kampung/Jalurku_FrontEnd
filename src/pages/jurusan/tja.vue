@@ -29,7 +29,7 @@
         <div id="fadeIn" class="text-sm md:text-base inter space-y-5 lg:space-y-6 mx-5">
           <p>
             Teknik Jaringan dan Akomodasi (TJA) adalah jurusan yang berfokus pada
-            <span class="text-merah font-bold">pembangunan, pengelolaan, dan pemeliharaan jaringan
+            <span class="text-red-600 font-bold">pembangunan, pengelolaan, dan pemeliharaan jaringan
               komputer</span>
             serta sistem komunikasi data agar perangkat dapat saling terhubung dengan baik.
             Jurusan ini mengajarkan cara membuat infrastruktur jaringan seperti LAN, WAN, dan internet yang
@@ -37,7 +37,7 @@
           </p>
           <p>
             Selama belajar di TJA, siswa akan mempelajari cara
-            <span class="text-merah font-bold">merancang topologi jaringan</span>,
+            <span class="text-red-600 font-bold">merancang topologi jaringan</span>,
             mengkonfigurasi perangkat seperti router dan switch, serta memahami dasar-dasar keamanan jaringan.
             Selain itu, mereka juga mempelajari instalasi server, sistem operasi jaringan, dan teknologi
             nirkabel seperti Wi-Fi.
@@ -56,11 +56,10 @@
     </div>
 
     <!-- Bagian Pekerjaan -->
-    <div class="bg-red-500 py-10">
+    <div class="bg-red-600 py-10 mt-10">
       <div class="max-w-7xl mx-auto px-5">
         <h2 class="text-white text-3xl font-bold inter mb-8">PEKERJAAN</h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-500">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-600">
           <div v-for="job in jobs" :key="job"
             class="bg-white p-3 text-center rounded-md shadow flex items-center justify-center hover:scale-105 transition-transform">
             {{ job }}
@@ -90,8 +89,8 @@
               </div>
 
               <!-- Info -->
-              <div class="w-full lg:w-1/2 text-gray-800">
-                <h3 class="text-2xl font-bold mb-3 inter">{{ alumni.title }}</h3>
+              <div class="w-full lg:w-1/2 text-gray-800 lg:pr-16">
+                <h3 class="text-2xl font-bold mb-3 inter text-red-600">{{ alumni.title }}</h3>
                 <p class="text-sm md:text-base leading-relaxed mb-4">
                   {{ alumni.quote1 }}
                 </p>
@@ -113,10 +112,10 @@
 
           <!-- Tombol Navigasi -->
           <button @click="prevSlide"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+            class="absolute left-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
             < </button>
               <button @click="nextSlide"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+                class="absolute right-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
                 >
               </button>
         </div>

@@ -15,7 +15,7 @@
             Teknik Komputer Jaringan
           </h2>
           <span id="zoom"
-            class="bg-red-500 text-white text-sm font-semibold px-2 py-1 rounded-md my-2 inline-flex items-center gap-1">
+            class="bg-red-600 text-white text-sm font-semibold px-2 py-1 rounded-md my-2 inline-flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v22m6-10a6 6 0 01-12 0" />
@@ -27,14 +27,14 @@
         <div id="fadeIn" class="text-sm md:text-base inter space-y-5 lg:space-y-6 mx-5">
           <p>
             Teknik Komputer dan Jaringan (TKJ) adalah jurusan yang berfokus pada
-            <span class="text-merah font-bold">perakitan, instalasi, dan pengelolaan jaringan komputer</span>
+            <span class="text-red-600 font-bold">perakitan, instalasi, dan pengelolaan jaringan komputer</span>
             serta sistem perangkat keras dan lunak agar dapat bekerja secara optimal.
             Jurusan ini mengajarkan bagaimana komputer dapat saling terhubung dan berkomunikasi dengan baik
             melalui jaringan lokal maupun internet.
           </p>
           <p>
             Selama belajar di TKJ, siswa akan mempelajari cara
-            <span class="text-merah font-bold">merakit komputer, menginstal sistem operasi, dan mengonfigurasi
+            <span class="text-red-600 font-bold">merakit komputer, menginstal sistem operasi, dan mengonfigurasi
               jaringan</span>
             menggunakan berbagai perangkat seperti router, switch, dan access point.
             Selain itu, mereka juga mempelajari keamanan jaringan, troubleshooting, serta layanan server seperti
@@ -53,10 +53,10 @@
     </div>
 
     <!-- Bagian Pekerjaan -->
-    <div class="bg-red-500 py-10 mt-10">
+    <div class="bg-red-600 py-10 mt-10">
       <div class="max-w-7xl mx-auto px-5">
         <h2 class="text-white text-3xl font-bold inter mb-8">PEKERJAAN</h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-500">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-600">
           <div v-for="job in jobs" :key="job"
             class="bg-white p-3 text-center rounded-md shadow flex items-center justify-center hover:scale-105 transition-transform">
             {{ job }}
@@ -86,8 +86,8 @@
               </div>
 
               <!-- Info -->
-              <div class="w-full lg:w-1/2 text-gray-800">
-                <h3 class="text-2xl font-bold mb-3 inter">{{ alumni.title }}</h3>
+              <div class="w-full lg:w-1/2 text-gray-800 lg:pr-16">
+                <h3 class="text-2xl font-bold mb-3 inter text-red-600">{{ alumni.title }}</h3>
                 <p class="text-sm md:text-base leading-relaxed mb-4">
                   {{ alumni.quote1 }}
                 </p>
@@ -109,10 +109,10 @@
 
           <!-- Tombol Navigasi -->
           <button @click="prevSlide"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+            class="absolute left-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
             < </button>
               <button @click="nextSlide"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+                class="absolute right-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
                 >
               </button>
         </div>

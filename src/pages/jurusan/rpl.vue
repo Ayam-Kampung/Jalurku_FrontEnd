@@ -26,7 +26,7 @@
           <p>
             Rekayasa Perangkat Lunak (RPL) adalah jurusan yang berfokus pada
             pembuatan dan pengembangan
-            <span class="text-red-500 font-bold">perangkat lunak atau
+            <span class="text-red-600 font-bold">perangkat lunak atau
               <em>software</em>.</span>
             Perangkat lunak sendiri merupakan kumpulan instruksi atau program
             yang digunakan untuk komputer dan menjalankan berbagai aplikasi,
@@ -37,7 +37,7 @@
             Selama belajar di RPL, siswa akan mempelajari cara menulis kode
             pemrograman menggunakan berbagai bahasa seperti Python, Java, atau
             Kotlin. Mereka juga akan
-            <span class="text-red-500 font-bold">membuat aplikasi</span> berbasis
+            <span class="text-red-060 font-bold">membuat aplikasi</span> berbasis
             web, desktop, dan mobile, serta mempelajari desain antarmuka
             pengguna agar aplikasi yang dibuat menarik dan mudah digunakan.
           </p>
@@ -54,10 +54,10 @@
     </div>
 
     <!-- Bagian Pekerjaan -->
-    <div class="bg-red-500 py-10 mt-10">
+    <div class="bg-red-600 py-10 mt-10">
       <div class="max-w-7xl mx-auto px-5">
         <h2 class="text-white text-3xl font-bold inter mb-8">PEKERJAAN</h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-500">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-600">
           <div v-for="job in jobs" :key="job"
             class="bg-white p-3 text-center rounded-md shadow flex items-center justify-center hover:scale-105 transition-transform">
             {{ job }}
@@ -88,7 +88,7 @@
 
               <!-- Info -->
               <div class="w-full lg:w-1/2 text-gray-800">
-                <h3 class="text-2xl font-bold mb-3 inter">{{ alumni.title }}</h3>
+                <h3 class="text-2xl font-bold mb-3 inter text-red-600">{{ alumni.title }}</h3>
                 <p class="text-sm md:text-base leading-relaxed mb-4">
                   {{ alumni.quote1 }}
                 </p>
@@ -110,10 +110,10 @@
 
           <!-- Tombol Navigasi -->
           <button @click="prevSlide"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+            class="absolute left-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
             < </button>
               <button @click="nextSlide"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
+                class="absolute right-0 top-1/3 -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">
                 >
               </button>
         </div>
