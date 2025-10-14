@@ -59,7 +59,7 @@
       <div
         class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
         data-aos="zoom-in-up">
-        <img src="" alt="Ketahui Jurusanmu"
+        <img src="https://images.unsplash.com/photo-1629001528534-e8a48b636ded?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1742" alt="Ketahui Jurusanmu"
           class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
@@ -80,7 +80,7 @@
       <div
         class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
         data-aos="zoom-in-up" data-aos-delay="150">
-        <img src="" alt="Permainan Interaktif"
+        <img src="https://images.unsplash.com/photo-1489850846882-35ef10a4b480?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1746" alt="Permainan Interaktif"
           class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
@@ -100,7 +100,7 @@
       <div
         class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
         data-aos="zoom-in-up" data-aos-delay="300">
-        <img src="" alt="Kerjakan Kuis Angket"
+        <img src="https://images.unsplash.com/photo-1581088577252-0bcaf7f0cb96?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=930" alt="Kerjakan Kuis Angket"
           class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
