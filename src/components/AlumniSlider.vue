@@ -4,7 +4,7 @@
       Cerita Alumni
     </h2>
 
-    <div class="overflow-hidden relative rounded-2xl shadow-lg bg-white">
+    <div class=" overflow-hidden relative rounded-2xl shadow-lg bg-white">
       <div
         class="flex transition-transform duration-700 ease-in-out"
         :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
@@ -30,7 +30,7 @@
           </div>
 
           <!-- Info -->
-          <div class="w-full lg:w-1/2 text-gray-800">
+          <div class="w-full lg:w-1/2 text-gray-800 lg:mr-10">
             <h3 class="text-2xl font-bold mb-3 text-red-600">
               {{ alumni.title }}
             </h3>
@@ -61,7 +61,7 @@
       <!-- Arrows -->
       <button
         @click="prevSlide"
-        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-red-500 text-red-600 hover:text-white rounded-full shadow-md w-10 h-10 flex items-center justify-center transition-all duration-300 border border-gray-200 backdrop-blur-sm"
+        class="absolute left-4 top-1/3 lg:top-1/2 -translate-y-1/2 bg-white/80 hover:bg-red-500 text-red-600 hover:text-white rounded-full shadow-md w-10 h-10 flex items-center justify-center transition-all duration-300 border border-gray-200 backdrop-blur-sm"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -70,7 +70,7 @@
 
       <button
         @click="nextSlide"
-        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-red-500 text-red-600 hover:text-white rounded-full shadow-md w-10 h-10 flex items-center justify-center transition-all duration-300 border border-gray-200 backdrop-blur-sm"
+        class="absolute right-4 top-1/3 lg:top-1/2 -translate-y-1/2 bg-white/80 hover:bg-red-500 text-red-600 hover:text-white rounded-full shadow-md w-10 h-10 flex items-center justify-center transition-all duration-300 border border-gray-200 backdrop-blur-sm"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

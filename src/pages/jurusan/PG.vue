@@ -3,21 +3,12 @@
     <!-- Pengenalan -->
     <div class="flex flex-col items-center space-y-4">
       <!-- Gambar -->
-     <div id="fadeIn" class="w-full mt-20 relative group overflow-hidden rounded-xl shadow-lg">
-    <div
-    class="w-full h-60 md:h-[300px] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-    :style="{ backgroundImage: `url(${pgImage})` }"
-    ></div>
-
-  <!-- Gradient Overlay -->
-  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-
-  <!-- Optional Text Overlay -->
-  <div class="absolute bottom-4 left-6 text-white">
-    <h2 class="text-2xl font-bold tracking-wide drop-shadow-lg">Lorem Ipsum</h2>
-    <p class="text-sm opacity-90">Lorem Ipsum </p>
-  </div>
-</div>
+      <div id="fadeIn" class="w-full mt-20 relative group overflow-hidden shadow-lg">
+        <div class="w-full h-60 md:h-[300px] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+          :style="{ backgroundImage: `url(${pgImage})` }"></div>
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+      </div>
 
       <!-- Teks -->
       <div class="text-left lg:max-w-7xl lg:mx-auto py-6 gap-2 space-y-4 w-full">
@@ -65,10 +56,9 @@
     </div>
 
     <!-- Bagian Pekerjaan -->
-    <div class="bg-red-060 py-10 mt-10">
+    <div class="bg-red-600 py-10 mt-10">
       <div class="max-w-7xl mx-auto px-5">
         <h2 class="text-white text-3xl font-bold inter mb-8">PEKERJAAN</h2>
-
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-600">
           <div v-for="job in jobs" :key="job"
             class="bg-white p-3 text-center rounded-md shadow flex items-center justify-center hover:scale-105 transition-transform">
@@ -77,9 +67,10 @@
         </div>
       </div>
     </div>
-    
-  </section>
+
   <AlumniSlider :alumnis="alumnis" />
+  
+  </section>
 </template>
 
 <script setup>
@@ -109,6 +100,7 @@ const jobs = [
 // Data alumni carousel
 const alumnis = [
   {
+  // berupa sample
     name: 'Mauuren Greneman',
     year: '2022',
     title: 'Game Developer',
