@@ -58,10 +58,16 @@ export const angketAPI = {
   },
 
   finish: async (sessionId) => {
+    const token = localStorage.getItem('token');
+
     const res = await fetch(`${API_BASE}/angket/selesai`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ session_id: sessionId })
+      body: JSON.stringify({ session_id: sessionId }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      credentials: 'include',
     });
     return await res.json();
   }
