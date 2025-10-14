@@ -21,6 +21,9 @@ import Rencanaku from '@/pages/jurusan/Rencanaku.vue'
 // Admin Pages
 import AdminDashboard from '@/pages/admin/Dashboard.vue'
 
+import Tentang from '@/pages/tentang.vue'
+  
+
 // Routes Config
 const routes = [
   // --- Halaman utama
@@ -53,6 +56,10 @@ const routes = [
 
     // Rencanaku
   { path: '/rencanaku', name: 'rencanaku', component: Rencanaku },
+
+  // Tentang
+  { path: '/tentang', name: 'about', component: Tentang },
+
 
 
   // --- Admin
