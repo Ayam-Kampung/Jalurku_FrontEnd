@@ -158,7 +158,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { authAPI, angketAPI, jurusanAPI } from '@/services/api';
 import { storage } from '@/utils/storage';
 import { getLikertLabel, formatDate } from '@/utils/helpers';
@@ -171,9 +171,20 @@ import pgImg from '@/assets/images/pg_images.jpg'
 
 onMounted(() => {
   AOS.init({
-    duration: 800, // durasi animasi
-    offset: 100, // jarak mulai animasi dari bawah viewport
+    duration: 800,
+    offset: 100,
   })
+  
+  // Restore session jika ada
+  restoreAngketSession();
+})
+
+// Cleanup saat component unmount
+onBeforeUnmount(() => {
+  // Simpan state jika sedang mengerjakan angket
+  if (currentView.value === 'angket' && sessionId.value) {
+    saveAngketState();
+  }
 })
 
 const jurusanImages = {
@@ -182,7 +193,6 @@ const jurusanImages = {
   TJA: tjaImg,
   PG: pgImg,
 }
-
 
 const currentView = ref('dashboard');
 const jurusan = ref([]);
@@ -207,6 +217,99 @@ const progress = computed(() => {
   return ((currentQuestionIndex.value / pertanyaan.value.length) * 100).toFixed(0);
 });
 
+// 🆕 Fungsi untuk menyimpan state angket
+const saveAngketState = () => {
+  if (sessionId.value && pertanyaan.value.length > 0) {
+    storage.setAngketState({
+      sessionId: sessionId.value,
+      pertanyaan: pertanyaan.value,
+      currentQuestionIndex: currentQuestionIndex.value,
+      timestamp: Date.now()
+    });
+    storage.setSessionId(sessionId.value);
+  }
+};
+
+// 🆕 Fungsi untuk menyimpan hasil angket
+const saveHasilAngket = (hasil) => {
+  if (hasil) {
+    localStorage.setItem('hasil_angket', JSON.stringify({
+      hasil: hasil,
+      timestamp: Date.now()
+    }));
+  }
+};
+
+// 🆕 Fungsi untuk mengambil hasil angket
+const getHasilAngket = () => {
+  const saved = localStorage.getItem('hasil_angket');
+  if (saved) {
+    const data = JSON.parse(saved);
+    // Hasil hanya valid selama 5 menit (untuk review)
+    const fiveMinutes = 5 * 60 * 1000;
+    if (Date.now() - data.timestamp < fiveMinutes) {
+      return data.hasil;
+    } else {
+      localStorage.removeItem('hasil_angket');
+    }
+  }
+  return null;
+};
+
+// 🆕 Fungsi untuk hapus hasil angket
+const clearHasilAngket = () => {
+  localStorage.removeItem('hasil_angket');
+};
+
+// 🆕 Fungsi untuk restore session saat refresh
+const restoreAngketSession = async () => {
+  const savedSessionId = storage.getSessionId();
+  const savedState = storage.getAngketState();
+  const savedHasil = getHasilAngket();
+  
+  // Cek apakah ada hasil angket yang tersimpan
+  if (savedHasil) {
+    hasilAngket.value = savedHasil;
+    currentView.value = 'hasil';
+    console.log('✅ Hasil angket dipulihkan');
+  }
+  // Cek apakah ada session yang tersimpan dan belum expired (< 1 jam)
+  else if (savedSessionId && savedState) {
+    const oneHour = 60 * 60 * 1000; // 1 jam dalam milidetik
+    const isExpired = Date.now() - savedState.timestamp > oneHour;
+    
+    if (!isExpired) {
+      // Restore state
+      sessionId.value = savedState.sessionId;
+      pertanyaan.value = savedState.pertanyaan;
+      currentQuestionIndex.value = savedState.currentQuestionIndex;
+      selectedOption.value = null;
+      currentView.value = 'angket';
+      
+      console.log('✅ Sesi angket dipulihkan:', savedSessionId);
+    } else {
+      // Hapus session yang sudah expired
+      clearAngketSession();
+      console.log('⏰ Sesi angket sudah kadaluarsa');
+    }
+  }
+  
+  // Load user info jika sudah login
+  if (token.value) {
+    await fetchUserInfo();
+    await fetchJurusan();
+    if (currentView.value !== 'angket' && currentView.value !== 'hasil') {
+      currentView.value = 'dashboard';
+    }
+  }
+};
+
+// 🆕 Fungsi untuk clear session
+const clearAngketSession = () => {
+  storage.removeSessionId();
+  storage.removeAngketState();
+};
+
 const fetchUserInfo = async () => {
   try {
     const data = await authAPI.getUserInfo(token.value);
@@ -221,14 +324,23 @@ const fetchUserInfo = async () => {
 // Angket Handlers
 const handleMulaiAngket = async () => {
   try {
+    // Hapus session lama jika ada
+    clearAngketSession();
+    
     const sessionData = await angketAPI.start();
     sessionId.value = sessionData.session_id;
+    
+    // Simpan session ID
+    storage.setSessionId(sessionId.value);
 
     const pertanyaanData = await angketAPI.getRand();
     pertanyaan.value = pertanyaanData.data;
     currentQuestionIndex.value = 0;
     selectedOption.value = null;
     currentView.value = 'angket';
+    
+    // Simpan state awal
+    saveAngketState();
   } catch (err) {
     alert('Error memulai angket: ' + err.message);
   }
@@ -250,6 +362,9 @@ const handleSubmitJawaban = async () => {
     if (currentQuestionIndex.value < pertanyaan.value.length - 1) {
       currentQuestionIndex.value++;
       selectedOption.value = null;
+      
+      // Simpan progress
+      saveAngketState();
     } else {
       await handleSelesaiAngket();
     }
@@ -263,9 +378,19 @@ const handleSelesaiAngket = async () => {
     const data = await angketAPI.finish(sessionId.value);
     hasilAngket.value = data.hasil;
     currentView.value = 'hasil';
+    
+    // Simpan hasil angket (untuk review sementara)
+    saveHasilAngket(data.hasil);
+    
+    // Hapus session setelah selesai
+    clearAngketSession();
 
     if (token.value) {
       await fetchUserInfo();
+      // Update nama jurusan setelah fetch user info
+      await fetchJurusan();
+      updateJurusanName();
+      window.dispatchEvent(new Event('user-updated'));
     }
   } catch (err) {
     alert('Error menyelesaikan angket: ' + err.message);
@@ -277,9 +402,11 @@ const handleKembaliDashboard = () => {
   hasilAngket.value = null;
   pertanyaan.value = [];
   sessionId.value = '';
+  
+  // Hapus session dan hasil
+  clearAngketSession();
+  clearHasilAngket();
 };
-
-
 
 const latestJurusanId = computed(() => {
   if (user.value?.HasilAngket && user.value.HasilAngket.length > 0) {
@@ -325,6 +452,7 @@ const handleLogout = () => {
   token.value = '';
   user.value = null;
   storage.removeToken();
+  clearAngketSession();
   currentView.value = 'login';
 };
 
@@ -353,13 +481,12 @@ const updateJurusanName = () => {
   }
 }
 
-onMounted(() => {
-  if (token.value) {
-    fetchUserInfo();
-    fetchJurusan();
-    currentView.value = 'dashboard';
+// Watch untuk auto-save state
+watch([currentQuestionIndex, sessionId], () => {
+  if (currentView.value === 'angket' && sessionId.value) {
+    saveAngketState();
   }
-});
+}, { deep: true })
 
 watch([user, latestJurusanId], () => {
   console.log('👤 User atau jurusan ID berubah:', latestJurusanId.value)

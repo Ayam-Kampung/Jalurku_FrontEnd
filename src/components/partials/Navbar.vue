@@ -222,10 +222,10 @@ const jurusanColor = computed(() => {
 const jurusanIcon = computed(() => jurusanIcons[latestJurusanName.value] || '❓')
 
 const jurusanColors = {
-  PG: 'bg-red-500 text-white',     // misal PG warna merah
-  RPL: 'bg-blue-500 text-white',   // RPL biru
-  TKJ: 'bg-green-500 text-white',  // TKJ hijau
-  TJA: 'bg-yellow-500 text-black', // TJA kuning
+  PG: 'bg-blue-500 text-white',
+  RPL: 'bg-green-500 text-white',
+  TKJ: 'bg-red-600 text-white',
+  TJA: 'bg-yellow-500 text-black',
 }
 
 const jurusanIcons = {
@@ -247,11 +247,17 @@ const jurusanIcons = {
         </svg>`,
 }
 
+const clearAngketSession = () => {
+  storage.removeSessionId();
+  storage.removeAngketState();
+};
+
 const handleLogout = () => {
   token.value = '';
   user.value = null;
-  storage.removeToken();
-  currentView.value = 'login';
+  storage.clearAll(); // Gunakan clearAll untuk bersih total
+  clearAngketSession();
+  window.location.href = '/auth/login'; // Redirect ke login
 };
 
 const fetchJurusan = async () => {
@@ -284,23 +290,54 @@ const fetchUserInfo = async () => {
     const data = await authAPI.getUserInfo(token.value);
     if (data.status === 'success') {
       user.value = data.data;
+      // Update jurusan name setiap kali user info di-fetch
+      updateJurusanName();
     }
   } catch (err) {
     console.error('Error fetching user info:', err);
   }
 };
 
-onMounted(() => {
-  fetchUserInfo()
-  fetchJurusan()
+// 🆕 Event listener untuk refresh user data dari komponen lain
+const handleUserUpdate = () => {
+  console.log('📢 User update event detected');
+  fetchUserInfo();
+};
+
+onMounted(async () => {
   isVisible.value = true
   window.addEventListener('scroll', handleScroll)
+  
+  // 🆕 Listen untuk event custom 'user-updated'
+  window.addEventListener('user-updated', handleUserUpdate)
+  
+  if (token.value) {
+    await fetchJurusan()
+    await fetchUserInfo()
+  }
 })
-onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 
-watch([user, latestJurusanId], () => {
-  console.log('👤 User atau jurusan ID berubah:', latestJurusanId.value)
-  updateJurusanName()
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('user-updated', handleUserUpdate)
+})
+
+window.addEventListener('user-updated', handleUserUpdate);
+
+// Watch perubahan latestJurusanId untuk auto-update
+watch(latestJurusanId, (newId) => {
+  console.log('👤 Jurusan ID berubah:', newId)
+  if (newId && jurusan.value.length > 0) {
+    updateJurusanName()
+  }
+}, { immediate: true })
+
+// Watch perubahan user untuk auto-update
+watch(user, (newUser) => {
+  if (newUser?.HasilAngket && jurusan.value.length > 0) {
+    console.log('👤 User data updated, refresh jurusan name')
+    updateJurusanName()
+  }
 }, { deep: true })
 </script>
 
