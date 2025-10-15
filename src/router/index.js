@@ -20,6 +20,9 @@ import Register from '@/pages/auth/Register.vue'
 import jalurku from '@/pages/jalurku/Quiz.vue'
 import Rencanaku from '@/pages/jurusan/Rencanaku.vue'
 
+// Playground
+import Playground from '@/pages/playground/Playground.vue'
+
 // Admin Pages
 import AdminDashboard from '@/pages/admin/Dashboard.vue'
 
@@ -50,9 +53,11 @@ const routes = [
     ],
   },
 
-  // --- Jalurku
+  // Jalurku
   { path: '/jalurku', name: 'jalurku', component: jalurku },
 
+  // Playground
+  { path: '/playground', name: 'playground', component: Playground },
   // Rencanaku
   { path: '/rencanaku', name: 'rencanaku', component: Rencanaku },
 
