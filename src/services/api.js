@@ -132,13 +132,38 @@ export const pertanyaanAPI = {
     return handleResponse(response);
   },
 
+  // Bulk create - Membuat 4 pertanyaan sekaligus
+  createBulk: async (pertanyaanArray) => {
+    const response = await fetch(`${API_BASE}/pertanyaan/bulk`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
+      body: JSON.stringify({
+        pertanyaan: pertanyaanArray  // 👈 PENTING: dibungkus dalam object
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  },
+
   // Update pertanyaan
   update: async (id, data) => {
     const response = await fetch(`${API_BASE}/pertanyaan/${id}`, {
       method: 'PUT',
-      headers: getAuthHeaders(),
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
       body: JSON.stringify(data)
     });
+    console.log(response)
     return handleResponse(response);
   },
 
