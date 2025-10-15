@@ -4,6 +4,7 @@ import { adminAPI } from '@/services/api'
 // Public Pages
 import Home from '@/pages/Home.vue'
 import NotFound from '@/pages/404.vue'
+import Tentang from '@/pages/Tentang.vue'
 
 // Jurusan Pages
 import rpl from '@/pages/jurusan/RPL.vue'
@@ -52,8 +53,11 @@ const routes = [
   // --- Jalurku
   { path: '/jalurku', name: 'jalurku', component: jalurku },
 
-    // Rencanaku
+  // Rencanaku
   { path: '/rencanaku', name: 'rencanaku', component: Rencanaku },
+
+  // Tentang
+  { path: '/tentang', name: 'tentang', component: Tentang },
 
 
   // --- Admin
