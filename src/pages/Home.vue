@@ -127,7 +127,7 @@
   </section>
 
  <!-- SECTION TENTANG (NEW STYLE) -->
-<section class=" py-24 px-6 md:px-12 overflow-hidden">
+<section class="relative py-24 px-6 md:px-12 overflow-hidden">
   <!-- Dekorasi melingkar -->
   <div class="absolute -top-10 -left-10 w-64 h-64 bg-red-200/30 rounded-full blur-3xl"></div>
   <div class="absolute bottom-0 right-0 w-72 h-72 bg-red-300/30 rounded-full blur-3xl"></div>
@@ -157,10 +157,10 @@
     <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
       <div
         class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-red-200 hover:scale-105 transition-transform duration-500">
-        <!-- <img
-          src="@/assets/images/favicon.png"
+        <img
+          src="https://images.unsplash.com/photo-1584697964192-c5d7a3a6400e?auto=format&fit=crop&q=80&w=1600"
           alt="Tentang Kami"
-          class="w-full h-full object-cover" /> -->
+          class="w-full h-full object-cover" />
         <div
           class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent flex items-end p-6">
           <p class="text-white text-lg font-medium">Bersama menapaki jalur masa depan.</p>
