@@ -1,7 +1,7 @@
 <template>
     <section class="pt-10 space-y-8">
         <div class="flex flex-col md:flex-row-reverse mt-10 w-full">
-            <div class="w-full md:w-1/3 h-60 bg-cover bg-contain bg-no-repeat bg-center transition-all duration-500 "
+            <div class="w-full md:w-1/3 h-60  bg-contain bg-no-repeat bg-center transition-all duration-500 "
                 :style="{ backgroundImage: `url(${ayamKampung})` }"></div>
 
             <div class="p-10 md:w-2/3">
@@ -24,32 +24,32 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             <div class="bg-white p-6 rounded-2xl shadow">
-                <div class="mt-10 w-full h-60 bg-cover bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
+                <div class="mt-10 w-full h-60 bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
                     :style="{ backgroundImage: `url(${orang1})` }"></div>
 
                 <h3 class="font-bold text-xl text-red-600 mb-2">DevOps</h3>
                 <p>Mengelola alur kerja pengembangan, deployment, dan server agar sistem tetap stabil.</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow">
-                <div class="mt-10 w-full h-60 bg-cover bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
+                <div class="mt-10 w-full h-60 bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
                     :style="{ backgroundImage: `url(${orang2})` }"></div>
                 <h3 class="font-bold text-xl text-red-600 mb-2">Copywriting</h3>
                 <p>Menulis narasi, deskripsi jurusan, dan konten promosi yang menarik dan bermakna.</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow">
-                <div class="mt-10 w-full h-60 bg-cover bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
+                <div class="mt-10 w-full h-60 bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
                     :style="{ backgroundImage: `url(${orang3})` }"></div>
                 <h3 class="font-bold text-xl text-red-600 mb-2">System Administrator</h3>
                 <p>Mengatur server dan jaringan agar website selalu aman, cepat, dan efisien.</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow">
-                <div class="mt-10 w-full h-60 bg-cover bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
+                <div class="mt-10 w-full h-60 bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
                     :style="{ backgroundImage: `url(${orang4})` }"></div>
                 <h3 class="font-bold text-xl text-red-600 mb-2">Digital Business</h3>
                 <p>Mengelola arah branding dan strategi digital agar proyek bernilai dan berkelanjutan.</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow">
-                <div class="mt-10 w-full h-60 bg-cover bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
+                <div class="mt-10 w-full h-60 bg-contain bg-no-repeat bg-center transition-all duration-500 mb-5"
                     :style="{ backgroundImage: `url(${orang5})` }"></div>
                 <h3 class="font-bold text-xl text-red-600 mb-2">UI / UX Designer</h3>
                 <p>Mendesain pengalaman pengguna yang menarik, sederhana, dan nyaman digunakan.</p>

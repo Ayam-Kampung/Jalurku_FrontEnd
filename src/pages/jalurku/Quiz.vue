@@ -1,6 +1,5 @@
 <template>
-  <div class="h-screen flex flex-col items-center justify-center"
-    style="padding: 20px; max-width: 800px; margin: 0 auto;">
+  <div class="h-screen flex flex-col items-center justify-center">
 
     <!-- Dashboard View -->
     <div v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full">
@@ -9,7 +8,7 @@
       <div v-if="latestJurusanId"
         class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full transition-all duration-500 hover:scale-[1.02]">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">
-          Seperti kamu cocok menjadi:
+          Seperti kamu cocok menjadi :
         </h2>
 
         <div>
@@ -25,14 +24,21 @@
           </div>
         </div>
 
-        <p class="mt-4 text-xl text-gray-600 italic">
+        <p class="mt-4 text-base text-gray-600 italic">
           Tapi... <br> jangan pikir ini sebagai acuan ya adik-adik ^_^
         </p>
 
-        <button @click="handleMulaiAngket"
-          class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition">
-          🔁 Mulai Angket Lagi
-        </button>
+        <div class="flex justify-between">
+          <router-link to="/rencanaku"
+            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition inline-block text-center">
+            Ketahui JurusanMu
+          </router-link>
+          <button @click="handleMulaiAngket"
+            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition">
+            Mulai Angket Lagi
+          </button>
+
+        </div>
       </div>
 
       <!-- Belum ada hasil -->
@@ -84,7 +90,7 @@
     </div>
 
     <!-- Angket View -->
-    <div v-if="currentView === 'angket' && currentQuestion" class="w-full">
+    <div v-if="currentView === 'angket' && currentQuestion" class="w-full max-w-4xl">
       <h2>Angket Jurusan</h2>
       <p>Pertanyaan {{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
       <div style="background: #f0f0f0; height: 20px; margin: 10px 0;">
@@ -116,7 +122,7 @@
 
     <!-- Hasil View -->
     <div v-if="currentView === 'hasil' && hasilAngket"
-      class="flex flex-col items-center justify-center min-h-screen lg:w-full p-6">
+      :class="`flex flex-col items-center justify-center min-h-screen lg:w-full p-6`">
       <!-- Kartu Utama -->
       <div
         class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center border-t-4 border-red-600 hover:scale-105 transition-all duration-500">
@@ -174,7 +180,7 @@ onMounted(() => {
     duration: 800,
     offset: 100,
   })
-  
+
   // Restore session jika ada
   restoreAngketSession();
 })
@@ -266,7 +272,7 @@ const restoreAngketSession = async () => {
   const savedSessionId = storage.getSessionId();
   const savedState = storage.getAngketState();
   const savedHasil = getHasilAngket();
-  
+
   // Cek apakah ada hasil angket yang tersimpan
   if (savedHasil) {
     hasilAngket.value = savedHasil;
@@ -277,7 +283,7 @@ const restoreAngketSession = async () => {
   else if (savedSessionId && savedState) {
     const oneHour = 60 * 60 * 1000; // 1 jam dalam milidetik
     const isExpired = Date.now() - savedState.timestamp > oneHour;
-    
+
     if (!isExpired) {
       // Restore state
       sessionId.value = savedState.sessionId;
@@ -285,7 +291,7 @@ const restoreAngketSession = async () => {
       currentQuestionIndex.value = savedState.currentQuestionIndex;
       selectedOption.value = null;
       currentView.value = 'angket';
-      
+
       console.log('✅ Sesi angket dipulihkan:', savedSessionId);
     } else {
       // Hapus session yang sudah expired
@@ -293,7 +299,7 @@ const restoreAngketSession = async () => {
       console.log('⏰ Sesi angket sudah kadaluarsa');
     }
   }
-  
+
   // Load user info jika sudah login
   if (token.value) {
     await fetchUserInfo();
@@ -326,10 +332,10 @@ const handleMulaiAngket = async () => {
   try {
     // Hapus session lama jika ada
     clearAngketSession();
-    
+
     const sessionData = await angketAPI.start();
     sessionId.value = sessionData.session_id;
-    
+
     // Simpan session ID
     storage.setSessionId(sessionId.value);
 
@@ -338,7 +344,7 @@ const handleMulaiAngket = async () => {
     currentQuestionIndex.value = 0;
     selectedOption.value = null;
     currentView.value = 'angket';
-    
+
     // Simpan state awal
     saveAngketState();
   } catch (err) {
@@ -362,7 +368,7 @@ const handleSubmitJawaban = async () => {
     if (currentQuestionIndex.value < pertanyaan.value.length - 1) {
       currentQuestionIndex.value++;
       selectedOption.value = null;
-      
+
       // Simpan progress
       saveAngketState();
     } else {
@@ -378,10 +384,10 @@ const handleSelesaiAngket = async () => {
     const data = await angketAPI.finish(sessionId.value);
     hasilAngket.value = data.hasil;
     currentView.value = 'hasil';
-    
+
     // Simpan hasil angket (untuk review sementara)
     saveHasilAngket(data.hasil);
-    
+
     // Hapus session setelah selesai
     clearAngketSession();
 
@@ -402,7 +408,7 @@ const handleKembaliDashboard = () => {
   hasilAngket.value = null;
   pertanyaan.value = [];
   sessionId.value = '';
-  
+
   // Hapus session dan hasil
   clearAngketSession();
   clearHasilAngket();

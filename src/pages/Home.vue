@@ -71,7 +71,7 @@
           </div>
           <RouterLink to="/Rencanaku"
             class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
-            Kunjungi →
+            Ketahui RencanaKu →
           </RouterLink>
         </div>
       </div>
@@ -91,7 +91,7 @@
           </div>
           <RouterLink to="/"
             class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
-            Coba Sekarang →
+            Coba Eksploraku →
           </RouterLink>
         </div>
       </div>
@@ -112,7 +112,7 @@
           </div>
           <RouterLink to="/jalurku"
             class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
-            Mulai Kuis →
+            Mulai Kuis JalurKu →
           </RouterLink>
         </div>
       </div>
