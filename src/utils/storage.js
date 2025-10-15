@@ -2,6 +2,10 @@ export const storage = {
   setToken(token) {
     localStorage.setItem('token', token);
   },
+
+  clearAll() {
+    localStorage.clear();
+  },
   
   getToken() {
     return localStorage.getItem('token') || '';
