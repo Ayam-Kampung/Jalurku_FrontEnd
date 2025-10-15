@@ -44,6 +44,9 @@
         <!-- PLAYGROUND -->
         <RouterLink to="/playground" class="nav-link">PLAYGROUND</RouterLink>
 
+        <!-- JELAJAH -->
+        <a href="https://tour.smktelkom-pwt.sch.id/" class="nav-link">JELAJAH</a>
+
         <!-- JURUSAN -->
         <div
           class="w-full lg:w-auto relative"
