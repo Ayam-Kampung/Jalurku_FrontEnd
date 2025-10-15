@@ -67,12 +67,18 @@
           </div>
         </div>
       </div>
+      
     </div>
-    <AlumniSlider :alumnis="alumnis" />
+     <div>
+          <AlumniSlider :alumnis="alumnis" />
+      <LogoSlider />
+    </div>
+     <!-- Logo Slider -->
   </section>
 </template>
 
 <script setup>
+import LogoSlider from '@/components/LogoSlider.vue'
 import rplImage from '@/assets/images/rpl_images.jpg'
 import alumni1 from '@/assets/images/alumni_1.png'
 import alumni2 from '@/assets/images/alumni_2.png'

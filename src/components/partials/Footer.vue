@@ -128,12 +128,12 @@
         <img class="h-5 w-5" :src="Favicon" alt="Favicon" />
         <p class="font-mono text-sm">(C) 2025 Ayam Kampung. All rights reserved.</p>
       </div>
-      <div class="flex items-center gap-2">
+      <!-- <div class="flex items-center gap-2">
         <img class="h-20 w-20" :src="JIHCLogo" alt="Favicon" />
         <img class="h-20 w-20" :src="KOMDIGILogo" alt="Favicon" />
         <img class="h-20 w-20" :src="MASPIONLogo" alt="Favicon" />
         <img class="h-20 w-20" :src="I000Logo" alt="Favicon" />
-      </div>
+      </div> -->
     </div>
   </footer>
 </template>
