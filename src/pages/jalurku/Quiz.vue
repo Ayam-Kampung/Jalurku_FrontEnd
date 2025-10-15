@@ -1,48 +1,96 @@
 <template>
-  <div class="h-screen flex flex-col items-center justify-center" style="padding: 20px; max-width: 800px; margin: 0 auto;">
+  <div class="h-screen flex flex-col items-center justify-center"
+    style="padding: 20px; max-width: 800px; margin: 0 auto;">
 
     <!-- Dashboard View -->
-    <div v-if="currentView === 'dashboard'">
-      
-      <div v-if="latestJurusanId">
-        <h2>Kamu sekarang cocok menjadi:</h2>
-        <div :class= "`flex items-center gap-2 py-1 px-2 rounded-md text-4xl ${jurusanColor}`">
-          <span v-html="jurusanIcons[latestJurusanName]" class="w-5 h-5"></span>
-          {{ latestJurusanName }}
+    <div v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full">
+
+      <!-- Hasil Jurusan -->
+      <div v-if="latestJurusanId"
+        class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full transition-all duration-500 hover:scale-[1.02]">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">
+          Seperti kamu cocok menjadi:
+        </h2>
+
+        <div>
+          <!-- Gambar jurusan -->
+          <img :src="jurusanImages[latestJurusanName]" :alt="`Gambar jurusan ${latestJurusanName}`"
+            class="w-full h-60 object-cover mx-auto rounded-t-lg shadow-md transition-transform duration-500" />
+
+          <!-- Nama jurusan + ikon -->
+          <div
+            :class="`flex justify-center items-center gap-3 py-3 px-4 rounded-b-lg text-5xl font-bold shadow-lg ${jurusanColor}`">
+            <span v-html="jurusanIcons[latestJurusanName]" class="w-16 h-16"></span>
+            {{ latestJurusanName }}
+          </div>
         </div>
-        <p>Mantaps betul!!</p>
-        <button @click="handleMulaiAngket" style="padding: 10px 20px; margin: 10px 10px 10px 0;">Mulai Angket Lagi</button>
+
+        <p class="mt-4 text-xl text-gray-600 italic">
+          Tapi... <br> jangan pikir ini sebagai acuan ya adik-adik ^_^
+        </p>
+
+        <button @click="handleMulaiAngket"
+          class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition">
+          🔁 Mulai Angket Lagi
+        </button>
       </div>
 
-      <div v-if="!latestJurusanId && user">
-        <h2>Sepertinya jurusan kamu masih jadi misteri :v</h2>
-        <div class="px-2 rounded-md bg-gray-700 text-white text-4xl">???</div>
-        <p>Gapapa kok kita bakal pandu! Duduk, tenang, dan minumlah jika kamu haus, dan biarlah sistem kami bekerja!!!</p>
-        <button @click="handleMulaiAngket">Mulai Angket Baru!</button>
+      <!-- Belum ada hasil -->
+      <div v-else-if="!latestJurusanId && user" class="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
+        <img
+          src="https://images.unsplash.com/photo-1629001528534-e8a48b636ded?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1742"
+          alt="Ketahui Jurusanmu"
+          class="w-60 h-40 object-cover hover:scale-105 transition-transform duration-500 mx-auto my-5 rounded-xl"
+          data-aos="fade-down" data-aos-delay="300" />
+        <h2 class="text-xl font-semibold text-gray-700 mb-3" data-aos="fade-down" data-aos-delay="600">
+          Sepertinya jurusan kamu masih jadi misteri ¯\_(ツ)_/¯
+        </h2>
+        <div
+          class="px-4 py-2 bg-gray-800 text-white text-4xl rounded-xl inline-block mb-4 hover:scale-105 transition-transform duration-500"
+          data-aos="zoom-in" data-aos-delay="1100">
+          ???</div>
+        <p class="text-gray-600" data-aos="fade-up" data-aos-delay="1200">Gapapa kok! Duduk santai dulu, minum air, dan
+          biarkan sistem kami bekerja~</p>
+        <button @click="handleMulaiAngket"
+          class="mt-6 bg-green-600 hover:bg-green-700 hover:scale-105 text-white px-5 py-2 font-medium transition"
+          data-aos="zoom-in" data-aos-delay="1900">
+          Mulai Angket Baru
+        </button>
       </div>
 
-      <div v-if="!user">
-        <button @click="handleMulaiAngket" style="padding: 10px 20px; margin: 10px 10px 10px 0;">Mulai Angket Baru! (sebagai tamu)</button>
+      <!-- Mode Tamu -->
+      <div v-else-if="!user" class="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Kamu belum login 😄</h2>
+        <button @click="handleMulaiAngket"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition">
+          Mulai Angket Baru! (sebagai tamu)
+        </button>
       </div>
 
-      <!-- <div v-if="user?.HasilAngket && user.HasilAngket.length > 0" style="margin-top: 20px;">
-        <h3>Riwayat Angket:</h3>
-        <ul>
-          <li v-for="hasil in user.HasilAngket" :key="hasil.id" style="margin: 5px 0;">
-            Jurusan ID: {{ hasil.jurusan_id }} - {{ formatDate(hasil.CreatedAt) }}
+      <!-- Riwayat -->
+      <!-- <div v-if="user?.HasilAngket && user.HasilAngket.length > 0"
+        class="mt-10 bg-white shadow-md rounded-2xl p-6 w-full max-w-md">
+        <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+          🗂️ Riwayat Angket:
+        </h3>
+        <ul class="text-gray-600 text-sm space-y-2">
+          <li v-for="hasil in user.HasilAngket" :key="hasil.id"
+            class="flex justify-between bg-gray-50 rounded-lg px-3 py-2 hover:bg-gray-100 transition">
+            <span>Jurusan ID: {{ hasil.jurusan_id }}</span>
+            <span class="text-gray-500">{{ formatDate(hasil.CreatedAt) }}</span>
           </li>
         </ul>
       </div> -->
     </div>
 
     <!-- Angket View -->
-    <div v-if="currentView === 'angket' && currentQuestion">
+    <div v-if="currentView === 'angket' && currentQuestion" class="w-full">
       <h2>Angket Jurusan</h2>
       <p>Pertanyaan {{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
       <div style="background: #f0f0f0; height: 20px; margin: 10px 0;">
         <div style="background: #4CAF50; height: 20px;" :style="{ width: progress + '%' }"></div>
       </div>
-      
+
       <div style="margin: 20px 0; padding: 20px; border: 1px solid #ddd;">
         <h3>{{ currentQuestion.text }}</h3>
         <p v-if="currentQuestion.image">
@@ -50,7 +98,7 @@
         </p>
         <p>Meta: {{ currentQuestion.meta }}</p>
         <p>Jurusan: {{ currentQuestion.Jurusan.name }}</p>
-        
+
         <div style="margin: 20px 0;">
           <p><strong>Pilih tingkat persetujuan (1-5):</strong></p>
           <div v-for="n in 5" :key="n" style="margin: 10px 0;">
@@ -61,31 +109,50 @@
           </div>
         </div>
       </div>
-      
+
       <button @click="handleSubmitJawaban" style="padding: 10px 20px;">
-        {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }}
-      </button>
+        {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} </button>
     </div>
 
     <!-- Hasil View -->
-    <div v-if="currentView === 'hasil' && hasilAngket">
-      <h2>Hasil Angket</h2>
-      <div style="padding: 20px; border: 2px solid #4CAF50; margin: 20px 0;">
-        <h3>Jurusan Terbaik untuk Anda:</h3>
-        <h2 style="color: #4CAF50;">{{ hasilAngket.jurusan_terbaik }}</h2>
-        <p>Total Skor: {{ hasilAngket.total_skor }}</p>
+    <div v-if="currentView === 'hasil' && hasilAngket"
+      class="flex flex-col items-center justify-center min-h-screen lg:w-full p-6">
+      <!-- Kartu Utama -->
+      <div
+        class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center border-t-4 border-red-600 hover:scale-105 transition-all duration-500">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Hasil Angket <span class="text-red-600">JalurKu</span></h2>
+
+        <div :class="` rounded-xl p-5 border border-gray-200 mb-6  ${jurusanColor}`">
+          <h3 :class="`text-lg font-semibold mb-2`">
+            Jurusan yang sesuai untuk Anda:
+          </h3>
+          <h2 :class="`text-4xl font-bold mb-1`">
+            {{ hasilAngket.jurusan_terbaik }}
+          </h2>
+          <p class="text-sm">
+            Total Skor: <span class="font-medium">{{ hasilAngket.total_skor }}</span>
+          </p>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-700 mb-3">
+          Detail Skor per Jurusan
+        </h3>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600 mb-6">
+          <li v-for="(skor, jurusanId) in hasilAngket.detail_skor" :key="jurusanId"
+            class="bg-gray-50 rounded-lg px-4 py-3 shadow-sm hover:bg-green-50 hover:shadow-md transition">
+            <div class="font-medium text-gray-800">
+              Jurusan ID {{ jurusanId }}
+            </div>
+            <div class="text-gray-500 text-sm">Skor: {{ skor }}</div>
+          </li>
+        </ul>
+
+        <button @click="handleKembaliDashboard"
+          class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-xl shadow-md transition-transform hover:scale-[1.03]">
+          {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Login' }}
+        </button>
       </div>
-      
-      <h3>Detail Skor per Jurusan:</h3>
-      <ul>
-        <li v-for="(skor, jurusanId) in hasilAngket.detail_skor" :key="jurusanId" style="margin: 5px 0;">
-          Jurusan ID {{ jurusanId }}: {{ skor }} poin
-        </li>
-      </ul>
-      
-      <button @click="handleKembaliDashboard" style="padding: 10px 20px; margin-top: 20px;">
-        {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Login' }}
-      </button>
     </div>
   </div>
 </template>
@@ -95,6 +162,27 @@ import { ref, computed, watch, onMounted } from 'vue';
 import { authAPI, angketAPI, jurusanAPI } from '@/services/api';
 import { storage } from '@/utils/storage';
 import { getLikertLabel, formatDate } from '@/utils/helpers';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import tkjImg from '@/assets/images/tkj_images.jpg'
+import rplImg from '@/assets/images/rpl_images.jpg'
+import tjaImg from '@/assets/images/tja_images.jpg'
+import pgImg from '@/assets/images/pg_images.jpg'
+
+onMounted(() => {
+  AOS.init({
+    duration: 800, // durasi animasi
+    offset: 100, // jarak mulai animasi dari bawah viewport
+  })
+})
+
+const jurusanImages = {
+  TKJ: tkjImg,
+  RPL: rplImg,
+  TJA: tjaImg,
+  PG: pgImg,
+}
+
 
 const currentView = ref('dashboard');
 const jurusan = ref([]);
@@ -135,7 +223,7 @@ const handleMulaiAngket = async () => {
   try {
     const sessionData = await angketAPI.start();
     sessionId.value = sessionData.session_id;
-    
+
     const pertanyaanData = await angketAPI.getRand();
     pertanyaan.value = pertanyaanData.data;
     currentQuestionIndex.value = 0;
@@ -175,7 +263,7 @@ const handleSelesaiAngket = async () => {
     const data = await angketAPI.finish(sessionId.value);
     hasilAngket.value = data.hasil;
     currentView.value = 'hasil';
-    
+
     if (token.value) {
       await fetchUserInfo();
     }
@@ -208,10 +296,10 @@ const jurusanColor = computed(() => {
 const jurusanIcon = computed(() => jurusanIcons[latestJurusanName.value] || '❓')
 
 const jurusanColors = {
-  PG: 'bg-red-500 text-white',     // misal PG warna merah
-  RPL: 'bg-blue-500 text-white',   // RPL biru
-  TKJ: 'bg-green-500 text-white',  // TKJ hijau
-  TJA: 'bg-yellow-500 text-black', // TJA kuning
+  PG: 'bg-blue-500 text-white',
+  RPL: 'bg-green-500 text-white',
+  TKJ: 'bg-red-600 text-white',
+  TJA: 'bg-yellow-500 text-black',
 }
 
 const jurusanIcons = {
