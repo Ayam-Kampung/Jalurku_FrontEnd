@@ -13,23 +13,27 @@
         <img
           :src="logo"
           alt="Logo"
-          class="h-20 md:h-80 mx-2 object-contain select-none pointer-events-none transition-transform duration-300"
+          class="logo-img object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
         />
       </template>
 
-      <!-- Loop kedua (duplikat penuh untuk transisi tanpa jeda) -->
+      <!-- Loop kedua -->
       <template v-for="(logo, i) in logos" :key="'b' + i">
         <img
           :src="logo"
           alt="Logo"
-          class="h-20 md:h-80 mx-2 object-contain select-none pointer-events-none transition-transform duration-300"
+          class="logo-img object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
         />
       </template>
     </div>
 
     <!-- Fade lembut kiri-kanan -->
-    <div class="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none"></div>
-    <div class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
+    <div
+      class="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none"
+    ></div>
+    <div
+      class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none"
+    ></div>
   </section>
 </template>
 
@@ -71,5 +75,16 @@ const resume = () => (isPaused.value = false)
 /* Pause saat hover */
 .paused {
   animation-play-state: paused;
+}
+
+/* Responsive size pakai clamp agar proporsional di semua layar */
+.logo-img {
+  height: clamp(14rem, 28vw, 28rem); /* Mobile: 4rem → Desktop: 8rem */
+  transition: transform 0.3s ease;
+}
+
+/* Hover animasi lembut */
+.logo-img:hover {
+  transform: scale(1.05);
 }
 </style>
