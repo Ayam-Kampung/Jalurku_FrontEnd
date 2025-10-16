@@ -304,7 +304,7 @@ export default {
         // Data sudah dalam bentuk array yang benar
         console.log('Sending data:', this.newPertanyaan);
         
-        const response = await pertanyaanAPI.createBulk(this.newPertanyaan);
+        const response = await pertanyaanAPI.create(this.newPertanyaan);
 
         if (response.status === 'success') {
           this.showSuccess(`Berhasil menambahkan ${response.count} pertanyaan untuk semua jurusan!`);

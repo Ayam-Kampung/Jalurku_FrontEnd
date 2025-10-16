@@ -123,18 +123,8 @@ export const pertanyaanAPI = {
   // Get all pertanyaan
 
   // Create new pertanyaan
-  create: async (data) => {
+  create: async (pertanyaanArray) => {
     const response = await fetch(`${API_BASE}/pertanyaan/`, {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  // Bulk create - Membuat 4 pertanyaan sekaligus
-  createBulk: async (pertanyaanArray) => {
-    const response = await fetch(`${API_BASE}/pertanyaan/bulk`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
