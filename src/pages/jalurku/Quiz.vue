@@ -160,17 +160,7 @@
         <h3 class="text-lg font-semibold text-gray-700 mb-3">
           Detail Skor per Jurusan
         </h3>
-
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600 mb-6">
-          <li v-for="(skor, jurusanId) in hasilAngket.detail_skor" :key="jurusanId"
-            class="bg-gray-50 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition">
-            <div class="font-medium text-gray-800">
-              Jurusan {{ jurusanId > 0 ? jurusan[jurusanId - 1].name : '' }}
-            </div>
-            <div class="text-gray-500 text-sm">Skor: {{ skor }}</div>
-          </li>
-        </ul>
-
+        
         <button @click="handleKembaliDashboard"
           class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-transform">
           {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Login' }}
