@@ -1,8 +1,11 @@
 <template>
   <!-- HERO -->
-  <section class="h-screen bg-[url('/images/tja_images.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+  <section class="h-screen bg-[url('/images/tja_images.jpg')] bg-fixed bg-no-repeat bg-cover bg-center relative">
+    <!-- Overlay untuk meningkatkan kontras teks -->
+    <div class="absolute inset-0"></div>
+    
     <!-- Teks dekoratif menyebar -->
-    <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <span class="absolute text-blue-400 text-6xl font-bold top-[23%] left-[10%] lg:left-[23%] select-none"
         data-aos="zoom-in" data-aos-delay="1200">
         <svg xmlns="http://www.w3.org/2000/svg" height="90px" viewBox="0 -960 960 960" width="60px" fill="#ed1e28">
@@ -32,89 +35,125 @@
         </svg>
       </span>
     </div>
-    <div class="flex flex-col items-center justify-center text-center mx-auto max-w-5xl h-full text-gray-800"
+    
+    <div class="relative flex flex-col items-center justify-center text-center mx-auto max-w-5xl h-full px-6 text-gray-800"
       data-aos="fade-up">
       <div class="flex flex-col gap-6">
-        <h1 id="heading" class="inter text-5xl md:text-7xl" data-aos="fade-down" data-aos-delay="100">
+        <h1 id="heading" class="inter text-5xl md:text-7xl font-bold drop-shadow-lg" data-aos="fade-down" data-aos-delay="100">
           Temukan <span class="text-red-500">Jalur</span> Yang <br />
           Pas Untukmu
         </h1>
 
-        <p class="text-lg md:text-2xl inter" data-aos="fade-up" data-aos-delay="300">
+        <p class="text-lg md:text-2xl inter font-medium drop-shadow-md" data-aos="fade-up" data-aos-delay="300">
           Arah Tepat, Jalur Pasti, Impian Tercapai.
+        </p>
+
+        <p class="text-base md:text-lg max-w-2xl mx-auto drop-shadow-md" data-aos="fade-up" data-aos-delay="400">
+          Platform digital SMK Telkom Purwokerto untuk membantu siswa menemukan jurusan yang sesuai dengan minat dan bakat mereka melalui kuis interaktif, eksplorasi jurusan, dan inspirasi alumni.
         </p>
       </div>
 
       <RouterLink to="/jalurku"
-        class="mt-6 bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl hover:scale-110 hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60"
+        class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold"
         data-aos="zoom-in" data-aos-delay="600">
-        Kunjungi Jalurku →
+        Mulai Eksplorasi Sekarang →
       </RouterLink>
     </div>
   </section>
 
   <!-- FITUR SECTION -->
   <section class="max-w-7xl mx-auto px-5 py-16 text-gray-800">
+    <!-- Section Header -->
+    <div class="text-center mb-12" data-aos="fade-up">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+        Fitur <span class="text-red-500">Jalurku</span>
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        Tiga cara mudah untuk menemukan jurusan kamu
+      </p>
+    </div>
+
     <div class="grid md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-offset="200" data-aos-duration="1000">
       <!-- Card 1 -->
       <div
-        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
+        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group"
         data-aos="zoom-in-up">
-        <img
-          src="https://images.unsplash.com/photo-1629001528534-e8a48b636ded?auto=format&fit=crop&q=80&w=1742"
-          alt="Ketahui Jurusanmu" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <div class="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1629001528534-e8a48b636ded?auto=format&fit=crop&q=80&w=1742"
+            alt="Ketahui Jurusanmu" 
+            class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            Rencana
+          </div>
+        </div>
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
-            <h3 class="text-2xl font-bold text-red-500 mb-2">Ketahui Jurusanmu</h3>
+            <h3 class="text-2xl font-bold text-red-500 mb-3">Ketahui Jurusanmu</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
-              Mengenalkan berbagai jurusan yang tersedia di SMK Telkom Purwokerto serta kisah sukses alumni.
+              Mengenalkan berbagai jurusan yang tersedia di SMK Telkom Purwokerto serta kisah sukses alumni yang bisa menginspirasimu.
             </p>
           </div>
           <RouterLink to="/Rencanaku"
-            class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
-            Ketahui RencanaKu →
+            class="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 group-hover:gap-3">
+            Ketahui RencanaKu 
+            <span class="transition-transform group-hover:translate-x-1">→</span>
           </RouterLink>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div
-        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
+        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group"
         data-aos="zoom-in-up" data-aos-delay="150">
-        <img
-          src="https://images.unsplash.com/photo-1489850846882-35ef10a4b480?auto=format&fit=crop&q=80&w=1746"
-          alt="Permainan Interaktif" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <div class="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1489850846882-35ef10a4b480?auto=format&fit=crop&q=80&w=1746"
+            alt="Permainan Interaktif" 
+            class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            Eksplorasi
+          </div>
+        </div>
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
-            <h3 class="text-2xl font-bold text-red-500 mb-2"></h3>
+            <h3 class="text-2xl font-bold text-red-500 mb-3">Eksplorasi Interaktif</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
-              Simulasi interaktif untuk eksplorasi jurusan dengan cara yang menyenangkan.
+              Simulasi interaktif untuk eksplorasi jurusan dengan cara yang menyenangkan dan engaging melalui playground digital.
             </p>
           </div>
           <RouterLink to="/playground"
-            class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
-            Coba Eksploraku →
+            class="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 group-hover:gap-3">
+            Coba Eksploraku 
+            <span class="transition-transform group-hover:translate-x-1">→</span>
           </RouterLink>
         </div>
       </div>
 
       <!-- Card 3 -->
       <div
-        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
+        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group"
         data-aos="zoom-in-up" data-aos-delay="300">
-        <img
-          src="https://images.unsplash.com/photo-1581088577252-0bcaf7f0cb96?auto=format&fit=crop&q=80&w=930"
-          alt="Kerjakan Kuis Angket" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <div class="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1581088577252-0bcaf7f0cb96?auto=format&fit=crop&q=80&w=930"
+            alt="Kerjakan Kuis Angket" 
+            class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            Kuis
+          </div>
+        </div>
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
-            <h3 class="text-2xl font-bold text-red-500 mb-2">Kerjakan Kuis Angket</h3>
+            <h3 class="text-2xl font-bold text-red-500 mb-3">Kerjakan Kuis Angket</h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
-              Bantu siswa menemukan jurusan yang cocok dengan minat dan tujuan mereka.
+              Bantu siswa menemukan jurusan yang cocok dengan minat, bakat, dan tujuan karier mereka melalui kuis personal.
             </p>
           </div>
           <RouterLink to="/jalurku"
-            class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
-            Mulai Kuis JalurKu →
+            class="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 group-hover:gap-3">
+            Mulai Kuis JalurKu 
+            <span class="transition-transform group-hover:translate-x-1">→</span>
           </RouterLink>
         </div>
       </div>
@@ -126,54 +165,67 @@
     </div>
   </section>
 
- <!-- SECTION TENTANG-->
-<section class="relative py-24 px-6 md:px-12 overflow-hidden">
-  <!-- Dekorasi melingkar -->
-  <!-- <div class="absolute -top-10 -left-10 w-64 h-64 bg-red-200/30 rounded-full blur-3xl"></div> -->
-  <!-- <div class="absolute bottom-0 right-0 w-72 h-72 bg-red-300/30 rounded-full blur-3xl"></div> -->
+  <!-- SECTION TENTANG (IMPROVED) -->
+  <section class="relative py-24 px-6 md:px-12 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+      <!-- Kolom Teks -->
+      <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
+        <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          Tentang Platform
+        </div>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 tracking-tight">
+          Kenapa Memilih <span class="text-red-600">Jalurku</span>?
+        </h2>
+        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
+          <span class="font-semibold text-red-500">Jalurku</span> adalah platform inovatif yang membantu siswa menemukan arah masa depan mereka melalui eksplorasi jurusan, kuis interaktif, dan kisah inspiratif dari alumni SMK Telkom Purwokerto.
+        </p>
+        <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-10">
+          Kami percaya setiap siswa memiliki jalur unik menuju kesuksesan. Dengan bimbingan yang tepat, masa depan cerah bukan lagi sekadar impian — melainkan tujuan nyata yang bisa dicapai.
+        </p>
 
-  <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
-    <!-- Kolom Teks -->
-    <div class="w-full md:w-1/2 text-center md:text-left">
-      <h2 class="text-4xl md:text-5xl font-extrabold text-red-600 mb-6 tracking-tight">
-        Tentang <span class="text-gray-800">Kami</span>
-      </h2>
-      <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-10">
-        <span class="font-semibold text-red-500">Jalurku</span> adalah platform inovatif yang membantu siswa menemukan arah masa depan mereka melalui eksplorasi jurusan, kuis interaktif, dan kisah inspiratif dari alumni SMK Telkom Purwokerto.
-        <br><br>
-        Kami percaya setiap siswa memiliki jalur unik menuju kesuksesan. Dengan bimbingan yang tepat, masa depan cerah bukan lagi sekadar impian — melainkan tujuan nyata.
-      </p>
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-red-600">5+</div>
+            <div class="text-sm text-gray-600">Jurusan</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-red-600">100+</div>
+            <div class="text-sm text-gray-600">Alumni</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-red-600">3</div>
+            <div class="text-sm text-gray-600">Fitur</div>
+          </div>
+        </div>
 
-      <RouterLink
-        to="/tentang"
-        class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg"
-      >
-        Pelajari Lebih Lanjut
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </RouterLink>
-    </div>
+        <RouterLink to="/tentang"
+          class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg">
+          Pelajari Lebih Lanjut
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </RouterLink>
+      </div>
 
-    <!-- Kolom Gambar -->
-    <div class="w-full md:w-1/2 flex justify-center">
-      <div
-        class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-red-200 hover:scale-105 transition-transform duration-500"
-      >
-        <img
-          src="@/assets/images/ayamkampung.png"
-          alt="Tentang Kami"
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute p-6">
-          <p class="text-white text-lg font-medium">Bersama menapaki jalur masa depan.</p>
+      <!-- Kolom Gambar -->
+      <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
+        <div
+          class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-red-200 hover:scale-105 transition-transform duration-500">
+          <img
+            src="@/assets/images/ayamkampung.png"
+            alt="Tentang Kami - SMK Telkom Purwokerto"
+            class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="text-white text-lg font-semibold drop-shadow-lg">
+              Bersama menapaki jalur masa depan yang gemilang
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
+  </section>
 </template>
 
 <script setup>
