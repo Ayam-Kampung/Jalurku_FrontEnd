@@ -47,10 +47,6 @@
         <p class="text-lg md:text-2xl inter font-medium drop-shadow-md" data-aos="fade-up" data-aos-delay="300">
           Arah Tepat, Jalur Pasti, Impian Tercapai.
         </p>
-
-        <p class="text-base md:text-lg max-w-2xl mx-auto drop-shadow-md" data-aos="fade-up" data-aos-delay="400">
-          Platform digital SMK Telkom Purwokerto untuk membantu siswa menemukan jurusan yang sesuai dengan minat dan bakat mereka melalui kuis interaktif, eksplorasi jurusan, dan inspirasi alumni.
-        </p>
       </div>
 
       <RouterLink to="/jalurku"
@@ -184,7 +180,7 @@
         </p>
 
         <!-- Stats -->
-        <div class="grid grid-cols-3 gap-4 mb-8">
+        <!-- <div class="grid grid-cols-3 gap-4 mb-8">
           <div class="text-center">
             <div class="text-3xl font-bold text-red-600">5+</div>
             <div class="text-sm text-gray-600">Jurusan</div>
@@ -197,7 +193,7 @@
             <div class="text-3xl font-bold text-red-600">3</div>
             <div class="text-sm text-gray-600">Fitur</div>
           </div>
-        </div>
+        </div> -->
 
         <RouterLink to="/tentang"
           class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg">
