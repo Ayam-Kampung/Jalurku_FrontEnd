@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main  # ubah kalau branch utama kamu beda (misal: master)
+  
+permissions:
+  contents: write
 
 jobs:
   build:
