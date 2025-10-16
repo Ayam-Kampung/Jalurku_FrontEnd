@@ -86,12 +86,12 @@
           alt="Permainan Interaktif" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
         <div class="p-6 flex flex-col flex-grow justify-between">
           <div>
-            <h3 class="text-2xl font-bold text-red-500 mb-2">Permainan Interaktif</h3>
+            <h3 class="text-2xl font-bold text-red-500 mb-2"></h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Simulasi interaktif untuk eksplorasi jurusan dengan cara yang menyenangkan.
             </p>
           </div>
-          <RouterLink to="/"
+          <RouterLink to="/playground"
             class="mt-auto inline-block text-center w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all duration-300">
             Coba Eksploraku →
           </RouterLink>
@@ -126,15 +126,15 @@
     </div>
   </section>
 
- <!-- SECTION TENTANG (NEW STYLE) -->
+ <!-- SECTION TENTANG-->
 <section class="relative py-24 px-6 md:px-12 overflow-hidden">
   <!-- Dekorasi melingkar -->
-  <div class="absolute -top-10 -left-10 w-64 h-64 bg-red-200/30 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 right-0 w-72 h-72 bg-red-300/30 rounded-full blur-3xl"></div>
+  <!-- <div class="absolute -top-10 -left-10 w-64 h-64 bg-red-200/30 rounded-full blur-3xl"></div> -->
+  <!-- <div class="absolute bottom-0 right-0 w-72 h-72 bg-red-300/30 rounded-full blur-3xl"></div> -->
 
   <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
     <!-- Kolom Teks -->
-    <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
+    <div class="w-full md:w-1/2 text-center md:text-left">
       <h2 class="text-4xl md:text-5xl font-extrabold text-red-600 mb-6 tracking-tight">
         Tentang <span class="text-gray-800">Kami</span>
       </h2>
@@ -144,8 +144,10 @@
         Kami percaya setiap siswa memiliki jalur unik menuju kesuksesan. Dengan bimbingan yang tepat, masa depan cerah bukan lagi sekadar impian — melainkan tujuan nyata.
       </p>
 
-      <RouterLink to="/tentang"
-        class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg">
+      <RouterLink
+        to="/tentang"
+        class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg"
+      >
         Pelajari Lebih Lanjut
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -154,21 +156,23 @@
     </div>
 
     <!-- Kolom Gambar -->
-    <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
+    <div class="w-full md:w-1/2 flex justify-center">
       <div
-        class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-red-200 hover:scale-105 transition-transform duration-500">
+        class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-red-200 hover:scale-105 transition-transform duration-500"
+      >
         <img
-          src="https://images.unsplash.com/photo-1584697964192-c5d7a3a6400e?auto=format&fit=crop&q=80&w=1600"
+          src="@/assets/images/ayamkampung.png"
           alt="Tentang Kami"
-          class="w-full h-full object-cover" />
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent flex items-end p-6">
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute p-6">
           <p class="text-white text-lg font-medium">Bersama menapaki jalur masa depan.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 </template>
 
