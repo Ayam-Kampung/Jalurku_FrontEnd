@@ -1,349 +1,127 @@
 <template>
-  <div class="lg:mx-10 lg:my-10 mx-5 my-5">
-    <div class="flex justify-between items-center mb-8">
-      <h1 class="text-3xl font-bold text-gray-800">Manajemen Pertanyaan</h1>
-      <button @click="showAddModal = true" class="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors">
-        <span class="text-xl">+</span>
-        Tambah Pertanyaan
-      </button>
-    </div>
-
-    <!-- Success Message -->
-    <div v-if="successMessage" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
-      {{ successMessage }}
-    </div>
-
-    <!-- Error Message -->
-    <div v-if="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
-      {{ error }}
-    </div>
-
-    <!-- Loading -->
-    <div v-if="loading" class="text-center py-12 text-lg text-gray-500">Memuat data...</div>
-
-    <!-- Pertanyaan Cards Grouped by Jurusan -->
-    <div v-else>
-      <div v-for="j in jurusan" :key="j.id" class="mb-12">
-        <h2 class="sticky top-0 flex bg-white items-end gap-2 text-black py-2 text-2xl font-bold border-b mb-5">
-          <span class="text-gray-400 font-mono text-sm">id:{{ j.id }}</span> 
-          {{ j.name }} · <div class="text-gray-500">{{ getPertanyaanByJurusan(j.id).length }} Pertanyaan</div>
-        </h2>
-        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
-          <div v-for="p in getPertanyaanByJurusan(j.id)" :key="p.id" class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
-              <span class="text-xs text-gray-500 font-mono">ID: {{ p.id }}</span>
-            </div>
-            
-            <div class="p-5">
-              <div class="mb-4">
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Teks Pertanyaan</label>
-                <textarea 
-                  v-model="p.text" 
-                  rows="3"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 resize-vertical"
-                ></textarea>
-              </div>
-
-              <details class="mb-4">
-                <summary class="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-800">Properti</summary>
-                
-                <div class="mt-3 space-y-3">
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Meta</label>
-                    <input
-                      v-model="p.meta"
-                      type="text"
-                      class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                      placeholder="gaya_belajar, minat, ..."
-                    />
-                  </div>
-    
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">URL Gambar</label>
-                    <input
-                      v-model="p.image"
-                      type="text"
-                      class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                      placeholder="https://example.com/image.jpg"
-                    />
-                  </div>
-    
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Jurusan</label>
-                    <select v-model="p.jurusan_id" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
-                      <option v-for="jurusanOpt in jurusan" :key="jurusanOpt.id" :value="jurusanOpt.id">
-                        {{ jurusanOpt.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </details>
-
-              <div class="flex gap-3 pt-4 border-t border-gray-200">
-                <button 
-                  @click="updatePertanyaan(p)" 
-                  class="flex-1 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Simpan
-                </button>
-                <button 
-                  @click="deletePertanyaan(p.id)" 
-                  class="flex-1 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Hapus
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="min-h-screen flex bg-gray-50">
+    <!-- Sidebar kiri -->
+    <aside
+      class="w-64 bg-red-600 text-white flex flex-col fixed h-full transition-all duration-300"
+    >
+      <div class="flex items-center justify-center py-6 border-b border-red-400">
+        <!-- <img src="@/assets/images/Logo-SMK.png" alt="Logo SMK" class="h-10 mr-2" /> -->
+        <h1 class="text-lg font-bold">Admin Panel</h1>
       </div>
-    </div>
 
-    <!-- Modal Tambah Pertanyaan -->
-    <div v-if="showAddModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click="closeModal">
-      <div class="bg-white rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-xl" @click.stop>
-        <div class="sticky top-0 bg-white flex justify-between items-center px-6 py-4 border-b border-gray-200 z-10">
-          <h2 class="text-2xl font-bold text-gray-800">Tambah Pertanyaan untuk Semua Jurusan</h2>
-          <button @click="closeModal" class="text-gray-400 hover:text-gray-600 text-3xl leading-none w-8 h-8">&times;</button>
-        </div>
-        
-        <div class="px-6 py-4">
-          <div class="flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 mb-6">
-            <p class="text-sm text-blue-800 font-medium">Isi pertanyaan yang berbeda untuk setiap jurusan. Semua field wajib diisi.</p>
-          </div>
+      <nav class="flex-grow mt-6 space-y-1 px-4">
+        <RouterLink
+          to="/admin"
+          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
+        >
+          Dashboard
+        </RouterLink>
+        <RouterLink
+          to="/admin/kelolasoal"
+          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
+        >
+          Kelola Soal
+        </RouterLink>
+        <!-- <RouterLink
+          to="/admin/kelolasoal"
+          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
+        >
+          Pengguna
+        </RouterLink> -->
+        <RouterLink
+          to="/"
+          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
+        >
+          Kembali ke Situs
+        </RouterLink>
+      </nav>
 
-          <!-- Form untuk setiap jurusan -->
-          <div 
-            v-for="(j, index) in jurusan" 
-            :key="j.id" 
-            class="mb-8"
-            :class="{ 'pt-8 border-t-2 border-gray-200': index > 0 }"
-          >
-            <div class="flex items-center gap-3 mb-4">
-              <span class="inline-flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full font-bold text-sm">
-                {{ index + 1 }}
-              </span>
-              <h3 class="text-lg font-semibold text-gray-800">Pertanyaan untuk {{ j.name }}</h3>
-            </div>
-
-            <div class="mb-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Teks Pertanyaan *</label>
-              <textarea 
-                v-model="newPertanyaan[index].text" 
-                rows="3"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 resize-vertical"
-                :placeholder="`Masukkan pertanyaan untuk ${j.name}...`"
-              ></textarea>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Meta</label>
-                <input 
-                  v-model="newPertanyaan[index].meta" 
-                  type="text"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                  placeholder="Metadata (opsional)"
-                />
-              </div>
-
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">URL Gambar</label>
-                <input 
-                  v-model="newPertanyaan[index].image" 
-                  type="text"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sticky bottom-0 bg-white flex justify-end gap-3 px-6 py-4 border-t border-gray-200">
-          <button @click="closeModal" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md font-medium transition-colors">
-            Batal
-          </button>
-          <button 
-            @click="createPertanyaan" 
-            class="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            :disabled="isCreating"
-          >
-            <span v-if="isCreating">Membuat...</span>
-            <span v-else>Simpan Semua Pertanyaan</span>
-          </button>
-        </div>
+      <div class="p-4 border-t border-red-400 text-center text-sm text-white/80">
+        © {{ new Date().getFullYear() }} AyamKampung Admin
       </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 ml-64">
+      <!-- Navbar -->
+      <header
+        class="bg-white shadow-md py-4 px-8 flex justify-between items-center sticky top-0 z-10"
+      >
+        <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
+        <button
+          @click="logout"
+          class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all"
+        >
+          Logout
+        </button>
+      </header>
+
+      <!-- Content -->
+      <main class="p-8 space-y-8">
+        <!-- Welcome -->
+        <section class="bg-red-500 text-white rounded-xl p-8 shadow-md">
+          <h3 class="text-2xl font-bold mb-2">Selamat Datang, Admin!</h3>
+          <p class="text-white/90">
+            Kelola data pengguna, soal, dan sistem JalurKu dari satu tempat.
+          </p>
+        </section>
+
+        <!-- Statistik -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-white shadow-md rounded-xl p-6 border-t-4 border-red-500 hover:shadow-lg transition-all"
+          >
+            <h4 class="text-lg font-semibold text-gray-700 mb-2">
+              Total Pengguna
+            </h4>
+            <p class="text-4xl font-bold text-red-500">1,240</p>
+          </div>
+
+          <div
+            class="bg-white shadow-md rounded-xl p-6 border-t-4 border-red-500 hover:shadow-lg transition-all"
+          >
+            <h4 class="text-lg font-semibold text-gray-700 mb-2">Total Soal</h4>
+            <p class="text-4xl font-bold text-red-500">56</p>
+          </div>
+
+          <div
+            class="bg-white shadow-md rounded-xl p-6 border-t-4 border-red-500 hover:shadow-lg transition-all"
+          >
+            <h4 class="text-lg font-semibold text-gray-700 mb-2">
+              Jurusan Aktif
+            </h4>
+            <p class="text-4xl font-bold text-red-500">4</p>
+          </div>
+        </section>
+
+        <!-- Aktivitas terbaru -->
+        <section class="bg-white rounded-xl shadow-md p-6">
+          <h4 class="text-lg font-bold text-gray-800 mb-4">Aktivitas Terbaru</h4>
+          <ul class="space-y-3 text-gray-600">
+            <li>Belum Ada Aktivitas</li>
+          </ul>
+        </section>
+      </main>
     </div>
   </div>
 </template>
 
-<script>
-import { pertanyaanAPI, jurusanAPI, angketAPI } from '@/services/api';
-
-export default {
-  name: 'JalurkuAdmin',
-  data() {
-    return {
-      pertanyaan: [],
-      jurusan: [],
-      loading: true,
-      error: null,
-      successMessage: '',
-      showAddModal: false,
-      isCreating: false,
-      newPertanyaan: []
-    }
-  },
-  mounted() {
-    this.loadData();
-  },
-  methods: {
-    async loadData() {
-      this.loading = true;
-      try {
-        await Promise.all([
-          this.fetchPertanyaan(),
-          this.fetchJurusan()
-        ]);
-      } catch (err) {
-        this.error = err.message;
-      } finally {
-        this.loading = false;
-      }
-    },
-
-    async fetchPertanyaan() {
-      try {
-        const response = await angketAPI.getAll();
-        if (response.status === 'success') {
-          this.pertanyaan = response.data;
-        }
-      } catch (err) {
-        throw new Error('Gagal memuat pertanyaan: ' + err.message);
-      }
-    },
-
-    async fetchJurusan() {
-      try {
-        const response = await jurusanAPI.getAll();
-        if (response.status === 'success') {
-          this.jurusan = response.data || [];
-          this.initializeNewPertanyaan();
-        }
-      } catch (err) {
-        throw new Error('Gagal memuat jurusan: ' + err.message);
-      }
-    },
-
-    initializeNewPertanyaan() {
-      // PERBAIKAN: Gunakan array, bukan object dengan key j.id
-      this.newPertanyaan = this.jurusan.map(j => ({
-        text: '',
-        meta: '',
-        image: '',
-        jurusan_id: j.id
-      }));
-    },
-
-    async updatePertanyaan(p) {
-      try {
-        const payload = {
-          text: p.text,
-          meta: p.meta || '',
-          image: p.image || '',
-          jurusan_id: p.jurusan_id
-        };
-        
-        console.log('Update payload:', payload);
-        
-        const response = await pertanyaanAPI.update(p.id, payload);
-        
-        if (response.status === 'success') {
-          this.showSuccess('Pertanyaan berhasil diperbarui!');
-          await this.fetchPertanyaan();
-        }
-      } catch (err) {
-        this.error = err.message;
-      }
-    },
-
-    async deletePertanyaan(id) {
-      if (!confirm('Menghapus 1 pertanyaan akan membuat keanehan dalam penilaian jurusan. Pastikan hapus semua pertanyaan pada setiap jurusan!')) return;
-      
-      try {
-        const response = await pertanyaanAPI.delete(id);
-        
-        if (response.status === 'success') {
-          this.showSuccess('Pertanyaan berhasil dihapus!');
-          await this.fetchPertanyaan();
-        }
-      } catch (err) {
-        this.error = err.message;
-      }
-    },
-
-    async createPertanyaan() {
-      // Validasi
-      const emptyFields = [];
-      this.newPertanyaan.forEach((p, index) => {
-        if (!p.text.trim()) {
-          emptyFields.push(this.jurusan[index].name);
-        }
-      });
-
-      if (emptyFields.length > 0) {
-        this.error = `Pertanyaan untuk ${emptyFields.join(', ')} masih kosong!`;
-        return;
-      }
-
-      this.isCreating = true;
-      this.error = null;
-
-      try {
-        // Data sudah dalam bentuk array yang benar
-        console.log('Sending data:', this.newPertanyaan);
-        
-        const response = await pertanyaanAPI.create(this.newPertanyaan);
-
-        if (response.status === 'success') {
-          this.showSuccess(`Berhasil menambahkan ${response.count} pertanyaan untuk semua jurusan!`);
-          this.closeModal();
-          await this.fetchPertanyaan();
-        }
-      } catch (err) {
-        console.error('Error creating:', err);
-        if (err.response && err.response.data) {
-          this.error = err.response.data.error || err.response.data.message || 'Terjadi kesalahan';
-        } else {
-          this.error = 'Terjadi kesalahan: ' + err.message;
-        }
-      } finally {
-        this.isCreating = false;
-      }
-    },
-
-    closeModal() {
-      this.showAddModal = false;
-      this.initializeNewPertanyaan();
-      this.error = null;
-    },
-
-    showSuccess(message) {
-      this.successMessage = message;
-      setTimeout(() => {
-        this.successMessage = '';
-      }, 3000);
-    },
-
-    getPertanyaanByJurusan(jurusanId) {
-      const filtered = this.pertanyaan.filter(p => p.jurusan_id === jurusanId);
-      return filtered;
-    }
-  }
+<script setup>
+import AdminSidebar from './AdminSidebar.vue'
+function logout() {
+  localStorage.removeItem('token')
+  localStorage.removeItem('role')
+  window.location.href = '/#'
 }
 </script>
 
 <style scoped>
-/* Tidak ada custom CSS, semua menggunakan Tailwind */
+/* Responsive Sidebar */
+@media (max-width: 1024px) {
+  aside {
+    position: fixed;
+    left: -100%;
+    transition: left 0.3s ease;
+  }
+}
 </style>
