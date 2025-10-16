@@ -1,22 +1,17 @@
 <template>
-  <!-- HERO -->
-  <!-- SECTION PERTAMA -->
-
+  <!-- SECTION PERTAMA / HERO -->
   <section
     id="intro"
     class="min-h-screen flex flex-col items-center justify-center bg-white text-black text-center pt-24 scroll-mt-24"
     data-aos="fade-up"
   >
-    <!-- Teks utama -->
     <h2 class="text-2xl md:text-4xl font-mono mb-4 tracking-wide">
       Selamat Datang di
     </h2>
 
-    <!-- Kata "Playground" -->
     <h1
       class="text-4xl md:text-6xl font-mono font-bold flex gap-1 justify-center items-end select-none"
     >
-      <!-- Huruf warna dan rotasi -->
       <span class="text-red-500 inline-block transform rotate-[-12deg]">P</span>
       <span class="text-blue-500 inline-block transform rotate-[8deg]">l</span>
       <span class="text-yellow-500 inline-block transform rotate-[-6deg]">a</span>
@@ -24,7 +19,6 @@
       <span class="text-black">ground</span>
     </h1>
 
-    <!-- Arrow scroll -->
     <button
       @click="scrollToGame"
       class="mt-12 animate-bounce hover:scale-110 transition-transform duration-300"
@@ -41,27 +35,107 @@
     </button>
   </section>
 
-  <!-- SECTION GAME -->
+  <!-- SECTION GAME PILIHAN -->
   <section
     id="game"
-    class="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-800 text-center"
+    class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 text-center py-16 px-4"
     data-aos="fade-up"
   >
-    <GameSection />
-     <!-- LOGO SLIDER -->
-  <div>
-    <!-- <LogoSlider /> -->
-  </div>
+    <!-- Pilihan Game -->
+    <Transition name="fade" mode="out-in">
+      <div v-if="!selectedGame" key="menu" class="w-full flex flex-col items-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-10">
+          Pilih Game Interaktif 
+        </h2>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl w-full"
+        >
+          <div
+            v-for="game in games"
+            :key="game.id"
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl cursor-pointer transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center p-6 relative overflow-hidden"
+            @click="selectedGame = game.id"
+            data-aos="zoom-in"
+          >
+            <!-- Gradient hover effect -->
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-200/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+
+            <img
+              :src="game.image"
+              alt=""
+              class="w-40 h-40 object-contain mb-4 transition-transform duration-300 group-hover:scale-110"
+            />
+            <h3 class="text-xl font-bold text-gray-800 mb-2">{{ game.title }}</h3>
+            <p class="text-gray-600 text-sm">{{ game.desc }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game yang dipilih -->
+      <div v-else key="gameplay" class="w-full px-4 md:px-8">
+        <button
+          @click="backToMenu"
+          class="mb-8 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-5 rounded-xl transition-all duration-300"
+        >
+          🔙 Kembali ke Pilihan Game
+        </button>
+
+        <Transition name="fade" mode="out-in">
+          <component :is="activeGame" key="active" />
+        </Transition>
+      </div>
+    </Transition>
   </section>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import LogoSlider from '@/components/LogoSlider.vue'
-import GameSection from '@/components/GameSection.vue'
 
+// Import game yang sudah kamu buat
+import GameFlipCard from '@/components/games/GameFlipCard.vue'
+import GameConnect from '@/components/games/GameConnect.vue'
+
+// State game yang sedang aktif
+const selectedGame = ref(null)
+
+// Daftar game untuk ditampilkan di kartu
+const games = [
+  {
+    id: 'flip',
+    title: 'Flip Card Memory',
+    desc: 'Coba ingat dan temukan pasangan kartu 💡',
+    image: '/images/play_flip.png',
+  },
+  {
+    id: 'connect',
+    title: 'Connect Kabel',
+    desc: 'Hubungkan perangkat dengan kabel yang tepat 🔌',
+    image: '/images/play_connect.png',
+  },
+]
+
+// Komponen aktif berdasarkan game yang dipilih
+const activeGame = computed(() => {
+  switch (selectedGame.value) {
+    case 'flip':
+      return GameFlipCard
+    case 'connect':
+      return GameConnect
+    default:
+      return null
+  }
+})
+
+// Fungsi kembali ke menu utama
+function backToMenu() {
+  selectedGame.value = null
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+// Inisialisasi animasi AOS
 onMounted(() => {
   AOS.init({
     duration: 800,
@@ -70,7 +144,7 @@ onMounted(() => {
   })
 })
 
-// scroll arrow ke game
+// Scroll halus ke section game saat klik arrow
 const scrollToGame = () => {
   const section = document.getElementById('game')
   if (section) section.scrollIntoView({ behavior: 'smooth' })
@@ -78,8 +152,13 @@ const scrollToGame = () => {
 </script>
 
 <style scoped>
-#heading span {
-  font-weight: 600;
+/* Animasi transisi */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
-  
