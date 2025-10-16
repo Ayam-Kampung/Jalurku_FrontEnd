@@ -25,6 +25,7 @@ import Playground from '@/pages/playground/Playground.vue'
 
 // Admin Pages
 import AdminDashboard from '@/pages/admin/Dashboard.vue'
+import KelolaSoal from '@/pages/admin/KelolaSoal.vue'
 
 // Routes Config
 const routes = [
@@ -72,6 +73,7 @@ const routes = [
     meta: { requiresAdmin: true },
     children: [
       { path: '', name: 'AdminDashboard', component: AdminDashboard },
+      { path: 'kelolasoal', name: 'KelolaSoal', component: KelolaSoal },
     ],
   },
 

@@ -50,7 +50,7 @@
       </div>
 
       <RouterLink to="/jalurku"
-        class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold"
+        class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold"
         data-aos="zoom-in" data-aos-delay="600">
         Mulai Eksplorasi Sekarang →
       </RouterLink>
@@ -161,12 +161,12 @@
     </div>
   </section>
 
-  <!-- SECTION TENTANG (IMPROVED) -->
+  <!-- SECTION TENTANG -->
   <section class="relative py-24 px-6 md:px-12 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
     <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
       <!-- Kolom Teks -->
       <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
-        <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-md text-sm font-semibold mb-4">
           Tentang Platform
         </div>
         <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 tracking-tight">
