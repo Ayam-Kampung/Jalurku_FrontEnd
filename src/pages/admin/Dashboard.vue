@@ -1,45 +1,7 @@
 <template>
   <div class="min-h-screen flex bg-gray-50">
     <!-- Sidebar kiri -->
-    <aside
-      class="w-64 bg-red-600 text-white flex flex-col fixed h-full transition-all duration-300"
-    >
-      <div class="flex items-center justify-center py-6 border-b border-red-400">
-        <!-- <img src="@/assets/images/Logo-SMK.png" alt="Logo SMK" class="h-10 mr-2" /> -->
-        <h1 class="text-lg font-bold">Admin Panel</h1>
-      </div>
-
-      <nav class="flex-grow mt-6 space-y-1 px-4">
-        <RouterLink
-          to="/admin"
-          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
-        >
-          Dashboard
-        </RouterLink>
-        <RouterLink
-          to="/admin/kelolasoal"
-          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
-        >
-          Kelola Soal
-        </RouterLink>
-        <!-- <RouterLink
-          to="/admin/kelolasoal"
-          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
-        >
-          Pengguna
-        </RouterLink> -->
-        <RouterLink
-          to="/"
-          class="block py-3 px-4 rounded-md hover:bg-red-700 transition-all"
-        >
-          Kembali ke Situs
-        </RouterLink>
-      </nav>
-
-      <div class="p-4 border-t border-red-400 text-center text-sm text-white/80">
-        © {{ new Date().getFullYear() }} AyamKampung Admin
-      </div>
-    </aside>
+    <AdminSidebar />
 
     <!-- Main Content -->
     <div class="flex-1 ml-64">
@@ -68,29 +30,40 @@
 
         <!-- Statistik -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div
+          <!-- Total Pengguna (masih statis sementara) -->
+          <!-- <div
             class="bg-white shadow-md rounded-xl p-6 border-t-4 border-red-500 hover:shadow-lg transition-all"
           >
             <h4 class="text-lg font-semibold text-gray-700 mb-2">
               Total Pengguna
             </h4>
             <p class="text-4xl font-bold text-red-500">1,240</p>
-          </div>
+          </div> -->
 
+          <!-- Total Soal -->
           <div
             class="bg-white shadow-md rounded-xl p-6 border-t-4 border-red-500 hover:shadow-lg transition-all"
           >
             <h4 class="text-lg font-semibold text-gray-700 mb-2">Total Soal</h4>
-            <p class="text-4xl font-bold text-red-500">56</p>
+
+            <div v-if="loading" class="text-gray-400 text-2xl">...</div>
+            <p v-else class="text-4xl font-bold text-red-500">
+              {{ totalSoal }}
+            </p>
           </div>
 
+          <!-- Jurusan Aktif -->
           <div
             class="bg-white shadow-md rounded-xl p-6 border-t-4 border-red-500 hover:shadow-lg transition-all"
           >
             <h4 class="text-lg font-semibold text-gray-700 mb-2">
               Jurusan Aktif
             </h4>
-            <p class="text-4xl font-bold text-red-500">4</p>
+
+            <div v-if="loading" class="text-gray-400 text-2xl">...</div>
+            <p v-else class="text-4xl font-bold text-red-500">
+              {{ totalJurusan }}
+            </p>
           </div>
         </section>
 
@@ -107,7 +80,38 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import AdminSidebar from './AdminSidebar.vue'
+import { angketAPI, jurusanAPI } from '@/services/api'
+
+// State
+const totalSoal = ref(0)
+const totalJurusan = ref(0)
+const loading = ref(true)
+
+// Ambil data dari backend
+onMounted(async () => {
+  try {
+    const [resSoal, resJurusan] = await Promise.all([
+      angketAPI.getAll(),
+      jurusanAPI.getAll()
+    ])
+
+    if (resSoal?.status === 'success') {
+      totalSoal.value = resSoal.data.length
+    }
+
+    if (resJurusan?.status === 'success') {
+      totalJurusan.value = resJurusan.data.length
+    }
+  } catch (err) {
+    console.error('Gagal mengambil data dashboard:', err)
+  } finally {
+    loading.value = false
+  }
+})
+
+// Logout function
 function logout() {
   localStorage.removeItem('token')
   localStorage.removeItem('role')
