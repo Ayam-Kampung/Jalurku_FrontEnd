@@ -6,7 +6,7 @@
 
       <!-- Hasil Jurusan -->
       <div v-if="latestJurusanId"
-        class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full transition-all duration-500 hover:scale-[1.02]">
+        class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full transition-all duration-500">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">
           Seperti kamu cocok menjadi :
         </h2>
@@ -14,7 +14,7 @@
         <div>
           <!-- Gambar jurusan -->
           <img :src="jurusanImages[latestJurusanName]" :alt="`Gambar jurusan ${latestJurusanName}`"
-            class="w-full h-60 object-cover mx-auto rounded-t-lg shadow-md transition-transform duration-500" />
+            class="w-full h-60 object-cover mx-auto rounded-t-lg shadow-md transition-transform duration-500 " />
 
           <!-- Nama jurusan + ikon -->
           <div
@@ -30,11 +30,11 @@
 
         <div class="flex justify-between">
           <router-link to="/rencanaku"
-            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition inline-block text-center">
+            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md font-medium transition inline-block text-center">
             Ketahui JurusanMu
           </router-link>
           <button @click="handleMulaiAngket"
-            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition">
+            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md font-medium transition">
             Mulai Angket Lagi
           </button>
 
@@ -52,7 +52,7 @@
           Sepertinya jurusan kamu masih jadi misteri ¯\_(ツ)_/¯
         </h2>
         <div
-          class="px-4 py-2 bg-gray-800 text-white text-4xl rounded-xl inline-block mb-4 hover:scale-105 transition-transform duration-500"
+          class="px-4 py-2 bg-gray-800 text-white text-4xl rounded-xl inline-block mb-4 hover:scale-105  transition-transform duration-500"
           data-aos="zoom-in" data-aos-delay="1100">
           ???</div>
         <p class="text-gray-600" data-aos="fade-up" data-aos-delay="1200">Gapapa kok! Duduk santai dulu, minum air, dan
@@ -90,33 +90,50 @@
     </div>
 
     <!-- Angket View -->
-    <div v-if="currentView === 'angket' && currentQuestion" class="w-full max-w-4xl">
-      <h2>Angket Jurusan</h2>
-      <p>Pertanyaan {{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
-      <div style="background: #f0f0f0; height: 20px; margin: 10px 0;">
-        <div style="background: #4CAF50; height: 20px;" :style="{ width: progress + '%' }"></div>
+    <div v-if="currentView === 'angket' && currentQuestion" class="justify-center max-w-md lg:max-w-4xl max-h-screen mt-20">
+      <h2 class="font-semibold">Angket <span class="text-red-600 font-bold">JalurKu</span></h2>
+      <p class="font-semibold">Pertanyaan {{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
+      <div style="background: #f0f0f0; height: 20px; margin: 10px 0;"
+        class="hover:scale-105 transition-all duration-300">
+        <div style="background: #4CAF50; height: 20px;" :style="{ width: progress + '%' }"
+          class="transition-all duration-1000 "></div>
       </div>
 
       <div style="margin: 20px 0; padding: 20px; border: 1px solid #ddd;">
-        <h3>{{ currentQuestion.text }}</h3>
+        <h3 class="text-lg p-2">{{ currentQuestion.text }}</h3>
         <p v-if="currentQuestion.image">
-          <img :src="currentQuestion.image" class="max-h-50" alt="Image" srcset="">
+          <img :src="currentQuestion.image" class="w-60 p-5 mx-auto hover:scale-105 transition-all duration-100"
+            alt="Image" srcset="">
         </p>
-        <p>Meta: {{ currentQuestion.meta }}</p>
-        <p>Jurusan: {{ currentQuestion.Jurusan.name }}</p>
-
         <div style="margin: 20px 0;">
           <p><strong>Pilih tingkat persetujuan (1-5):</strong></p>
-          <div v-for="n in 5" :key="n" style="margin: 10px 0;">
-            <label>
-              <input type="radio" :value="n" v-model="selectedOption" name="likert">
+
+          <!-- <div v-for="n in 5" :key="n" style="margin: 10px 0;">
+            <label class="text-lg">
+              <input type="radio" :value="n" v-model="selectedOption" name="likert"
+                class="hover:scale-125 transition-all duration-100">
               {{ n }} - {{ getLikertLabel(n) }}
             </label>
+          </div> -->
+
+          <div class="flex flex-col items-center w-full mt-4 ">
+            <label class="text-lg mb-2">
+              {{ selectedOption }} - {{ getLikertLabel(selectedOption) }}
+            </label>
+
+            <input type="range" v-model.number="selectedOption" min="1" max="5" step="1"
+              class="w-full accent-red-600 cursor-pointer" />
+
+            <div class="flex justify-between w-full mt-1 text-sm text-gray-600 font-bold ">
+              <span v-for="n in 5" :key="n">{{ n }}</span>
+            </div>
           </div>
+
         </div>
       </div>
 
-      <button @click="handleSubmitJawaban" style="padding: 10px 20px;">
+      <button @click="handleSubmitJawaban" style="padding: 10px 20px;"
+        class="mx-auto rounded-md bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl  hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60">
         {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} </button>
     </div>
 
@@ -125,7 +142,7 @@
       :class="`flex flex-col items-center justify-center min-h-screen lg:w-full p-6`">
       <!-- Kartu Utama -->
       <div
-        class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center border-t-4 border-red-600 hover:scale-105 transition-all duration-500">
+        class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center border-t-4 border-red-600 transition-all duration-500">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Hasil Angket <span class="text-red-600">JalurKu</span></h2>
 
         <div :class="` rounded-xl p-5 border border-gray-200 mb-6  ${jurusanColor}`">
@@ -146,16 +163,16 @@
 
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600 mb-6">
           <li v-for="(skor, jurusanId) in hasilAngket.detail_skor" :key="jurusanId"
-            class="bg-gray-50 rounded-lg px-4 py-3 shadow-sm hover:bg-green-50 hover:shadow-md transition">
+            class="bg-gray-50 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition">
             <div class="font-medium text-gray-800">
-              Jurusan ID {{ jurusanId }}
+              Jurusan {{ jurusanId > 0 ? jurusan[jurusanId - 1].name : '' }}
             </div>
             <div class="text-gray-500 text-sm">Skor: {{ skor }}</div>
           </li>
         </ul>
 
         <button @click="handleKembaliDashboard"
-          class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-xl shadow-md transition-transform hover:scale-[1.03]">
+          class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-transform">
           {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Login' }}
         </button>
       </div>
@@ -208,7 +225,7 @@ const token = ref(storage.getToken());
 const sessionId = ref('');
 const pertanyaan = ref([]);
 const currentQuestionIndex = ref(0);
-const selectedOption = ref(null);
+const selectedOption = ref(3);
 const hasilAngket = ref(null);
 
 const loginForm = ref({ identity: '', password: '' });
@@ -342,7 +359,7 @@ const handleMulaiAngket = async () => {
     const pertanyaanData = await angketAPI.getRand();
     pertanyaan.value = pertanyaanData.data;
     currentQuestionIndex.value = 0;
-    selectedOption.value = null;
+    selectedOption.value = 3;
     currentView.value = 'angket';
 
     // Simpan state awal
@@ -353,10 +370,13 @@ const handleMulaiAngket = async () => {
 };
 
 const handleSubmitJawaban = async () => {
+  
   if (selectedOption.value === null) {
     alert('Pilih jawaban terlebih dahulu!');
     return;
   }
+
+  console.log(selectedOption.value)
 
   try {
     await angketAPI.submit({
@@ -367,7 +387,7 @@ const handleSubmitJawaban = async () => {
 
     if (currentQuestionIndex.value < pertanyaan.value.length - 1) {
       currentQuestionIndex.value++;
-      selectedOption.value = null;
+      selectedOption.value = 3;
 
       // Simpan progress
       saveAngketState();

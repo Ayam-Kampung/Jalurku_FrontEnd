@@ -19,7 +19,7 @@
           TKJ adalah jurusan yang mendalami cara-cara merakit komputer dan instalasi jaringan komputer.
         </p>
         <RouterLink to="/jurusan/tkj"
-          class="bg-red-600 text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl hover:scale-105 active:bg-gray-100 active:shadow-sm transition w-60">
+          class="bg-merah hover:bg-red-700 rounded-md text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl  active:bg-gray-100 active:shadow-sm transition w-60">
           Lihat Jurusan TKJ
         </RouterLink>
       </div>
@@ -35,7 +35,7 @@
     <div class="flex flex-col-reverse md:flex-row items-center justify-between">
       <div class="w-full space-y-4 mx-5 p-5 md:p-0">
         <h2 class="text-4xl font-extrabold text-gray-900">
-          Teknik Jaringan Akses
+          Cek Lebih Lanjut
           <span
             class="bg-yellow-400 text-white text-sm font-semibold px-2 py-1 rounded-md ml-2 inline-flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
@@ -50,8 +50,8 @@
           (tembaga, coaxial dan fiber optic), maupun nirkabel.
         </p>
         <RouterLink to="/jurusan/tja"
-          class="bg-merah text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl hover:scale-105 active:bg-gray-100 active:shadow-sm transition w-60">
-          Lihat Jurusan TJA
+          class="bg-merah hover:bg-red-700 rounded-md text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl  active:bg-gray-100 active:shadow-sm transition w-60">
+          Cek Lebih Lanjut
         </RouterLink>
       </div>
       <div class="w-full relative mt-10 md:my-0">
@@ -78,7 +78,7 @@
           RPL adalah jurusan yang mendalami cara-cara pengembangan perangkat lunak (software).
         </p>
         <RouterLink to="/jurusan/rpl"
-          class="bg-merah text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl hover:scale-105 active:bg-gray-100 active:shadow-sm transition w-60">
+          class="bg-merah hover:bg-red-700 rounded-md text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl  active:bg-gray-100 active:shadow-sm transition w-60">
           Cek Lebih Lanjut
         </RouterLink>
 
@@ -108,7 +108,7 @@
           perangkat mobile.
         </p>
         <RouterLink to="/jurusan/pg"
-          class="bg-merah text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl hover:scale-105 active:bg-gray-100 active:shadow-sm transition w-60">
+          class="bg-merah hover:bg-red-700 rounded-md text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl  active:bg-gray-100 active:shadow-sm transition w-60">
           Cek Lebih Lanjut
         </RouterLink>
       </div>
