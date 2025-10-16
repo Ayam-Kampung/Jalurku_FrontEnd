@@ -1,0 +1,50 @@
+name: Build and Deploy to Production
+
+on:
+  push:
+    branches:
+      - main  # ubah kalau branch utama kamu beda (misal: master)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Ambil source code dari repo
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # penting agar bisa checkout cabang lain juga
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # sesuaikan dengan versi Node kamu
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build Vite project
+      - name: Build project
+        run: npm run build
+
+      # Deploy hasil build ke branch 'production'
+      - name: Deploy to production branch
+        run: |
+          # Konfigurasi git agar bisa commit otomatis
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Buat cabang sementara untuk hasil build
+          git switch --orphan production-temp
+          git --work-tree dist add --all
+          git --work-tree dist commit -m "🚀 Auto-build from ${GITHUB_SHA}"
+
+          # Ganti isi cabang production dengan hasil build
+          git push origin HEAD:production --force
+          
+          # Kembali ke branch utama
+          git switch main
