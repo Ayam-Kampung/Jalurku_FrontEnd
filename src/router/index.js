@@ -16,6 +16,9 @@ import tja from '@/pages/jurusan/TJA.vue'
 import Login from '@/pages/auth/Login.vue'
 import Register from '@/pages/auth/Register.vue'
 
+// Profile Pages
+import Profile from '@/pages/Profile.vue'
+
 // Jalurku Pages
 import jalurku from '@/pages/jalurku/Quiz.vue'
 import Rencanaku from '@/pages/jurusan/Rencanaku.vue'
@@ -53,6 +56,9 @@ const routes = [
       { path: 'register', name: 'register', component: Register },
     ],
   },
+
+  // Profile 
+  { path: '/me', name: 'profile', component: Profile },
 
   // Jalurku
   { path: '/jalurku', name: 'jalurku', component: jalurku },

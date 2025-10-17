@@ -52,7 +52,7 @@
       <RouterLink to="/jalurku"
         class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold"
         data-aos="zoom-in" data-aos-delay="600">
-        Mulai Eksplorasi Sekarang →
+        Kunjungi Jalurku →
       </RouterLink>
     </div>
   </section>
@@ -167,7 +167,7 @@
       <!-- Kolom Teks -->
       <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
         <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-md text-sm font-semibold mb-4">
-          Tentang Platform
+          Tentang Team
         </div>
         <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 tracking-tight">
           Kenapa Memilih <span class="text-red-600">Jalurku</span>?
