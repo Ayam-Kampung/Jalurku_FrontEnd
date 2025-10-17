@@ -117,7 +117,7 @@
       <button @click="handleSubmitJawaban"
         :disabled="isSubmitting || isInitialLoading"
         :class="{ 'opacity-50 cursor-not-allowed': isSubmitting || isInitialLoading }"
-        class="mx-auto rounded-md bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl  hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60">
+        class="mx-auto rounded-md bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl mt-16 lg:mt-2 hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60">
         {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} </button>
     </div>
 
