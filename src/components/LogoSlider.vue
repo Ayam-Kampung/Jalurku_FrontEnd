@@ -7,23 +7,16 @@
     @mouseup="resume"
   >
     <!-- Kontainer utama -->
-    <div class="flex items-center gap-20 w-max animate-scroll" :class="{ paused: isPaused }">
-      <!-- Loop pertama -->
-      <template v-for="(logo, i) in logos" :key="'a' + i">
-        <img
-          :src="logo"
-          alt="Logo"
-          class="logo-img object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
-        />
-      </template>
-
-      <!-- Loop kedua -->
-      <template v-for="(logo, i) in logos" :key="'b' + i">
-        <img
-          :src="logo"
-          alt="Logo"
-          class="logo-img object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
-        />
+    <div class="slider-track flex items-center gap-20 w-max animate-scroll" :class="{ paused: isPaused }">
+      <!-- Loop 2x agar transisi halus -->
+      <template v-for="n in 2" :key="n">
+        <template v-for="(logo, i) in logos" :key="`${n}-${i}`">
+          <img
+            :src="logo"
+            alt="Logo"
+            class="logo-img object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
+          />
+        </template>
       </template>
     </div>
 
@@ -42,12 +35,13 @@ import { ref } from 'vue'
 
 // Import logo
 import JIHCLogo from '@/assets/images/Logo-JHIC.webp'
+import JHLogo from '@/assets/images/Logo-JH.webp'
 import KOMDIGILogo from '@/assets/images/Logo-KOMDIGI.webp'
 import MASPIONLogo from '@/assets/images/Logo-MASPION.webp'
 import GARUDALogo from '@/assets/images/Logo-Garuda-Spark.webp'
 
 // Daftar logo
-const logos = ref([JIHCLogo, KOMDIGILogo, MASPIONLogo, GARUDALogo])
+const logos = ref([JIHCLogo, JHLogo, KOMDIGILogo, MASPIONLogo, GARUDALogo])
 
 // Kontrol pause/resume
 const isPaused = ref(false)
@@ -56,12 +50,12 @@ const resume = () => (isPaused.value = false)
 </script>
 
 <style scoped>
-/* Scroll kiri tanpa jeda */
+/* Scroll kiri tanpa jeda dan halus */
 @keyframes scrollLeft {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
@@ -72,18 +66,20 @@ const resume = () => (isPaused.value = false)
   will-change: transform;
 }
 
+.slider-track > * {
+  flex-shrink: 0;
+}
+
 /* Pause saat hover */
 .paused {
   animation-play-state: paused;
 }
 
-/* Responsive size pakai clamp agar proporsional di semua layar */
 .logo-img {
-  height: clamp(6rem, 12vw, 12rem); /* Mobile: 4rem → Desktop: 8rem */
+  height: clamp(6rem, 12vw, 12rem);
   transition: transform 0.3s ease;
 }
 
-/* Hover animasi lembut */
 .logo-img:hover {
   transform: scale(1.05);
 }
