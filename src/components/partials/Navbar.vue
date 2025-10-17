@@ -7,9 +7,17 @@
       :class="{ 'shadow-md backdrop-blur-lg': isScrolling }"
     >
       <!-- Logo -->
-      <div class="roboto-mono text-sm flex items-center gap-3 select-none">
-        <img fetchpriority="high" :src="LogoSMK" alt="Logo SMK TELKOM" class="h-8" />
-      </div>
+    <div class="roboto-mono text-sm flex items-center gap-3 select-none">
+    <RouterLink to="/" class="flex items-center">
+    <img
+      fetchpriority="high"
+      :src="LogoSMK"
+      alt="Logo SMK TELKOM"
+      class="h-8 cursor-pointer transition-transform hover:scale-105"
+    />
+    </RouterLink>
+</div>
+
 
       <!-- Tombol Hamburger -->
       <button
@@ -95,44 +103,30 @@
         <!-- <a href="/tentang" class="nav-link">TENTANG</a> -->
 
         <!-- LOGMASUK -->
-        <RouterLink v-if="!user" to="/auth/login" class="nav-btn">DAFTAR/MASUK</RouterLink>
+        <RouterLink v-if="!user" to="/auth/login" class="nav-btn">MASUK<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg></RouterLink>
 
         <!-- PROFIL -->
-        <div @click="toggleDropdown('profil')" v-if="user" class="relative">
-          <div class="flex items-center gap-2 border border-gray-300 px-3 py-2 rounded-md hover:bg-gray-200 active:bg-gray-400">
-            <div v-if="latestJurusanId" :class= "`flex items-center gap-2 py-1 px-2 rounded-md ${jurusanColor}`">
-              <span v-html="jurusanIcons[latestJurusanName]" class="w-5 h-5"></span>
-              {{ latestJurusanName }}
-            </div>
-            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-bold uppercase select-none">
-              {{ (user.Name || user.username)?.trim().slice(0, 2) }}
-            </span>
-          </div>
-          <transition name="dropdown">
-            <div
-              v-show="activeDropdown === 'profil'"
-              class="absolute mt-4 right-0 w-100 bg-white rounded-md shadow-xl border border-gray-200 "
-            >
-            <div class="dropdown-item">
-              <div class=" flex items-center gap-2">
-                <div v-if="!latestJurusanId" class="px-2 rounded-md bg-gray-700 text-white">???</div>
-                <div v-if="latestJurusanId" :class= "`flex items-center gap-2 py-1 px-2 rounded-md ${jurusanColor}`">
-                  <span v-html="jurusanIcons[latestJurusanName]" class="w-5 h-5"></span>
-                  {{ latestJurusanName }}
-                </div>
-                {{ (user.Name || user.username)}}
-              </div>
-            </div>
+        <div v-if="user" class="relative">
+  <RouterLink
+    to="/me"
+    class="flex items-center gap-2 border border-gray-300 px-3 py-2 rounded-md hover:bg-gray-200 active:bg-gray-400 transition-all"
+  >
+    <div
+      v-if="latestJurusanId"
+      :class="`flex items-center gap-2 py-1 px-2 rounded-md ${jurusanColor}`"
+    >
+      <span v-html="jurusanIcons[latestJurusanName]" class="w-5 h-5"></span>
+      {{ latestJurusanName }}
+    </div>
 
-            <div @click="handleLogout" class="dropdown-item">
-              <div class="flex items-center gap-2">
-                <p class="text-red-800">Log Keluar</p>
-              </div>
-            </div>
-    
-            </div>
-          </transition>
-        </div>
+    <span
+      class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-bold uppercase select-none"
+    >
+      {{ (user.Name || user.username)?.trim().slice(0, 2) }}
+    </span>
+  </RouterLink>
+</div>
+
 
       </div>
     </nav>
@@ -194,18 +188,18 @@ const jurusanColor = computed(() => {
 const jurusanIcon = computed(() => jurusanIcons[latestJurusanName.value] || '❓')
 
 const jurusanColors = {
-  PG: 'bg-blue-500 text-white',
-  RPL: 'bg-green-500 text-white',
+  PG: 'bg-white text-red-500',
+  RPL: 'bg-red-500 text-white',
   TKJ: 'bg-red-600 text-white',
   TJA: 'bg-yellow-500 text-black',
 }
 
 const jurusanIcons = {
-  PG: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#FFFFFF" >
+  PG: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ed1e28" >
           <path
             d="M189-160q-60 0-102.5-43T42-307q0-9 1-18t3-18l84-336q14-54 57-87.5t98-33.5h390q55 0 98 33.5t57 87.5l84 336q2 9 3.5 18.5T919-306q0 61-43.5 103.5T771-160q-42 0-78-22t-54-60l-28-58q-5-10-15-15t-21-5H385q-11 0-21 5t-15 15l-28 58q-18 38-54 60t-78 22Zm3-80q19 0 34.5-10t23.5-27l28-57q15-31 44-48.5t63-17.5h190q34 0 63 18t45 48l28 57q8 17 23.5 27t34.5 10q28 0 48-18.5t21-46.5q0 1-2-19l-84-335q-7-27-28-44t-49-17H285q-28 0-49.5 17T208-659l-84 335q-2 6-2 18 0 28 20.5 47t49.5 19Zm348-280q17 0 28.5-11.5T580-560q0-17-11.5-28.5T540-600q-17 0-28.5 11.5T500-560q0 17 11.5 28.5T540-520Zm80-80q17 0 28.5-11.5T660-640q0-17-11.5-28.5T620-680q-17 0-28.5 11.5T580-640q0 17 11.5 28.5T620-600Zm0 160q17 0 28.5-11.5T660-480q0-17-11.5-28.5T620-520q-17 0-28.5 11.5T580-480q0 17 11.5 28.5T620-440Zm80-80q17 0 28.5-11.5T740-560q0-17-11.5-28.5T700-600q-17 0-28.5 11.5T660-560q0 17 11.5 28.5T700-520Zm-360 60q13 0 21.5-8.5T370-490v-40h40q13 0 21.5-8.5T440-560q0-13-8.5-21.5T410-590h-40v-40q0-13-8.5-21.5T340-660q-13 0-21.5 8.5T310-630v40h-40q-13 0-21.5 8.5T240-560q0 13 8.5 21.5T270-530h40v40q0 13 8.5 21.5T340-460Zm140-20Z" />
         </svg>`,
-  RPL: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#FFFFFF">
+  RPL: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffff">
           <path
             d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z" />
         </svg>`,
@@ -342,7 +336,7 @@ watch(user, (newUser) => {
   @apply relative py-2 border-b lg:border-none hover:text-red-600 cursor-pointer transition-all;
 }
 .nav-btn {
-    @apply relative py-2 px-4 bg-red-600 text-white rounded-md
+    @apply flex items-center gap-2 py-2 px-4 bg-red-600 text-white rounded-md
          hover:shadow-xl hover:bg-red-700;
 }
 .nav-link::after {
