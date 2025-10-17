@@ -3,8 +3,6 @@
     class="w-64 bg-red-600 text-white flex flex-col fixed h-full transition-all duration-300 z-50"
   >
     <div class="flex items-center justify-center py-6 border-b border-red-400">
-      <!-- Logo -->
-      <!-- <img src="@/assets/images/Logo-SMK.png" alt="Logo SMK" class="h-10 mr-2" /> -->
       <h1 class="text-lg font-bold">Admin Panel</h1>
     </div>
 

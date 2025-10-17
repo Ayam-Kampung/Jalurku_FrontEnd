@@ -4,7 +4,7 @@
     <div class="w-full max-w-md bg-white text-black rounded-2xl shadow-xl p-8 space-y-6">
       <!-- Logo -->
       <div class="flex flex-col items-center">
-        <img src="@/assets/images/Logo-SMK.png" alt="Logo SMK" class="h-14 mb-3" />
+        <img src="@/assets/images/Logo-SMK.webp" alt="Logo SMK" class="h-14 mb-3" />
         <!-- <h2 class="text-2xl font-bold text-red-500">Buat Akun Baru</h2>
         <p class="text-gray-500 text-sm">Daftar untuk melanjutkan ke JalurKu</p> -->
       </div>

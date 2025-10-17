@@ -7,7 +7,7 @@
     @mouseup="resume"
   >
     <!-- Kontainer utama -->
-    <div class="flex items-center w-max animate-scroll" :class="{ paused: isPaused }">
+    <div class="flex items-center gap-20 w-max animate-scroll" :class="{ paused: isPaused }">
       <!-- Loop pertama -->
       <template v-for="(logo, i) in logos" :key="'a' + i">
         <img
@@ -41,13 +41,13 @@
 import { ref } from 'vue'
 
 // Import logo
-import JIHCLogo from '@/assets/images/Logo-JHIC.png'
-import KOMDIGILogo from '@/assets/images/Logo-KOMDIGI.png'
-import MASPIONLogo from '@/assets/images/Logo-MASPION.png'
-import I000Logo from '@/assets/images/Logo-1000.png'
+import JIHCLogo from '@/assets/images/Logo-JHIC.webp'
+import KOMDIGILogo from '@/assets/images/Logo-KOMDIGI.webp'
+import MASPIONLogo from '@/assets/images/Logo-MASPION.webp'
+import GARUDALogo from '@/assets/images/Logo-Garuda-Spark.webp'
 
 // Daftar logo
-const logos = ref([JIHCLogo, KOMDIGILogo, MASPIONLogo, I000Logo])
+const logos = ref([JIHCLogo, KOMDIGILogo, MASPIONLogo, GARUDALogo])
 
 // Kontrol pause/resume
 const isPaused = ref(false)
@@ -79,7 +79,7 @@ const resume = () => (isPaused.value = false)
 
 /* Responsive size pakai clamp agar proporsional di semua layar */
 .logo-img {
-  height: clamp(14rem, 28vw, 28rem); /* Mobile: 4rem → Desktop: 8rem */
+  height: clamp(6rem, 12vw, 12rem); /* Mobile: 4rem → Desktop: 8rem */
   transition: transform 0.3s ease;
 }
 

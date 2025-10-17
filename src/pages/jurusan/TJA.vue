@@ -80,7 +80,7 @@ import ugm from '@/assets/images/ugm_logo.png'
 import undip from '@/assets/images/undip_logo.png'
 import google from '@/assets/images/google_logo.png'
 import meta from '@/assets/images/meta_logo.png'
-import ayamkampung from '@/assets/images/favicon.png'
+import ayamkampung from '@/assets/images/favicon.webp'
 import AlumniSlider from '@/components/AlumniSlider.vue'
 
 const jobs = [

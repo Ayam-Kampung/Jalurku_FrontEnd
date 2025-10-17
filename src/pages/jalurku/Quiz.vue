@@ -84,7 +84,7 @@
       </div>
         <div :key="currentQuestionIndex" data-aos-easing="ease-out-expo" data-aos="fade-left" data-aos-duration="400" class="my-5">
           <p v-if="currentQuestion.image">
-            <img :src="currentQuestion.image" class="h-48 p-5 mx-auto hover:scale-105 transition-all duration-100"
+            <img fetchpriority="high" :src="currentQuestion.image" class="h-48 p-5 mx-auto hover:scale-105 transition-all duration-100"
               alt="Image" srcset="">
           </p>
           <h3 class="text-lg lg:text-2xl text-center font-bold p-2">{{ currentQuestion.text }}</h3>

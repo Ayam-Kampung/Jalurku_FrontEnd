@@ -1,6 +1,6 @@
 <template>
   <!-- HERO -->
-  <section class="h-screen bg-[url('/images/tja_images.jpg')] bg-fixed bg-no-repeat bg-cover bg-center relative">
+  <section class="h-screen bg-fixed bg-no-repeat bg-cover bg-center relative">
     <!-- Overlay untuk meningkatkan kontras teks -->
     <div class="absolute inset-0"></div>
     
@@ -76,7 +76,7 @@
         data-aos="zoom-in-up">
         <div class="relative overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1629001528534-e8a48b636ded?auto=format&fit=crop&q=80&w=1742"
+            :src="cardRencana"
             alt="Ketahui Jurusanmu" 
             class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
           <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -104,7 +104,7 @@
         data-aos="zoom-in-up" data-aos-delay="150">
         <div class="relative overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1489850846882-35ef10a4b480?auto=format&fit=crop&q=80&w=1746"
+          :src="cardEksplorasi"
             alt="Permainan Interaktif" 
             class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
           <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -132,7 +132,7 @@
         data-aos="zoom-in-up" data-aos-delay="300">
         <div class="relative overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1581088577252-0bcaf7f0cb96?auto=format&fit=crop&q=80&w=930"
+            :src="cardKuis"
             alt="Kerjakan Kuis Angket" 
             class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
           <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -229,6 +229,9 @@ import { onMounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import LogoSlider from '@/components/LogoSlider.vue'
+import cardEksplorasi from '@/assets/images/Eksplorasi.webp'
+import cardKuis from '@/assets/images/Kuis.webp'
+import cardRencana from '@/assets/images/Rencana.webp'
 
 onMounted(() => {
   AOS.init({

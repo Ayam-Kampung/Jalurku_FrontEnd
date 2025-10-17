@@ -101,7 +101,7 @@ import { onMounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import ayamKampung from '@/assets/images/ayamkampung.png'
+import ayamKampung from '@/assets/images/ayamkampung.webp'
 import orang1 from '@/assets/images/alumni_1.png'
 import orang2 from '@/assets/images/copy.png'
 import orang3 from '@/assets/images/admin.png'

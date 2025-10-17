@@ -8,7 +8,7 @@
     >
       <!-- Logo -->
       <div class="roboto-mono text-sm flex items-center gap-3 select-none">
-        <img :src="LogoSMK" alt="Logo SMK TELKOM" class="h-8" />
+        <img fetchpriority="high" :src="LogoSMK" alt="Logo SMK TELKOM" class="h-8" />
       </div>
 
       <!-- Tombol Hamburger -->
@@ -143,7 +143,7 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { authAPI, jurusanAPI } from '@/services/api';
 import { storage } from '@/utils/storage';
-import LogoSMK from '@/assets/images/Logo-SMK.png'
+import LogoSMK from '@/assets/images/Logo-SMK.webp'
 
 const user = ref(null);
 const jurusan = ref([]);

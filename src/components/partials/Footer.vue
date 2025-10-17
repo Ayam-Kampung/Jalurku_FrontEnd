@@ -139,11 +139,10 @@
 </template>
 
 <script setup>
-import Favicon from '@/assets/images/favicon.png'
-import JIHCLogo from '@/assets/images/Logo-JHIC.png'
-import KOMDIGILogo from '@/assets/images/Logo-KOMDIGI.png'
-import MASPIONLogo from '@/assets/images/Logo-MASPION.png'
-import I000Logo from '@/assets/images/Logo-1000.png'
+import Favicon from '@/assets/images/favicon.webp'
+import JIHCLogo from '@/assets/images/Logo-JHIC.webp'
+import KOMDIGILogo from '@/assets/images/Logo-KOMDIGI.webp'
+import MASPIONLogo from '@/assets/images/Logo-MASPION.webp'
 
 </script>
 
