@@ -2,39 +2,40 @@
   <div class="h-screen flex flex-col items-center justify-center">
 
     <!-- Dashboard View -->
-    <div data-aos="zoom-in" data-aos-duration="500" v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full">
+    <div data-aos="flip-up" data-aos-duration="500" v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full max-w-4xl">
 
       <!-- Hasil Jurusan -->
       <div v-if="latestJurusanId"
-        class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full transition-all duration-500">
+        class="p-8 text-center w-full transition-all duration-500">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">
-          Seperti kamu cocok menjadi :
+          Kamu sudah cocok jadi ↓
         </h2>
 
-        <div>
-          <!-- Gambar jurusan -->
-          <img :src="jurusanImages[latestJurusanName]" :alt="`Gambar jurusan ${latestJurusanName}`"
-            class="w-full h-60 object-cover mx-auto rounded-t-lg shadow-md transition-transform duration-500 " />
-
-          <!-- Nama jurusan + ikon -->
-          <div
-            :class="`flex justify-center items-center gap-3 py-3 px-4 rounded-b-lg text-5xl font-bold shadow-lg ${jurusanColor}`">
-            <span v-html="jurusanIcons[latestJurusanName]" class="w-16 h-16"></span>
-            {{ latestJurusanName }}
+          <div>
+            <!-- Gambar jurusan -->
+            <img :src="jurusanImages[latestJurusanName]" :alt="`Gambar jurusan ${latestJurusanName}`"
+              class="w-full h-60 object-cover mx-auto rounded-t-lg shadow-md transition-transform duration-500 " />
+            <!-- Nama jurusan + ikon -->
+            <div
+              :class="`flex justify-center items-center gap-3 py-3 px-4 rounded-b-lg text-5xl font-bold shadow-lg ${jurusanColor}`">
+              <span v-html="jurusanIcons[latestJurusanName]" class="w-16 h-16"></span>
+              {{ latestJurusanName }}
+            </div>
           </div>
-        </div>
 
         <p class="mt-4 text-base text-gray-600 italic">
           Tapi... <br> jangan pikir ini sebagai acuan ya adik-adik ^_^
         </p>
 
-        <div class="flex justify-between">
+        <div class="grid lg:flex gap-2 justify-center">
           <router-link to="/rencanaku"
-            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md font-medium transition inline-block text-center">
+            class="mt-8 bg-red-600 flex items-center gap-2 hover:bg-red-700 text-white px-3 py-2 rounded-md font-medium transition inline-block text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
             Ketahui JurusanMu
           </router-link>
           <button @click="handleMulaiAngket"
-            class="mt-8 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md font-medium transition">
+            class="mt-8 border-red-600 flex items-center gap-2 hover:bg-red-100 text-red-600 px-3 py-2 rounded-md font-medium transition">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e7000b"><path d="M204-318q-22-38-33-78t-11-82q0-134 93-228t227-94h7l-64-64 56-56 160 160-160 160-56-56 64-64h-7q-100 0-170 70.5T240-478q0 26 6 51t18 49l-60 60ZM481-40 321-200l160-160 56 56-64 64h7q100 0 170-70.5T720-482q0-26-6-51t-18-49l60-60q22 38 33 78t11 82q0 134-93 228t-227 94h-7l64 64-56 56Z"/></svg>
             Mulai Angket Lagi
           </button>
 
@@ -65,12 +66,13 @@
       </div>
 
       <!-- Mode Tamu -->
-      <div v-else-if="!user" class="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
-        <h2 class="text-xl font-semibold text-gray-700 mb-4">Kamu belum login 😄</h2>
+      <div v-else-if="!user" class="grid justify-center p-8 text-center max-w-md w-full">
         <button @click="handleMulaiAngket"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition">
-          Mulai Angket Baru! (sebagai tamu)
+          class="bg-indigo-600 flex justify-center items-center gap-2 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M312-240q-51 0-97.5-18T131-311q-48-45-69.5-106.5T40-545q0-78 38-126.5T189-720q14 0 26.5 2.5T241-710l239 89 239-89q13-5 25.5-7.5T771-720q73 0 111 48.5T920-545q0 66-21.5 127.5T829-311q-37 35-83.5 53T648-240q-66 0-112-30l-46-30h-20l-46 30q-46 30-112 30Zm0-80q37 0 69-17.5t59-42.5h80q27 25 59 42.5t69 17.5q36 0 69.5-12.5T777-371q34-34 48.5-80t14.5-94q0-41-17-68.5T769-640q-3 0-22 4L480-536 213-636q-5-2-10.5-3t-11.5-1q-37 0-54 27t-17 68q0 49 14.5 95t49.5 80q26 25 59 37.5t69 12.5Zm49-60q37 0 58-16.5t21-45.5q0-49-64.5-93.5T239-580q-37 0-58 16.5T160-518q0 49 64.5 93.5T361-380Zm-6-60q-38 0-82.5-25T220-516q5-2 11.5-3.5T245-521q38 0 82.5 25.5T380-444q-5 2-11.5 3t-13.5 1Zm244 61q72 0 136.5-45t64.5-94q0-29-20.5-46T721-581q-72 0-136.5 45T520-442q0 29 21 46t58 17Zm6-61q-7 0-13-1t-11-3q8-26 52.5-51t82.5-25q7 0 13 1t11 3q-8 26-52.5 51T605-440Zm-125-40Z"/></svg>
+          Mulai Angket (sebagai tamu)
         </button>
+        <p class="my-5 text-sm text-gray-400">Data hasil angket tidak akan tersimpan di pangkalan data Ayam Kampung®. Tetapi data akan sementara di proses di sistem kami.</p>
       </div>
     </div>
 
@@ -118,35 +120,39 @@
         :disabled="isSubmitting || isInitialLoading"
         :class="{ 'opacity-50 cursor-not-allowed': isSubmitting || isInitialLoading }"
         class="mx-auto rounded-md bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl mt-16 lg:mt-2 hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60">
-        {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} </button>
+        {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} 
+        <svg v-if="currentQuestionIndex < pertanyaan.length - 1" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z"/></svg>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M360-720h80v-80h-80v80Zm160 0v-80h80v80h-80ZM360-400v-80h80v80h-80Zm320-160v-80h80v80h-80Zm0 160v-80h80v80h-80Zm-160 0v-80h80v80h-80Zm160-320v-80h80v80h-80Zm-240 80v-80h80v80h-80ZM200-160v-640h80v80h80v80h-80v80h80v80h-80v320h-80Zm400-320v-80h80v80h-80Zm-160 0v-80h80v80h-80Zm-80-80v-80h80v80h-80Zm160 0v-80h80v80h-80Zm80-80v-80h80v80h-80Z"/></svg>
+      </button>
     </div>
 
     <!-- Hasil View -->
-    <div data-aos="zoom-in" data-aos-duration="500" v-if="currentView === 'hasil' && hasilAngket"
+    <div data-aos="flip-up" data-aos-duration="500" v-if="currentView === 'hasil' && hasilAngket"
       :class="`flex flex-col items-center justify-center min-h-screen lg:w-full p-6`">
       <!-- Kartu Utama -->
       <div
-        class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center border-t-4 border-red-600 transition-all duration-500">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Hasil Angket <span class="text-red-600">JalurKu</span></h2>
-
-        <div :class="` rounded-xl p-5 border border-gray-200 mb-6  ${jurusanColor}`">
+        class="p-8 w-full max-w-lg text-center transition-all duration-500">
+        <div :class="`rounded-xl p-5 mb-6  ${jurusanColor}`">
           <h3 :class="`text-lg font-semibold mb-2`">
             Jurusan yang sesuai untuk Anda:
           </h3>
-          <h2 :class="`text-4xl font-bold mb-1`">
-            {{ hasilAngket.jurusan_terbaik }}
-          </h2>
+          <div class="flex items-center justify-center gap-5">
+            <span v-if="user" v-html="jurusanIcons[latestJurusanName]" class="w-16 h-16"></span>
+            <h2 :class="`text-4xl font-bold mb-1`">
+              {{ hasilAngket.jurusan_terbaik }}
+            </h2>
+          </div>
           <p class="text-sm">
             Total Skor: <span class="font-medium">{{ hasilAngket.total_skor }}</span>
           </p>
         </div>
 
-        <h3 class="text-lg font-semibold text-gray-700 mb-3">
-          Detail Skor per Jurusan
-        </h3>
+        <p class="mt-4 text-base text-gray-600 italic">
+          Tapi... <br> jangan pikir ini sebagai acuan ya adik-adik ^_^
+        </p>
         
         <button @click="handleKembaliDashboard"
-          class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-transform">
+          class="bg-red-600 mt-5 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-transform">
           {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Dashboard' }}
         </button>
       </div>
