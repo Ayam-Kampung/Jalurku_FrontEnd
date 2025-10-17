@@ -104,8 +104,8 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 // ✅ Import gambar agar muncul di dev & build
-import game1 from '@/assets/images/game1.png'
-import game2 from '@/assets/images/game2.png'
+import game1 from '@/assets/images/Game1.png'
+import game2 from '@/assets/images/Game2.png'
 
 // ✅ Import game components
 import GameFlipCard from '@/components/games/GameFlipCard.vue'
