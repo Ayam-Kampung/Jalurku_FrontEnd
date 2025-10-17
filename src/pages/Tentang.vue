@@ -93,7 +93,13 @@
         </p>
       </div>
     </div>
-  </section>
+    
+  </section
+  >
+  <!-- Logo Slider -->
+    <div class="mt-16">
+      <LogoSlider />
+    </div>
 </template>
 
 <script setup>
@@ -107,6 +113,8 @@ import orang2 from '@/assets/images/copy.png'
 import orang3 from '@/assets/images/admin.png'
 import orang4 from '@/assets/images/alumni_2.png'
 import orang5 from '@/assets/images/uiux.png'
+import LogoSlider from '@/components/LogoSlider.vue'
+
 
 // Baris 1 → 3 anggota
 const firstRow = [

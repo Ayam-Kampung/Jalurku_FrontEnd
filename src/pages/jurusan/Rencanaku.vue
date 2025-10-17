@@ -20,7 +20,7 @@
         </p>
         <RouterLink to="/jurusan/tkj"
           class="bg-merah hover:bg-red-700 rounded-md text-white flex items-center justify-center gap-2 p-4 shadow-md hover:shadow-xl  active:bg-gray-100 active:shadow-sm transition w-60">
-          Lihat Jurusan TKJ
+          Cek Lebih Lanjut
         </RouterLink>
       </div>
 

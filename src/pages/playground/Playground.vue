@@ -30,7 +30,12 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        />
       </svg>
     </button>
   </section>
@@ -45,7 +50,7 @@
     <Transition name="fade" mode="out-in">
       <div v-if="!selectedGame" key="menu" class="w-full flex flex-col items-center">
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-10">
-          Pilih Game Interaktif 
+          Pilih Game Interaktif
         </h2>
 
         <div
@@ -59,14 +64,18 @@
             data-aos="zoom-in"
           >
             <!-- Gradient hover effect -->
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-200/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-200/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
+            ></div>
 
             <img
               :src="game.image"
-              alt=""
+              alt="Game Image"
               class="w-40 h-40 object-contain mb-4 transition-transform duration-300 group-hover:scale-110"
             />
-            <h3 class="text-xl font-bold text-gray-800 mb-2">{{ game.title }}</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              {{ game.title }}
+            </h3>
             <p class="text-gray-600 text-sm">{{ game.desc }}</p>
           </div>
         </div>
@@ -94,30 +103,34 @@ import { ref, computed, onMounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-// Import game yang sudah kamu buat
+// ✅ Import gambar agar muncul di dev & build
+import game1 from '@/assets/images/game1.png'
+import game2 from '@/assets/images/game2.png'
+
+// ✅ Import game components
 import GameFlipCard from '@/components/games/GameFlipCard.vue'
 import GameConnect from '@/components/games/GameConnect.vue'
 
-// State game yang sedang aktif
+// ✅ State untuk game aktif
 const selectedGame = ref(null)
 
-// Daftar game untuk ditampilkan di kartu
+// ✅ Daftar game
 const games = [
   {
     id: 'flip',
     title: 'Flip Card Memory',
     desc: 'Coba ingat dan temukan pasangan kartu 💡',
-    image: '/images/play_flip.png',
+    image: game1,
   },
   {
     id: 'connect',
     title: 'Connect Kabel',
     desc: 'Hubungkan perangkat dengan kabel yang tepat 🔌',
-    image: '/images/play_connect.png',
+    image: game2,
   },
 ]
 
-// Komponen aktif berdasarkan game yang dipilih
+// ✅ Game aktif dinamis
 const activeGame = computed(() => {
   switch (selectedGame.value) {
     case 'flip':
@@ -129,13 +142,19 @@ const activeGame = computed(() => {
   }
 })
 
-// Fungsi kembali ke menu utama
+// ✅ Fungsi kembali ke menu utama
 function backToMenu() {
   selectedGame.value = null
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-// Inisialisasi animasi AOS
+// ✅ Scroll halus ke section game
+function scrollToGame() {
+  const section = document.getElementById('game')
+  if (section) section.scrollIntoView({ behavior: 'smooth' })
+}
+
+// ✅ Inisialisasi AOS
 onMounted(() => {
   AOS.init({
     duration: 800,
@@ -143,12 +162,6 @@ onMounted(() => {
     offset: 100,
   })
 })
-
-// Scroll halus ke section game saat klik arrow
-const scrollToGame = () => {
-  const section = document.getElementById('game')
-  if (section) section.scrollIntoView({ behavior: 'smooth' })
-}
 </script>
 
 <style scoped>

@@ -1,57 +1,56 @@
 <template>
   <section class="min-h-[80vh] flex flex-col items-center justify-center py-10">
-    <!-- Judul & Info -->
-    <div class="flex flex-col items-center mb-6">
-      <h2 class="text-3xl font-extrabold text-gray-800 mb-2 text-center">
-        🧠 Flip Card Memory
+    <!-- Judul -->
+    <div class="flex flex-col items-center mb-5">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-1 text-center">
+      Flip Card Memory
       </h2>
-      <p class="text-gray-500 text-sm text-center max-w-md">
-        Cocokkan pasangan kartu sebelum waktu habis!
+      <p class="text-gray-500 text-xs md:text-sm text-center max-w-md">
+        Cocokkan pasangan ikon secepat mungkin!
       </p>
     </div>
 
     <!-- Info waktu & skor -->
     <div
-      class="flex items-center gap-6 mb-8 text-gray-700 text-lg font-semibold bg-white/70 px-6 py-3 rounded-xl shadow-sm border border-gray-200"
+      class="flex items-center gap-4 mb-6 text-gray-700 text-sm md:text-base font-semibold bg-white/70 px-4 py-2 rounded-xl shadow-sm border border-gray-200"
     >
-      <p>⏱️ Waktu: <span class="text-blue-600">{{ timeLeft }}s</span></p>
-      <p>🏆 Skor: <span class="text-green-600">{{ matchedCount / 2 }}</span></p>
+      <p>⏱️ Waktu: <span class="text-blue-600">{{ elapsedTime }}s</span></p>
+      <p>Skor: <span class="text-green-600">{{ matchedCount / 2 }}</span></p>
     </div>
 
     <!-- Grid Kartu -->
     <div
-      class="grid grid-cols-4 sm:grid-cols-5 gap-4 max-w-2xl mx-auto mb-8"
+      class="grid grid-cols-4 sm:grid-cols-5 gap-3 max-w-2xl mx-auto mb-6"
     >
       <div
         v-for="card in cards"
         :key="card.id"
-        class="relative w-20 h-24 sm:w-24 sm:h-28 cursor-pointer perspective"
+        class="relative w-16 h-20 sm:w-20 sm:h-24 cursor-pointer perspective"
         @click="flipCard(card)"
       >
         <div
           class="absolute inset-0 transition-transform duration-500 preserve-3d"
           :class="{ 'rotate-y-180': card.flipped || card.matched }"
         >
-          <!-- Depan (tertutup) -->
+          <!-- Depan (cover gambar) -->
           <div
-            class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl border border-gray-400 backface-hidden shadow-inner"
+            class="absolute inset-0 flex items-center justify-center bg-cover bg-center rounded-xl border border-gray-400 backface-hidden shadow-inner"
+            :style="{ backgroundImage: `url('@/assets/images/cover.jpg')` }"
           >
-            <span class="text-2xl select-none">❓</span>
+            <div class="bg-black/30 w-full h-full rounded-xl"></div>
           </div>
 
-          <!-- Belakang (terbuka) -->
+          <!-- Belakang (ikon) -->
           <div
-            class="absolute inset-0 flex items-center justify-center text-4xl rounded-xl backface-hidden rotate-y-180 shadow-md"
+            class="absolute inset-0 flex items-center justify-center text-3xl md:text-4xl rounded-xl backface-hidden rotate-y-180 shadow-md"
             :style="{
               backgroundColor: card.color,
               color: 'white',
             }"
           >
-            <img
-              :src="card.image"
-              alt="icon"
-              class="w-12 h-12 object-contain select-none drop-shadow-lg"
-            />
+            <span class="material-symbols-outlined select-none drop-shadow-lg">
+              {{ card.icon }}
+            </span>
           </div>
         </div>
       </div>
@@ -60,24 +59,24 @@
     <!-- Pesan akhir -->
     <div
       v-if="gameOver"
-      class="text-center bg-white border border-gray-200 rounded-2xl px-8 py-6 shadow-xl backdrop-blur-sm"
+      class="text-center bg-white border border-gray-200 rounded-2xl px-6 py-5 shadow-xl backdrop-blur-sm text-sm md:text-base"
     >
       <h3
         v-if="matchedCount === cards.length"
-        class="text-2xl font-bold text-green-600 mb-3"
+        class="text-xl md:text-2xl font-bold text-green-600 mb-2"
       >
-        🎉 Hebat! Kamu Menyelesaikan Semua Pasangan!
+        🎉 Hebat! Semua pasangan cocok!
       </h3>
       <h3
         v-else
-        class="text-2xl font-bold text-red-600 mb-3"
+        class="text-xl md:text-2xl font-bold text-gray-700 mb-2"
       >
-        ⏰ Waktu Habis! Coba Lagi!
+        🕒 Waktu: {{ elapsedTime }} detik
       </h3>
 
       <button
         @click="resetGame"
-        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl transition-all"
+        class="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-5 rounded-xl transition-all text-sm md:text-base"
       >
         Main Lagi 🔁
       </button>
@@ -89,18 +88,10 @@
 import { ref, computed, onMounted, onUnmounted } from "vue"
 import confetti from "canvas-confetti"
 
-// Daftar gambar (bisa diganti dengan file PNG di /public/images/icons/)
-const allImages = [
-  "/images/icons/laptop.png",
-  "/images/icons/router.png",
-  "/images/icons/coding.png",
-  "/images/icons/wrench.png",
-  "/images/icons/switch.png",
-  "/images/icons/monitor.png",
-  "/images/icons/fiber.png",
-  "/images/icons/keyboard.png",
-  "/images/icons/mouse.png",
-  "/images/icons/server.png",
+// Ikon Google (Material Symbols)
+const allIcons = [
+  "code", "memory", "router", "computer", "terminal",
+  "cloud", "keyboard", "mouse", "wifi", "bolt",
 ]
 
 // warna latar belakang tiap pasangan
@@ -112,41 +103,36 @@ const colors = [
 const cards = ref([])
 const flipped = ref([])
 const matchedCount = computed(() => cards.value.filter(c => c.matched).length)
-const timeLeft = ref(60) // detik waktu main
+const elapsedTime = ref(0)
 const timer = ref(null)
 const gameOver = ref(false)
 
 // buat kartu acak
 function generateCards() {
-  // ambil 8 gambar random unik dari allImages
-  const randomImages = [...allImages].sort(() => Math.random() - 0.5).slice(0, 8)
-
+  const randomIcons = [...allIcons].sort(() => Math.random() - 0.5).slice(0, 8)
   const temp = []
-  randomImages.forEach((image, i) => {
+  randomIcons.forEach((icon, i) => {
     const color = colors[i % colors.length]
-    temp.push({ id: i * 2, image, color, flipped: false, matched: false })
-    temp.push({ id: i * 2 + 1, image, color, flipped: false, matched: false })
+    temp.push({ id: i * 2, icon, color, flipped: false, matched: false })
+    temp.push({ id: i * 2 + 1, icon, color, flipped: false, matched: false })
   })
-  // acak urutan
   cards.value = temp.sort(() => Math.random() - 0.5)
 }
 
 // fungsi flip
 function flipCard(card) {
   if (gameOver.value || card.flipped || card.matched || flipped.value.length >= 2) return
-
   card.flipped = true
   flipped.value.push(card)
 
   if (flipped.value.length === 2) {
     const [a, b] = flipped.value
-    if (a.image === b.image) {
+    if (a.icon === b.icon) {
       a.matched = b.matched = true
       flipped.value = []
-
       if (matchedCount.value === cards.value.length) {
-        gameOver.value = true
         stopTimer()
+        gameOver.value = true
         setTimeout(() => confetti({ spread: 80, particleCount: 120, origin: { y: 0.6 } }), 500)
       }
     } else {
@@ -158,19 +144,14 @@ function flipCard(card) {
   }
 }
 
-// timer berjalan
+// stopwatch
 function startTimer() {
   stopTimer()
+  elapsedTime.value = 0
   timer.value = setInterval(() => {
-    if (timeLeft.value > 0) {
-      timeLeft.value--
-    } else {
-      gameOver.value = true
-      stopTimer()
-    }
+    elapsedTime.value++
   }, 1000)
 }
-
 function stopTimer() {
   if (timer.value) {
     clearInterval(timer.value)
@@ -181,7 +162,7 @@ function stopTimer() {
 // reset permainan
 function resetGame() {
   gameOver.value = false
-  timeLeft.value = 60
+  elapsedTime.value = 0
   flipped.value = []
   generateCards()
   startTimer()
@@ -192,8 +173,6 @@ onMounted(() => {
   generateCards()
   startTimer()
 })
-
-// pastikan timer berhenti kalau komponen ditinggalkan
 onUnmounted(() => stopTimer())
 </script>
 
@@ -209,5 +188,14 @@ onUnmounted(() => stopTimer())
 }
 .rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+/* Pastikan Google Material Symbols aktif */
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 48;
 }
 </style>
