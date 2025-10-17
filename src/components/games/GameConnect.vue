@@ -8,7 +8,7 @@
         Hubungkan Kabel Energi ⚡
       </h2>
       <p class="text-slate-600 text-base max-w-md mx-auto">
-        Tarik dari titik di kiri ke titik di kanan. Pastikan semua kabel terhubung sempurna tanpa tumpang tindih!
+        Tarik dari titik di kiri ke titik di kanan. Pastikan semua kabel terhubung sempurna.
       </p>
     </div>
 
