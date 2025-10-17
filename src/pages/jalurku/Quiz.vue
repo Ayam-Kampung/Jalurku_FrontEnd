@@ -2,7 +2,7 @@
   <div class="h-screen flex flex-col items-center justify-center">
 
     <!-- Dashboard View -->
-    <div v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full">
+    <div data-aos="zoom-in" data-aos-duration="500" v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full">
 
       <!-- Hasil Jurusan -->
       <div v-if="latestJurusanId"
@@ -72,73 +72,57 @@
           Mulai Angket Baru! (sebagai tamu)
         </button>
       </div>
-
-      <!-- Riwayat -->
-      <!-- <div v-if="user?.HasilAngket && user.HasilAngket.length > 0"
-        class="mt-10 bg-white shadow-md rounded-2xl p-6 w-full max-w-md">
-        <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-          🗂️ Riwayat Angket:
-        </h3>
-        <ul class="text-gray-600 text-sm space-y-2">
-          <li v-for="hasil in user.HasilAngket" :key="hasil.id"
-            class="flex justify-between bg-gray-50 rounded-lg px-3 py-2 hover:bg-gray-100 transition">
-            <span>Jurusan ID: {{ hasil.jurusan_id }}</span>
-            <span class="text-gray-500">{{ formatDate(hasil.CreatedAt) }}</span>
-          </li>
-        </ul>
-      </div> -->
     </div>
 
     <!-- Angket View -->
-    <div v-if="currentView === 'angket' && currentQuestion" class="justify-center max-w-md lg:max-w-4xl max-h-screen mt-20">
-      <h2 class="font-semibold">Angket <span class="text-red-600 font-bold">JalurKu</span></h2>
-      <p class="font-semibold">Pertanyaan {{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
-      <div style="background: #f0f0f0; height: 20px; margin: 10px 0;"
+    <div data-aos="fade-up" data-aos-easing="ease-out-expo" data-aos-duration="600" v-if="currentView === 'angket' && currentQuestion" class="w-full justify-center max-w-2xl lg:max-w-4xl h-screen mt-20 lg:mt-24 px-5">
+      <p class="font-mono">{{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
+      <div style="background: #f0f0f0; height: 5px; margin: 10px 0;"
         class="hover:scale-105 transition-all duration-300">
-        <div style="background: #4CAF50; height: 20px;" :style="{ width: progress + '%' }"
+        <div style="background: #4CAF50; height: 5px;" :style="{ width: progress + '%' }"
           class="transition-all duration-1000 "></div>
       </div>
+        <div :key="currentQuestionIndex" data-aos-easing="ease-out-expo" data-aos="fade-left" data-aos-duration="400" class="my-5">
+          <p v-if="currentQuestion.image">
+            <img :src="currentQuestion.image" class="h-48 p-5 mx-auto hover:scale-105 transition-all duration-100"
+              alt="Image" srcset="">
+          </p>
+          <h3 class="text-lg lg:text-2xl text-center font-bold p-2">{{ currentQuestion.text }}</h3>
+          <div class="mx-auto max-w-xl">
 
-      <div style="margin: 20px 0; padding: 20px; border: 1px solid #ddd;">
-        <h3 class="text-lg p-2">{{ currentQuestion.text }}</h3>
-        <p v-if="currentQuestion.image">
-          <img :src="currentQuestion.image" class="w-60 p-5 mx-auto hover:scale-105 transition-all duration-100"
-            alt="Image" srcset="">
-        </p>
-        <div style="margin: 20px 0;">
-          <p><strong>Pilih tingkat persetujuan (1-5):</strong></p>
+            <p class="flex items-center gap-2 text-gray-500 mt-5 justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#666666"><path d="M473-80q-24 0-46-9t-39-26L184-320l30-31q16-16 37.5-21.5t42.5.5l66 19v-327q0-17 11.5-28.5T400-720q17 0 28.5 11.5T440-680v433l-97-27 102 102q5 5 12.5 8.5T473-160h167q33 0 56.5-23.5T720-240v-160q0-17 11.5-28.5T760-440q17 0 28.5 11.5T800-400v160q0 66-47 113T640-80H473Zm7-280v-160q0-17 11.5-28.5T520-560q17 0 28.5 11.5T560-520v160h-80Zm120 0v-120q0-17 11.5-28.5T640-520q17 0 28.5 11.5T680-480v120h-80Zm-20 80Zm300-400H680v-60h116q-66-58-147-89t-169-31q-88 0-169 31t-147 89h116v60H80v-200h60v81q72-59 159-90t181-31q94 0 181 31t159 90v-81h60v200Z"/></svg>
+              <p class="text-sm">Geser tingkat persetujuan (1-5):</p>
+            </p>
 
-          <!-- <div v-for="n in 5" :key="n" style="margin: 10px 0;">
-            <label class="text-lg">
-              <input type="radio" :value="n" v-model="selectedOption" name="likert"
-                class="hover:scale-125 transition-all duration-100">
-              {{ n }} - {{ getLikertLabel(n) }}
-            </label>
-          </div> -->
-
-          <div class="flex flex-col items-center w-full mt-4 ">
-            <label class="text-lg mb-2">
-              {{ selectedOption }} - {{ getLikertLabel(selectedOption) }}
-            </label>
-
-            <input type="range" v-model.number="selectedOption" min="1" max="5" step="1"
-              class="w-full accent-red-600 cursor-pointer" />
-
-            <div class="flex justify-between w-full mt-1 text-sm text-gray-600 font-bold ">
-              <span v-for="n in 5" :key="n">{{ n }}</span>
+            <div class="flex items-center gap-5">
+              <svg class="translate-y-2" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ab0c0c"><path d="M240-840h440v520L400-40l-50-50q-7-7-11.5-19t-4.5-23v-14l44-174H120q-32 0-56-24t-24-56v-80q0-7 2-15t4-15l120-282q9-20 30-34t44-14Zm360 80H240L120-480v80h360l-54 220 174-174v-406Zm0 406v-406 406Zm80 34v-80h120v-360H680v-80h200v520H680Z"/></svg>
+              <div class="flex flex-col items-center w-full mt-2 mb-5">
+                <label class="text-sm mb-2">
+                  {{ selectedOption }} - {{ getLikertLabel(selectedOption) }}
+                </label>
+                <input type="range" v-model.number="selectedOption" min="1" max="5" step="1"
+                  class="w-full accent-red-600 cursor-pointer" />
+                <div class="flex justify-between w-full mt-1 text-sm text-gray-600 font-bold ">
+                  <span v-for="n in 5" :key="n">{{ n }}</span>
+                </div>
+              </div>
+              <svg class="translate-y-1" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1cab0c"><path d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z"/></svg>
             </div>
+
           </div>
 
         </div>
-      </div>
 
-      <button @click="handleSubmitJawaban" style="padding: 10px 20px;"
+      <button @click="handleSubmitJawaban"
+        :disabled="isSubmitting || isInitialLoading"
+        :class="{ 'opacity-50 cursor-not-allowed': isSubmitting || isInitialLoading }"
         class="mx-auto rounded-md bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl  hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60">
         {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} </button>
     </div>
 
     <!-- Hasil View -->
-    <div v-if="currentView === 'hasil' && hasilAngket"
+    <div data-aos="zoom-in" data-aos-duration="500" v-if="currentView === 'hasil' && hasilAngket"
       :class="`flex flex-col items-center justify-center min-h-screen lg:w-full p-6`">
       <!-- Kartu Utama -->
       <div
@@ -163,7 +147,7 @@
         
         <button @click="handleKembaliDashboard"
           class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-transform">
-          {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Login' }}
+          {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Dashboard' }}
         </button>
       </div>
     </div>
@@ -217,9 +201,8 @@ const pertanyaan = ref([]);
 const currentQuestionIndex = ref(0);
 const selectedOption = ref(3);
 const hasilAngket = ref(null);
-
-const loginForm = ref({ identity: '', password: '' });
-const registerForm = ref({ username: '', email: '', password: '' });
+const isSubmitting = ref(false);
+const isInitialLoading = ref(false);
 
 const currentQuestion = computed(() => {
   return pertanyaan.value[currentQuestionIndex.value] || null;
@@ -296,7 +279,7 @@ const restoreAngketSession = async () => {
       sessionId.value = savedState.sessionId;
       pertanyaan.value = savedState.pertanyaan;
       currentQuestionIndex.value = savedState.currentQuestionIndex;
-      selectedOption.value = null;
+      selectedOption.value = 3;
       currentView.value = 'angket';
 
       console.log('✅ Sesi angket dipulihkan:', savedSessionId);
@@ -354,6 +337,11 @@ const handleMulaiAngket = async () => {
 
     // Simpan state awal
     saveAngketState();
+
+    isInitialLoading.value = true;
+    setTimeout(() => {
+      isInitialLoading.value = false;
+    }, 1350);
   } catch (err) {
     alert('Error memulai angket: ' + err.message);
   }
@@ -366,9 +354,16 @@ const handleSubmitJawaban = async () => {
     return;
   }
 
+  // Cek apakah sedang proses submit
+  if (isSubmitting.value) {
+    return;
+  }
+
   console.log(selectedOption.value)
 
   try {
+    isSubmitting.value = true; // Set flag sebelum submit
+
     await angketAPI.submit({
       session_id: sessionId.value,
       question_id: currentQuestion.value.id,
@@ -381,11 +376,21 @@ const handleSubmitJawaban = async () => {
 
       // Simpan progress
       saveAngketState();
+
+      setTimeout(() => {
+        AOS.refresh();
+      }, 50);
     } else {
       await handleSelesaiAngket();
     }
+
+    // Delay 2 detik sebelum bisa submit lagi
+    await new Promise(resolve => setTimeout(resolve, 1350));
+
   } catch (err) {
     alert('Error submit jawaban: ' + err.message);
+  } finally {
+    isSubmitting.value = false; // Reset flag setelah selesai
   }
 };
 
@@ -408,13 +413,18 @@ const handleSelesaiAngket = async () => {
       updateJurusanName();
       window.dispatchEvent(new Event('user-updated'));
     }
+
+    setTimeout(() => {
+      AOS.refresh();
+    }, 50);
+
   } catch (err) {
     alert('Error menyelesaikan angket: ' + err.message);
   }
 };
 
 const handleKembaliDashboard = () => {
-  currentView.value = user.value ? 'dashboard' : 'login';
+  currentView.value = user.value ? 'dashboard' : 'dashboard';
   hasilAngket.value = null;
   pertanyaan.value = [];
   sessionId.value = '';
