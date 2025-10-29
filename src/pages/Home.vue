@@ -37,7 +37,7 @@
       data-aos="fade-up">
       <div class="flex flex-col gap-6">
         <h1 id="heading" class="inter text-5xl md:text-7xl font-bold drop-shadow-lg" data-aos="fade-down" data-aos-delay="100">
-          Temukan <span class="text-red-500">Jalur</span> Yang <br />
+          Temukan <span class="text-blue-500">Jalur</span> Yang <br />
           Pas Untukmu
         </h1>
 
@@ -154,6 +154,9 @@
 
     <!-- Logo Slider -->
     <div class="mt-16">
+      <h1 class="text-5xl font-bold text-center text-gray-900">
+  Partnership
+</h1>
       <LogoSlider />
     </div>
   </section>
