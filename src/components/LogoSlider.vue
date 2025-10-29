@@ -7,15 +7,25 @@
     @mouseup="resume"
   >
     <!-- Kontainer utama -->
-    <div class="slider-track flex items-center gap-20 w-max animate-scroll" :class="{ paused: isPaused }">
+    <div
+      class="slider-track flex items-center gap-20 w-max animate-scroll"
+      :class="{ paused: isPaused }"
+    >
       <!-- Loop 2x agar transisi halus -->
       <template v-for="n in 2" :key="n">
         <template v-for="(logo, i) in logos" :key="`${n}-${i}`">
-          <img
-            :src="logo"
-            alt="Logo"
-            class="logo-img object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
-          />
+          <a
+            :href="logo.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block"
+          >
+            <img
+              :src="logo.src"
+              :alt="logo.name"
+              class="logo-img object-contain select-none transition-transform duration-300 hover:scale-110"
+            />
+          </a>
         </template>
       </template>
     </div>
@@ -40,8 +50,34 @@ import KOMDIGILogo from '@/assets/images/Logo-KOMDIGI.webp'
 import MASPIONLogo from '@/assets/images/Logo-MASPION.webp'
 import GARUDALogo from '@/assets/images/Logo-Garuda-Spark.webp'
 
-// Daftar logo
-const logos = ref([JIHCLogo, JHLogo, KOMDIGILogo, MASPIONLogo, GARUDALogo])
+// Daftar logo dengan link
+const logos = ref([
+  {
+    name: 'JIHC',
+    src: JIHCLogo,
+    url: 'https://jagoanhosting.com/jhic/',
+  },
+  {
+    name: 'JH',
+    src: JHLogo,
+    url: 'https://jagoanhosting.com',
+  },
+  {
+    name: 'KOMDIGI',
+    src: KOMDIGILogo,
+    url: 'https://komdigi.id',
+  },
+  {
+    name: 'MASPION',
+    src: MASPIONLogo,
+    url: 'https://maspion.com',
+  },
+  {
+    name: 'GARUDA Spark',
+    src: GARUDALogo,
+    url: 'https://1000startupdigital.id/',
+  },
+])
 
 // Kontrol pause/resume
 const isPaused = ref(false)
@@ -78,9 +114,5 @@ const resume = () => (isPaused.value = false)
 .logo-img {
   height: clamp(6rem, 12vw, 12rem);
   transition: transform 0.3s ease;
-}
-
-.logo-img:hover {
-  transform: scale(1.05);
 }
 </style>
