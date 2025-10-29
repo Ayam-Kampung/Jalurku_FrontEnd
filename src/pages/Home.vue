@@ -47,7 +47,7 @@
       </div>
 
       <RouterLink to="/jalurku"
-        class="mt-8 bg-blue-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold"
+        class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold"
         data-aos="zoom-in" data-aos-delay="600">
         Kunjungi Jalurku →
       </RouterLink>
