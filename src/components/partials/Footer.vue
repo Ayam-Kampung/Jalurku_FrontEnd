@@ -1,10 +1,13 @@
 <template>
   <footer class="pb-5 p-5 grid md:grid-cols-2 lg:grid-cols-3 gap-1 text-white bg-merah">
+    
     <!-- Bagian kiri -->
     <div>
       <p class="font-mono text-3xl lg:text-4xl">#TELKOMSCHOOLS</p>
       <p class="font-mono text-3xl lg:text-4xl">#BYAYAMKAMPUNG</p>
+      
     </div>
+    
 
     <!-- Bagian tengah -->
     <div>
@@ -38,6 +41,7 @@
               <span class="font-mono bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Copy</span>
             </li>
           </ul>
+          
         </div>
 
         <a href="mailto:email@smktelkom-pwt.sch.id" class="font-mono flex items-center gap-2 hover:underline">
@@ -62,6 +66,7 @@
 
     <!-- Bagian kanan -->
     <div>
+      
       <p class="font-mono text-sm mb-4">PETA SITUS</p>
       <ul class="space-y-2">
         <li>
@@ -105,6 +110,11 @@
           </RouterLink>
         </li>
       </ul>
+       <img
+        :src="Logo"
+        alt="Logo"
+        class=" h-20 object-contain mt-5 md:mt-0 ml-auto max-w-full col-span-full "
+      />
     </div>
 
     <!-- Sosial Media -->
@@ -129,8 +139,11 @@
               d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
           </svg>
         </a>
+       
       </div>
     </div>
+
+    
 
     <!-- Copyright -->
     <div class="md:flex items-center gap-2 col-span-full mt-10 justify-between">
@@ -144,6 +157,7 @@
 
 <script setup>
 import Favicon from '@/assets/images/favicon.webp'
+import Logo from '@/assets/images/logo.png'
 
 </script>
 
