@@ -1,5 +1,4 @@
 <template>
-  <!-- Transisi navbar muncul/hilang -->
   <transition name="navbar-slide">
     <nav
       v-show="isVisible"
@@ -17,9 +16,6 @@
     />
     </RouterLink>
 </div>
-
-
-      <!-- Tombol Hamburger -->
       <button
         @click="toggleMenu"
         class="lg:hidden flex flex-col justify-center items-center gap-[6px] group transition-all duration-300"
@@ -41,7 +37,7 @@
       <!-- Menu Utama -->
       <div
         :class="[
-          'roboto-mono text-sm transform origin-top flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-7 absolute lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none px-5 py-4 lg:p-0 z-[1000] transition-all duration-300 ease-in-out',
+          'font-poppins text-sm transform origin-top flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-7 absolute lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none px-5 py-4 lg:p-0 z-[1000] transition-all duration-300 ease-in-out',
           menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 lg:opacity-100 lg:scale-y-100'
         ]"
       >
@@ -51,9 +47,9 @@
 
         <!-- PLAYGROUND -->
         <RouterLink to="/playground" class="nav-link flex justify-between w-full lg:w-auto items-center">PLAYGROUND</RouterLink>
-
-        <!-- JELAJAH -->
-        <a href="https://tour.smktelkom-pwt.sch.id/" class="nav-link flex justify-between w-full lg:w-auto items-center">JELAJAH</a>
+        
+        <!-- TENTANG -->
+        <RouterLink to="/tentang" class="nav-link flex justify-between w-full lg:w-auto items-center">TENTANG</RouterLink>
 
         <!-- JURUSAN -->
         <div
@@ -99,10 +95,9 @@
             </div>
           </transition>
         </div>
-        <!-- TENTANG -->
-        <!-- <a href="/tentang" class="nav-link">TENTANG</a> -->
+       
 
-        <!-- LOGMASUK -->
+        <!-- Login -->
         <RouterLink v-if="!user" to="/auth/login" class="nav-btn flex justify-center lg:w-fit w-full">MASUK<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg></RouterLink>
 
         <!-- PROFIL -->

@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-white bg-white border-t-2 border-red-600">
+  <footer class="text-white bg-white border-t-2 border-red-700">
     <div class="p-5 grid md:grid-cols-2 lg:grid-cols-3 gap-1">
     <!-- Bagian kiri -->
     <div>
