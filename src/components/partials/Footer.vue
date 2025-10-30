@@ -1,17 +1,17 @@
 <template>
-  <footer class="pb-5 p-5 grid md:grid-cols-2 lg:grid-cols-3 gap-1 text-white bg-merah">
-    
+  <footer class="text-white bg-merah">
+    <div class="p-5 grid md:grid-cols-2 lg:grid-cols-3 gap-1">
     <!-- Bagian kiri -->
     <div>
-      <p class="font-mono text-3xl lg:text-4xl">#TELKOMSCHOOLS</p>
-      <p class="font-mono text-3xl lg:text-4xl">#BYAYAMKAMPUNG</p>
+      <p class="font-inter text-3xl lg:text-4xl">#TELKOMSCHOOLS</p>
+      <p class="font-inter text-3xl lg:text-4xl">#AYAMKAMPUNG</p>
       
     </div>
     
 
     <!-- Bagian tengah -->
     <div>
-      <p class="font-mono text-sm mb-4 ">TENTANG</p>
+      <p class="font-inter text-sm mb-4 ">TENTANG</p>
       <div class="grid gap-5">
         <div class="flex gap-2 text-white">
           <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0" height="24px" viewBox="0 -960 960 960"
@@ -19,32 +19,32 @@
             <path
               d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z" />
           </svg>
-          <ul class="space-y-1">
+          <ul class="space-y-1 font-inter">
             <li class="flex gap-2 items-center">
               Alfa Dhani Fahrezan
-              <span class="font-mono bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">UI/UX</span>
+              <span class="font-inter bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">UI/UX</span>
             </li>
             <li class="flex gap-2 items-center">
               Danendra Eganatha S.
-              <span class="font-mono bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">DevOps</span>
+              <span class="font-inter bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">DevOps</span>
             </li>
             <li class="flex gap-2 items-center">
               Farel Satrio Pratama
-              <span class="font-mono bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Admin</span>
+              <span class="font-inter bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Admin</span>
             </li>
             <li class="flex gap-2 items-center">
               Rangga Prayoga Wibowo
-              <span class="font-mono bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Business</span>
+              <span class="font-inter bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Business</span>
             </li>
             <li class="flex gap-2 items-center">
               Saladin Octiano Bonanza
-              <span class="font-mono bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Copy</span>
+              <span class="font-inter bg-white text-merah text-xs font-bold px-2 py-0.5 rounded">Copy</span>
             </li>
           </ul>
           
         </div>
 
-        <a href="mailto:email@smktelkom-pwt.sch.id" class="font-mono flex items-center gap-2 hover:underline">
+        <a href="mailto:email@smktelkom-pwt.sch.id" class="font-inter flex items-center gap-2 hover:underline">
           <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0" height="24px" viewBox="0 -960 960 960"
             width="24px" fill="#FFFFFF">
             <path
@@ -53,7 +53,7 @@
           smktelkom-pwt.sch.id
         </a>
 
-        <a href="#" class="flex items-center gap-2 font-mono hover:underline">
+        <a href="#" class="flex items-center gap-2 font-inter hover:underline">
           <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0" height="24px" viewBox="0 -960 960 960"
             width="24px" fill="#FFFFFF">
             <path
@@ -67,8 +67,8 @@
     <!-- Bagian kanan -->
     <div>
       
-      <p class="font-mono text-sm mb-4">PETA SITUS</p>
-      <ul class="space-y-2">
+      <p class="font-inter text-sm mb-4">PETA SITUS</p>
+      <ul class="space-y-2 font-inter">
         <li>
           <RouterLink to="/" class="flex items-center gap-2 hover:text-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
@@ -110,16 +110,12 @@
           </RouterLink>
         </li>
       </ul>
-       <img
-        :src="Logo"
-        alt="Logo"
-        class=" h-20 object-contain mt-5 md:mt-0 ml-auto max-w-full col-span-full "
-      />
+      
     </div>
 
     <!-- Sosial Media -->
     <div>
-      <p class="font-mono text-sm mb-4">SOSIAL MEDIA</p>
+      <p class="font-inter text-sm mb-4">SOSIAL MEDIA</p>
       <div class="flex gap-5 items-center">
         <a href="https://github.com/Ayam-Kampung" target="_blank" class="hover:opacity-80 transition">
           <svg xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 32 32" class="w-6 h-6">
@@ -142,22 +138,28 @@
        
       </div>
     </div>
+    </div>
 
     
 
     <!-- Copyright -->
-    <div class="md:flex items-center gap-2 col-span-full mt-10 justify-between">
-      <div class="flex items-center gap-2 col-span-full mb-5 md:mb-0">
+    <div class="md:flex items-center gap-2 px-5 py-1 col-span-full bg-white">
+      <div class="flex items-center gap-2">
         <img class="h-5 w-5" :src="Favicon" alt="Favicon" />
-        <p class="font-mono text-sm">(C) 2025 Ayam Kampung. All rights reserved.</p>
+        <p class="font-inter text-sm text-black">(C) 2025 Ayam Kampung. All rights reserved.</p>
       </div>
+       <img
+        :src="Logo"
+        alt="Logo"
+        class=" h-20 object-contain mt-5 md:mt-0 ml-auto max-w-full col-span-full "
+      />
     </div>
   </footer>
 </template>
 
 <script setup>
 import Favicon from '@/assets/images/favicon.webp'
-import Logo from '@/assets/images/logo.png'
+import Logo from '@/assets/images/Logo.png'
 
 </script>
 
