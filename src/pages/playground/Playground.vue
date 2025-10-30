@@ -1,13 +1,13 @@
 <template>
   <!-- SECTION PERTAMA / HERO -->
   <section id="intro"
-    class="min-h-screen flex flex-col items-center justify-center bg-white text-black text-center pt-24 scroll-mt-24"
+    class="min-h-screen flex flex-col items-center justify-center bg-white text-black text-center pt-24 scroll-mt-24 font-inter"
     data-aos="fade-up">
-    <h2 class="text-2xl md:text-4xl font-mono mb-4 tracking-wide">
+    <h2 class="text-2xl md:text-4xl mb-4 tracking-wide">
       Selamat Datang di
     </h2>
 
-    <h1 class="text-4xl md:text-6xl font-mono font-bold flex gap-1 justify-center items-end select-none">
+    <h1 class="text-4xl md:text-6xl font-extrabold flex gap-1 justify-center items-end select-none">
       <span class="text-red-500 inline-block transform rotate-[-12deg]">P</span>
       <span class="text-blue-500 inline-block transform rotate-[8deg]">l</span>
       <span class="text-yellow-500 inline-block transform rotate-[-6deg]">a</span>
@@ -23,7 +23,7 @@
     </button>
   </section>
 
-  <section class="flex flex-col h-screen bg-white text-black text-center scroll-mt-24" data-aos="fade-up">
+  <section class="flex flex-col h-screen bg-white text-black text-center scroll-mt-24 font-inter" data-aos="fade-up">
 
     <!-- Box 1 -->
     <div class="flex flex-col md:flex-row items-center justify-center bg-white w-full h-1/2 px-8 md:px-20 text-black">
@@ -37,7 +37,7 @@
 
     <!-- Box 2 -->
     <div
-      class="flex flex-col md:flex-row-reverse items-center justify-center bg-red-600  w-full h-1/2 px-8 md:px-20 text-white">
+      class="flex flex-col md:flex-row-reverse items-center justify-center bg-red-600 w-full h-1/2 px-8 md:px-20 text-white">
       <div class="md:basis-3/4 flex justify-center">
         <img :src="preview1" alt="Gambar game 2" class="w-60 md:w-64 rounded-lg">
       </div>
@@ -50,7 +50,7 @@
 
   <!-- SECTION GAME PILIHAN -->
   <section id="game"
-    class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 text-center py-16 px-4"
+    class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 text-center py-16 px-4 font-inter"
     data-aos="fade-up">
     <!-- Pilihan Game -->
     <Transition name="fade" mode="out-in">
@@ -92,6 +92,7 @@
     </Transition>
   </section>
 </template>
+
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
