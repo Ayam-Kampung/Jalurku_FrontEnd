@@ -64,42 +64,32 @@
           Mulai Angket Baru
         </button>
       </div>
-
-      <!-- Mode Tamu -->
-      <div v-else-if="!user" class="grid justify-center p-8 text-center max-w-md w-full">
-        <button @click="handleMulaiAngket"
-          class="bg-indigo-600 flex justify-center items-center gap-2 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M312-240q-51 0-97.5-18T131-311q-48-45-69.5-106.5T40-545q0-78 38-126.5T189-720q14 0 26.5 2.5T241-710l239 89 239-89q13-5 25.5-7.5T771-720q73 0 111 48.5T920-545q0 66-21.5 127.5T829-311q-37 35-83.5 53T648-240q-66 0-112-30l-46-30h-20l-46 30q-46 30-112 30Zm0-80q37 0 69-17.5t59-42.5h80q27 25 59 42.5t69 17.5q36 0 69.5-12.5T777-371q34-34 48.5-80t14.5-94q0-41-17-68.5T769-640q-3 0-22 4L480-536 213-636q-5-2-10.5-3t-11.5-1q-37 0-54 27t-17 68q0 49 14.5 95t49.5 80q26 25 59 37.5t69 12.5Zm49-60q37 0 58-16.5t21-45.5q0-49-64.5-93.5T239-580q-37 0-58 16.5T160-518q0 49 64.5 93.5T361-380Zm-6-60q-38 0-82.5-25T220-516q5-2 11.5-3.5T245-521q38 0 82.5 25.5T380-444q-5 2-11.5 3t-13.5 1Zm244 61q72 0 136.5-45t64.5-94q0-29-20.5-46T721-581q-72 0-136.5 45T520-442q0 29 21 46t58 17Zm6-61q-7 0-13-1t-11-3q8-26 52.5-51t82.5-25q7 0 13 1t11 3q-8 26-52.5 51T605-440Zm-125-40Z"/></svg>
-          Mulai Angket (sebagai tamu)
-        </button>
-        <p class="my-5 text-sm text-gray-400">Data hasil angket tidak akan tersimpan di pangkalan data Ayam Kampung®. Tetapi data akan sementara di proses di sistem kami.</p>
-      </div>
     </div>
 
     <!-- Angket View -->
     <div data-aos="fade-up" data-aos-easing="ease-out-expo" data-aos-duration="600" v-if="currentView === 'angket' && currentQuestion" class="w-full justify-center max-w-2xl lg:max-w-4xl h-screen mt-20 lg:mt-24 px-5">
-      <p class="font-mono">{{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
+      <p class="font-inter">{{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
       <div style="background: #f0f0f0; height: 5px; margin: 10px 0;"
         class="hover:scale-105 transition-all duration-300">
         <div style="background: #4CAF50; height: 5px;" :style="{ width: progress + '%' }"
           class="transition-all duration-1000 "></div>
       </div>
         <div :key="currentQuestionIndex" data-aos-easing="ease-out-expo" data-aos="fade-left" data-aos-duration="400" class="my-5">
-          <p v-if="currentQuestion.image">
+          <p v-if="currentQuestion.image" class="mb-6">
             <img fetchpriority="high" :src="currentQuestion.image" class="h-48 p-5 mx-auto hover:scale-105 transition-all duration-100"
               alt="Image" srcset="">
+              <h3 class="text-lg lg:text-2xl text-center font-bold p-2">{{ currentQuestion.text }}</h3>
           </p>
-          <h3 class="text-lg lg:text-2xl text-center font-bold p-2">{{ currentQuestion.text }}</h3>
           <div class="mx-auto max-w-xl">
 
-            <p class="flex items-center gap-2 text-gray-500 mt-5 justify-center">
+            <p class="flex items-center mb-5 gap-2 text-gray-500 mt-5 justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#666666"><path d="M473-80q-24 0-46-9t-39-26L184-320l30-31q16-16 37.5-21.5t42.5.5l66 19v-327q0-17 11.5-28.5T400-720q17 0 28.5 11.5T440-680v433l-97-27 102 102q5 5 12.5 8.5T473-160h167q33 0 56.5-23.5T720-240v-160q0-17 11.5-28.5T760-440q17 0 28.5 11.5T800-400v160q0 66-47 113T640-80H473Zm7-280v-160q0-17 11.5-28.5T520-560q17 0 28.5 11.5T560-520v160h-80Zm120 0v-120q0-17 11.5-28.5T640-520q17 0 28.5 11.5T680-480v120h-80Zm-20 80Zm300-400H680v-60h116q-66-58-147-89t-169-31q-88 0-169 31t-147 89h116v60H80v-200h60v81q72-59 159-90t181-31q94 0 181 31t159 90v-81h60v200Z"/></svg>
               <p class="text-sm">Geser tingkat persetujuan (1-5):</p>
             </p>
 
-            <div class="flex items-center gap-5">
+            <div class="border p-5 rounded-md flex items-center gap-5">
               <svg class="translate-y-2" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ab0c0c"><path d="M240-840h440v520L400-40l-50-50q-7-7-11.5-19t-4.5-23v-14l44-174H120q-32 0-56-24t-24-56v-80q0-7 2-15t4-15l120-282q9-20 30-34t44-14Zm360 80H240L120-480v80h360l-54 220 174-174v-406Zm0 406v-406 406Zm80 34v-80h120v-360H680v-80h200v520H680Z"/></svg>
-              <div class="flex flex-col items-center w-full mt-2 mb-5">
+              <div class="flex flex-col items-center w-full">
                 <label class="text-sm mb-2">
                   {{ selectedOption }} - {{ getLikertLabel(selectedOption) }}
                 </label>
@@ -121,8 +111,17 @@
         :class="{ 'opacity-50 cursor-not-allowed': isSubmitting || isInitialLoading }"
         class="mx-auto rounded-md bg-red-600 text-white flex items-center justify-center gap-2 p-3 shadow-md hover:shadow-xl mt-16 lg:mt-2 hover:bg-red-700 active:bg-gray-100 active:shadow-sm transition w-60">
         {{ currentQuestionIndex < pertanyaan.length - 1 ? 'Lanjut' : 'Selesai' }} 
-        <svg v-if="currentQuestionIndex < pertanyaan.length - 1" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z"/></svg>
-        <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M360-720h80v-80h-80v80Zm160 0v-80h80v80h-80ZM360-400v-80h80v80h-80Zm320-160v-80h80v80h-80Zm0 160v-80h80v80h-80Zm-160 0v-80h80v80h-80Zm160-320v-80h80v80h-80Zm-240 80v-80h80v80h-80ZM200-160v-640h80v80h80v80h-80v80h80v80h-80v320h-80Zm400-320v-80h80v80h-80Zm-160 0v-80h80v80h-80Zm-80-80v-80h80v80h-80Zm160 0v-80h80v80h-80Zm80-80v-80h80v80h-80Z"/></svg>
+        <template v-if="isSubmitting">
+          <svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q17 0 28.5 11.5T520-840q0 17-11.5 28.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-17 11.5-28.5T840-520q17 0 28.5 11.5T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z"/></svg>
+        </template>
+        <template v-else>
+          <svg v-if="currentQuestionIndex < pertanyaan.length - 1" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z"/>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path d="M360-720h80v-80h-80v80Zm160 0v-80h80v80h-80ZM360-400v-80h80v80h-80Zm320-160v-80h80v80h-80Zm0 160v-80h80v80h-80Zm-160 0v-80h80v80h-80Zm160-320v-80h80v80h-80Zm-240 80v-80h80v80h-80ZM200-160v-640h80v80h80v80h-80v80h80v80h-80v320h-80Zm400-320v-80h80v80h-80Zm-160 0v-80h80v80h-80Zm-80-80v-80h80v80h-80Zm160 0v-80h80v80h-80Zm80-80v-80h80v80h-80Z"/>
+          </svg>
+        </template>
       </button>
     </div>
 
@@ -153,7 +152,7 @@
         
         <button @click="handleKembaliDashboard"
           class="bg-red-600 mt-5 hover:bg-red-700 text-white font-medium py-2 px-6 rounded-md shadow-md transition-transform">
-          {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Dashboard' }}
+          {{ user ? 'Kembali ke Dashboard' : 'Kembali ke Beranda' }}
         </button>
       </div>
     </div>
@@ -164,7 +163,8 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { authAPI, angketAPI, jurusanAPI } from '@/services/api';
 import { storage } from '@/utils/storage';
-import { getLikertLabel, formatDate } from '@/utils/helpers';
+import { useRouter } from 'vue-router';
+import { getLikertLabel } from '@/utils/helpers';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import tkjImg from '@/assets/images/tkj_images.jpg'
@@ -197,6 +197,7 @@ const jurusanImages = {
   PG: pgImg,
 }
 
+const router = useRouter();
 const currentView = ref('dashboard');
 const jurusan = ref([]);
 const latestJurusanName = ref('')
@@ -216,19 +217,26 @@ const currentQuestion = computed(() => {
 
 const progress = computed(() => {
   if (pertanyaan.value.length === 0) return 0;
-  return ((currentQuestionIndex.value / pertanyaan.value.length) * 100).toFixed(0);
+  return ((currentQuestionIndex.value + 1) / pertanyaan.value.length * 100).toFixed(0);
 });
 
 // 🆕 Fungsi untuk menyimpan state angket
 const saveAngketState = () => {
   if (sessionId.value && pertanyaan.value.length > 0) {
-    storage.setAngketState({
+    const state = {
       sessionId: sessionId.value,
       pertanyaan: pertanyaan.value,
       currentQuestionIndex: currentQuestionIndex.value,
+      selectedOption: selectedOption.value, // 🔥 Simpan juga pilihan saat ini
       timestamp: Date.now()
-    });
+    };
+    storage.setAngketState(state);
     storage.setSessionId(sessionId.value);
+    console.log('💾 State disimpan:', {
+      index: currentQuestionIndex.value,
+      total: pertanyaan.value.length,
+      option: selectedOption.value
+    });
   }
 };
 
@@ -269,6 +277,12 @@ const restoreAngketSession = async () => {
   const savedState = storage.getAngketState();
   const savedHasil = getHasilAngket();
 
+  // Load user info jika sudah login
+  if (token.value) {
+    await fetchUserInfo();
+    await fetchJurusan();
+  }
+
   // Cek apakah ada hasil angket yang tersimpan
   if (savedHasil) {
     hasilAngket.value = savedHasil;
@@ -295,13 +309,15 @@ const restoreAngketSession = async () => {
       console.log('⏰ Sesi angket sudah kadaluarsa');
     }
   }
-
-  // Load user info jika sudah login
-  if (token.value) {
-    await fetchUserInfo();
-    await fetchJurusan();
-    if (currentView.value !== 'angket' && currentView.value !== 'hasil') {
+  // Jika tidak ada session dan tidak ada hasil
+  else {
+    // Jika user login, ke dashboard
+    if (token.value) {
       currentView.value = 'dashboard';
+    } 
+    // Jika guest, langsung mulai angket
+    else {
+      await handleMulaiAngket();
     }
   }
 };
@@ -430,7 +446,9 @@ const handleSelesaiAngket = async () => {
 };
 
 const handleKembaliDashboard = () => {
-  currentView.value = user.value ? 'dashboard' : 'dashboard';
+
+  console.log('User:', user.value); // Debug: cek isi user
+  console.log('Is logged in:', !!user.value); // Debug: cek status login
   hasilAngket.value = null;
   pertanyaan.value = [];
   sessionId.value = '';
@@ -438,6 +456,13 @@ const handleKembaliDashboard = () => {
   // Hapus session dan hasil
   clearAngketSession();
   clearHasilAngket();
+
+  // Navigasi berdasarkan status login
+  if (!user.value) {
+    router.push('/'); // Kembali ke beranda untuk guest
+  } else {
+    currentView.value = 'dashboard'; // Ke dashboard untuk user login
+  }
 };
 
 const latestJurusanId = computed(() => {
