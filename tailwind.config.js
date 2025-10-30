@@ -10,6 +10,9 @@ export default {
         inter: ['Inter', 'sans-serif'],
         robotoMono: ['Roboto Mono', 'monospace'],
       },
+      blur: {
+        xs: '2px',
+      }
     },
   },
   plugins: [],
