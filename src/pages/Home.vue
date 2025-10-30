@@ -50,13 +50,11 @@
         </p>
       </div>
 
-      <button @click="handleMulaiAngket"
+      <RouterLink to="/jalurku"
         class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold font-inter"
         data-aos="zoom-in" data-aos-delay="600">
-        Kunjungi Jalurku 
-        <span v-if="!isStartingAngket"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></span>
-        <span v-if="isStartingAngket" class="animate-spin"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q17 0 28.5 11.5T520-840q0 17-11.5 28.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-17 11.5-28.5T840-520q17 0 28.5 11.5T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z"/></svg></span>
-    </button>
+        Kunjungi Jalurku →
+      </RouterLink>
     </div>
   </section>
 
@@ -93,11 +91,11 @@
               Mengenalkan berbagai jurusan yang tersedia di SMK Telkom Purwokerto serta kisah sukses alumni yang bisa menginspirasimu.
             </p>
           </div>
-          <RouterLink to="/Rencanaku"
+          <!-- <RouterLink to="/Rencanaku"
             class="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 group-hover:gap-3 font-inter">
             Ketahui RencanaKu 
             <span class="transition-transform group-hover:translate-x-1">→</span>
-          </RouterLink>
+          </RouterLink> -->
         </div>
       </div>
 
@@ -121,11 +119,11 @@
               Simulasi interaktif untuk eksplorasi jurusan dengan cara yang menyenangkan dan engaging melalui playground digital.
             </p>
           </div>
-          <RouterLink to="/playground"
+          <!-- <RouterLink to="/playground"
             class="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 group-hover:gap-3 font-inter">
             Coba Eksploraku 
             <span class="transition-transform group-hover:translate-x-1">→</span>
-          </RouterLink>
+          </RouterLink> -->
         </div>
       </div>
 
@@ -149,14 +147,18 @@
               Bantu siswa menemukan jurusan yang cocok dengan minat, bakat, dan tujuan karier mereka melalui kuis personal.
             </p>
           </div>
-          <RouterLink to="/jalurku"
+          <!-- <RouterLink to="/jalurku"
             class="mt-auto inline-flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 group-hover:gap-3 font-inter">
             Mulai Kuis JalurKu 
             <span class="transition-transform group-hover:translate-x-1">→</span>
-          </RouterLink>
+          </RouterLink> -->
         </div>
       </div>
     </div>
+     <!-- ROADMAP -->
+    <section id="roadmap" class="py-2">
+      <RoadMap />
+    </section>
 
     <!-- Logo Slider -->
     <div class="mt-16 font-inter">
@@ -169,148 +171,68 @@
 
   <!-- SECTION TENTANG -->
   <section class="relative py-24 px-6 md:px-12 overflow-hidden bg-gradient-to-br from-gray-50 to-white font-inter">
-    <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
-      <!-- Kolom Teks -->
-      <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
-        <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-md text-sm font-semibold mb-4 font-inter">
-          Tentang Team
-        </div>
-        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 tracking-tight font-inter">
-          Kenapa Memilih <span class="text-red-600">Jalurku</span>?
-        </h2>
-        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6 font-inter">
-          <span class="font-semibold text-red-500">Jalurku</span> adalah platform inovatif yang membantu siswa menemukan arah masa depan mereka melalui eksplorasi jurusan, kuis interaktif, dan kisah inspiratif dari alumni SMK Telkom Purwokerto.
-        </p>
-        <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-10 font-inter">
-          Kami percaya setiap siswa memiliki jalur unik menuju kesuksesan. Dengan bimbingan yang tepat, masa depan cerah bukan lagi sekadar impian — melainkan tujuan nyata yang bisa dicapai.
-        </p>
-
-        <RouterLink to="/tentang"
-          class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg font-inter">
-          Pelajari Lebih Lanjut
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </RouterLink>
+  <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+    <!-- Kolom Teks -->
+    <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
+      <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-md text-sm font-semibold mb-4">
+        Tentang Team
       </div>
 
-      <!-- Kolom Gambar -->
-      <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
-        <div
-          class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-red-200 hover:scale-105 transition-transform duration-500">
-          <img
-            src="@/assets/images/ayamkampung.png"
-            alt="Tentang Kami - SMK Telkom Purwokerto"
-            class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6">
-            <p class="text-white text-lg font-semibold drop-shadow-lg font-inter">
-              Bersama menapaki jalur masa depan yang gemilang
-            </p>
-          </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+        Kenapa Memilih <span class="text-red-600">Jalurku</span>?
+      </h2>
+
+      <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
+        <span class="font-semibold text-red-500">Jalurku</span> adalah platform inovatif yang membantu siswa menemukan arah masa depan mereka melalui eksplorasi jurusan, kuis interaktif, dan kisah inspiratif dari alumni SMK Telkom Purwokerto.
+      </p>
+
+      <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-10">
+        Kami percaya setiap siswa memiliki jalur unik menuju kesuksesan. Dengan bimbingan yang tepat, masa depan cerah bukan lagi sekadar impian — melainkan tujuan nyata yang bisa dicapai.
+      </p>
+
+      <RouterLink
+        to="/tentang"
+        class="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-lg shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-base md:text-lg"
+      >
+        Pelajari Lebih Lanjut
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </RouterLink>
+    </div>
+
+    <!-- Kolom Gambar -->
+    <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
+      <div
+        class="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-500"
+      >
+        <img
+          src="@/assets/images/ayamkampung.png"
+          alt="Tentang Kami - SMK Telkom Purwokerto"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+          <p class="text-white text-lg md:text-xl font-semibold drop-shadow-lg">
+            Bersama menapaki jalur masa depan yang gemilang
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router';
-import { storage } from '@/utils/storage';
+import { onMounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import LogoSlider from '@/components/LogoSlider.vue'
 import cardEksplorasi from '@/assets/images/Eksplorasi.webp'
 import cardKuis from '@/assets/images/Kuis.webp'
 import cardRencana from '@/assets/images/Rencana.webp'
-import { angketAPI } from '@/services/api';
-
-const router = useRouter();
-const user = ref(null);
-const sessionId = ref('');
-const pertanyaan = ref([]);
-const currentQuestionIndex = ref(0);
-const selectedOption = ref(3);
-const currentView = ref('angket');
-const isInitialLoading = ref(false);
-const isStartingAngket = ref(false);
-
-const fetchUserInfo = async () => {
-  try {
-    isLoading = true
-
-    const data = await authAPI.getUserInfo(token.value);
-    if (data.status === 'success') {
-      user.value = data.data;
-    }
-  } catch (err) {
-    console.error('Error fetching user info:', err);
-  } finally {
-    isLoading = false
-  }
-};
-
-const handleMulaiAngket = async () => {
-  try {
-
-    console.log(user.value)
-
-    isStartingAngket.value = true;
-
-    // Hapus session lama jika ada
-    clearAngketSession();
-
-    const sessionData = await angketAPI.start();
-    sessionId.value = sessionData.session_id;
-
-    // Simpan session ID
-    storage.setSessionId(sessionId.value);
-
-    const pertanyaanData = await angketAPI.getRand();
-    pertanyaan.value = pertanyaanData.data;
-    currentQuestionIndex.value = 0;
-    selectedOption.value = 3;
-
-    // Simpan state awal
-    saveAngketState();
-
-    // Navigasi ke /jalurku khusus untuk user tanpa latestJurusanId
-    if (!user.value || !latestJurusanId.value) {
-      router.push('/jalurku');
-      currentView.value = 'angket';
-    } else {
-      router.push('/jalurku');
-      currentView.value = 'dashboard';
-    }
-
-    isInitialLoading.value = true;
-    setTimeout(() => {
-      isInitialLoading.value = false;
-    }, 1350);
-  } catch (err) {
-    alert('Error memulai angket: ' + err.message);
-  } finally {
-    isStartingAngket.value = false;
-  }
-};
-
-const saveAngketState = () => {
-  if (sessionId.value && pertanyaan.value.length > 0) {
-    storage.setAngketState({
-      sessionId: sessionId.value,
-      pertanyaan: pertanyaan.value,
-      currentQuestionIndex: currentQuestionIndex.value,
-      timestamp: Date.now()
-    });
-    storage.setSessionId(sessionId.value);
-  }
-};
-
-const clearAngketSession = () => {
-  storage.removeSessionId();
-  storage.removeAngketState();
-};
+import RoadMap from '@/components/RoadMap.vue'
 
 onMounted(() => {
   AOS.init({

@@ -1,5 +1,5 @@
 <template>
-  <section class="pt-16 px-5 md:px-16 space-y-12 bg-gray-50">
+  <section class="pt-16 px-5 md:px-16 space-y-12 bg-gray-50 mb-16">
     <!-- INTRO -->
     <div
       class="flex flex-col md:flex-row-reverse items-center gap-10 mt-5"
@@ -97,9 +97,9 @@
   </section
   >
   <!-- Logo Slider -->
-    <div class="mt-16">
+    <!-- <div class="mt-16">
       <LogoSlider />
-    </div>
+    </div> -->
 </template>
 
 <script setup>
@@ -113,7 +113,7 @@ import orang2 from '@/assets/images/copy.png'
 import orang3 from '@/assets/images/admin.png'
 import orang4 from '@/assets/images/alumni_2.png'
 import orang5 from '@/assets/images/uiux.png'
-import LogoSlider from '@/components/LogoSlider.vue'
+// import LogoSlider from '@/components/LogoSlider.vue'
 
 
 // Baris 1 → 3 anggota
