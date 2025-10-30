@@ -2,31 +2,35 @@
   <!-- HERO -->
   <section class="h-screen bg-fixed bg-no-repeat bg-cover bg-center relative">
     <div class="absolute inset-0"></div>
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <span class="absolute text-blue-400 text-6xl font-bold top-[23%] left-[10%] lg:left-[23%] select-none"
+    <div class="opacity-40 absolute inset-0 overflow-hidden pointer-events-none">
+      <!-- PG -->
+      <span class="blur-sm absolute text-blue-400 text-6xl font-bold top-[20%] lg:top-[15%] left-[5%] lg:left-[30%] select-none"
         data-aos="zoom-in" data-aos-delay="1200">
-        <svg xmlns="http://www.w3.org/2000/svg" height="90px" viewBox="0 -960 960 960" width="60px" fill="#ed1e28">
+        <svg xmlns="http://www.w3.org/2000/svg" height="90px" viewBox="0 -960 960 960" width="90px" fill="#ed1e28">
           <path
             d="M189-160q-60 0-102.5-43T42-307q0-9 1-18t3-18l84-336q14-54 57-87.5t98-33.5h390q55 0 98 33.5t57 87.5l84 336q2 9 3.5 18.5T919-306q0 61-43.5 103.5T771-160q-42 0-78-22t-54-60l-28-58q-5-10-15-15t-21-5H385q-11 0-21 5t-15 15l-28 58q-18 38-54 60t-78 22Zm3-80q19 0 34.5-10t23.5-27l28-57q15-31 44-48.5t63-17.5h190q34 0 63 18t45 48l28 57q8 17 23.5 27t34.5 10q28 0 48-18.5t21-46.5q0 1-2-19l-84-335q-7-27-28-44t-49-17H285q-28 0-49.5 17T208-659l-84 335q-2 6-2 18 0 28 20.5 47t49.5 19Zm348-280q17 0 28.5-11.5T580-560q0-17-11.5-28.5T540-600q-17 0-28.5 11.5T500-560q0 17 11.5 28.5T540-520Zm80-80q17 0 28.5-11.5T660-640q0-17-11.5-28.5T620-680q-17 0-28.5 11.5T580-640q0 17 11.5 28.5T620-600Zm0 160q17 0 28.5-11.5T660-480q0-17-11.5-28.5T620-520q-17 0-28.5 11.5T580-480q0 17 11.5 28.5T620-440Zm80-80q17 0 28.5-11.5T740-560q0-17-11.5-28.5T700-600q-17 0-28.5 11.5T660-560q0 17 11.5 28.5T700-520Zm-360 60q13 0 21.5-8.5T370-490v-40h40q13 0 21.5-8.5T440-560q0-13-8.5-21.5T410-590h-40v-40q0-13-8.5-21.5T340-660q-13 0-21.5 8.5T310-630v40h-40q-13 0-21.5 8.5T240-560q0 13 8.5 21.5T270-530h40v40q0 13 8.5 21.5T340-460Zm140-20Z" />
         </svg>
       </span>
-      <span class="absolute text-blue-400 text-5xl font-semibold top-[30%] left-[85%] lg:left-[74%] select-none"
+      <!-- RPL -->
+      <span class="absolute text-blue-400 text-5xl font-semibold top-[25%] lg:top-[17%] right-[5%] lg:left-[70%] select-none"
         data-aos="zoom-in" data-aos-delay="1400">
         <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#ed1e28">
           <path
             d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z" />
         </svg>
       </span>
-      <span class="absolute text-blue-400 text-7xl font-bold top-[68%] left-[15%] lg:left-[30%] select-none"
+      <!-- TJA -->
+      <span class="absolute text-blue-400 text-7xl font-bold top-[70%] left-[5%] lg:left-[30%] select-none"
         data-aos="zoom-in" data-aos-delay="1600">
-        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="45px" fill="#ed1e28">
+        <svg xmlns="http://www.w3.org/2000/svg" height="120px" viewBox="0 -960 960 960" width="120px" fill="#ed1e28">
           <path
             d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM254-346l-84-86q59-59 138.5-93.5T480-560q92 0 171.5 35T790-430l-84 84q-44-44-102-69t-124-25q-66 0-124 25t-102 69ZM84-516 0-600q92-94 215-147t265-53q142 0 265 53t215 147l-84 84q-77-77-178.5-120.5T480-680q-116 0-217.5 43.5T84-516Z" />
         </svg>
       </span>
-      <span class="absolute text-blue-400 text-6xl font-semibold top-[70%] left-[70%] lg:left-[65%] select-none"
+      <!-- TKJ -->
+      <span class="blur-xs absolute text-blue-400 text-6xl font-semibold top-[70%] right-[10%] lg:left-[65%] select-none"
         data-aos="zoom-in" data-aos-delay="900">
-        <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="55px" fill="#ed1e28">
+        <svg xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960" width="70px" fill="#ed1e28">
           <path
             d="M480-80q-33 0-56.5-23.5T400-160q0-21 11-39t29-29v-92H320q-33 0-56.5-23.5T240-400v-92q-18-9-29-27t-11-41q0-33 23.5-56.5T280-640q33 0 56.5 23.5T360-560q0 23-11 40t-29 28v92h120v-320h-80l120-160 120 160h-80v320h120v-80h-40v-160h160v160h-40v80q0 33-23.5 56.5T640-320H520v92q19 10 29.5 28t10.5 40q0 33-23.5 56.5T480-80Z" />
         </svg>
@@ -36,18 +40,18 @@
     <div class="relative flex flex-col items-center justify-center text-center mx-auto max-w-5xl h-full px-6 text-gray-800 font-inter"
       data-aos="fade-up">
       <div class="flex flex-col gap-6">
-        <h1 id="heading" class="text-5xl md:text-7xl font-bold drop-shadow-lg font-inter" data-aos="fade-down" data-aos-delay="100">
+        <h1 id="heading" class="text-5xl md:text-7xl font-bold font-inter" data-aos="fade-down" data-aos-delay="100">
           Temukan <span class="text-red-500">Jalur</span> Yang <br />
           Pas Untukmu
         </h1>
 
-        <p class="text-lg md:text-2xl font-inter font-medium drop-shadow-md" data-aos="fade-up" data-aos-delay="300">
+        <p class="text-lg md:text-2xl font-inter font-medium" data-aos="fade-up" data-aos-delay="300">
           Arah Tepat, Jalur Pasti, Impian Tercapai.
         </p>
       </div>
 
       <RouterLink to="/jalurku"
-        class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg hover:shadow-2xl hover:scale-110 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold font-inter"
+        class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold font-inter"
         data-aos="zoom-in" data-aos-delay="600">
         Kunjungi Jalurku →
       </RouterLink>
