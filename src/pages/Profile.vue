@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4">
+  <section class="h-screen justify-center flex flex-col items-center">
     <!-- Loading -->
     <div v-if="loading" class="text-gray-600 flex items-center gap-2 text-lg font-medium">
       <svg
