@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen font-poppins flex flex-col">
     <!-- Navbar hanya muncul jika bukan halaman tertentu -->
     <Navbar v-if="!hideLayout" />
 
@@ -22,7 +22,7 @@ const route = useRoute()
 
 // Daftar halaman yang TIDAK menampilkan layout utama
 const noLayoutRoutes = ['404', 'login', 'register', 'AdminDashboard', 'KelolaSoal']
-
+ 
 // Jika route.name ada di daftar di atas → sembunyikan Navbar & Footer
 const hideLayout = computed(() => noLayoutRoutes.includes(route.name))
 </script>
