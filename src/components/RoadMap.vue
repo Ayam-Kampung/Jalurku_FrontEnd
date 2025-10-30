@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-white flex items-start justify-center p-6 mt-20 font-inter text-gray-800">
     <div class="w-full max-w-5xl relative">
       <!-- Header -->
-      <header class="mb-14 text-center">
+      <header class="mb-14 text-center" data-aos="fade-down">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
           Roadmap <span class="text-red-600">Rencana JurusanKu</span>
         </h1>
@@ -12,7 +12,7 @@
       </header>
 
       <!-- Pilih jurusan -->
-      <div class="flex justify-center mb-16 space-x-4">
+      <div class="flex justify-center mb-16 space-x-4" data-aos="zoom-in">
         <button
           v-for="j in jurusanList"
           :key="j"
@@ -28,10 +28,10 @@
         </button>
       </div>
 
-      <!-- Garis timeline -->
+      <!-- Garis timeline (responsif penuh, tidak ubah style lain) -->
       <div
-  class="absolute left-1/2 transform -translate-x-1/2 border-l-4 border-dashed border-gray-200 top-12 z-0 mt-40 h-[80%]"
-></div>
+        class="absolute left-1/2 transform -translate-x-1/2 border-l-4 border-dashed border-gray-200 top-[8rem] bottom-[6rem] z-0"
+      ></div>
 
       <!-- Isi langkah-langkah -->
       <div class="space-y-24 relative z-10">
@@ -45,6 +45,8 @@
             <div
               v-if="i % 2 === 0"
               class="timeline-box w-full"
+              data-aos="fade-right"
+              data-aos-duration="700"
               :style="{ borderLeft: '4px solid ' + jurusanBorder[selectedJurusan] }"
             >
               <div class="flex items-center justify-between">
@@ -64,7 +66,10 @@
                 {{ step.summary }}
               </p>
               <transition name="fade-slide">
-                <div v-show="expanded[selectedJurusan][i]" class="mt-3 text-base text-gray-700 leading-relaxed">
+                <div
+                  v-show="expanded[selectedJurusan][i]"
+                  class="mt-3 text-base text-gray-700 leading-relaxed"
+                >
                   <ul class="list-disc pl-5 space-y-1">
                     <li v-for="(m, idx) in step.details" :key="idx">{{ m }}</li>
                   </ul>
@@ -77,7 +82,7 @@
           </div>
 
           <!-- Kolom tengah (titik timeline) -->
-          <div class="col-center flex flex-col items-center justify-start">
+          <div class="col-center flex flex-col items-center justify-start" data-aos="zoom-in">
             <div class="bg-white rounded-full p-2 shadow ring-4 ring-white">
               <div
                 class="w-4 h-4 rounded-full"
@@ -106,6 +111,8 @@
             <div
               v-if="i % 2 === 1"
               class="timeline-box w-full"
+              data-aos="fade-left"
+              data-aos-duration="700"
               :style="{ borderLeft: '4px solid ' + jurusanBorder[selectedJurusan] }"
             >
               <div class="flex items-center justify-between">
@@ -125,7 +132,10 @@
                 {{ step.summary }}
               </p>
               <transition name="fade-slide">
-                <div v-show="expanded[selectedJurusan][i]" class="mt-3 text-base text-gray-700 leading-relaxed">
+                <div
+                  v-show="expanded[selectedJurusan][i]"
+                  class="mt-3 text-base text-gray-700 leading-relaxed"
+                >
                   <ul class="list-disc pl-5 space-y-1">
                     <li v-for="(m, idx) in step.details" :key="idx">{{ m }}</li>
                   </ul>
@@ -143,7 +153,15 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+// panggil AOS tanpa ubah logic lainnya
+onMounted(() => {
+  AOS.init({ duration: 800, once: true })
+})
+
 import rpl_lvl1 from '@/assets/images/code.png'
 import rpl_lvl2 from '@/assets/images/database.png'
 import rpl_lvl3 from '@/assets/images/app.png'
