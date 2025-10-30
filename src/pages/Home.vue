@@ -50,11 +50,13 @@
         </p>
       </div>
 
-      <RouterLink to="/jalurku"
+      <button @click="handleMulaiAngket"
         class="mt-8 bg-red-600 text-white flex items-center justify-center gap-2 px-8 py-4 rounded-md shadow-lg shadow-red-300 hover:bg-red-700 hover:shadow-xl hover:scale-105 transition-all duration-300 hover:bg-red-700 active:bg-red-800 active:shadow-sm transition-all duration-300 text-lg font-semibold font-inter"
         data-aos="zoom-in" data-aos-delay="600">
-        Kunjungi Jalurku →
-      </RouterLink>
+        Kunjungi Jalurku 
+        <span v-if="!isStartingAngket"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></span>
+        <span v-if="isStartingAngket" class="animate-spin"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q17 0 28.5 11.5T520-840q0 17-11.5 28.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-17 11.5-28.5T840-520q17 0 28.5 11.5T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z"/></svg></span>
+    </button>
     </div>
   </section>
 
@@ -213,13 +215,102 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router';
+import { storage } from '@/utils/storage';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import LogoSlider from '@/components/LogoSlider.vue'
 import cardEksplorasi from '@/assets/images/Eksplorasi.webp'
 import cardKuis from '@/assets/images/Kuis.webp'
 import cardRencana from '@/assets/images/Rencana.webp'
+import { angketAPI } from '@/services/api';
+
+const router = useRouter();
+const user = ref(null);
+const sessionId = ref('');
+const pertanyaan = ref([]);
+const currentQuestionIndex = ref(0);
+const selectedOption = ref(3);
+const currentView = ref('angket');
+const isInitialLoading = ref(false);
+const isStartingAngket = ref(false);
+
+const fetchUserInfo = async () => {
+  try {
+    isLoading = true
+
+    const data = await authAPI.getUserInfo(token.value);
+    if (data.status === 'success') {
+      user.value = data.data;
+    }
+  } catch (err) {
+    console.error('Error fetching user info:', err);
+  } finally {
+    isLoading = false
+  }
+};
+
+const handleMulaiAngket = async () => {
+  try {
+
+    console.log(user.value)
+
+    isStartingAngket.value = true;
+
+    // Hapus session lama jika ada
+    clearAngketSession();
+
+    const sessionData = await angketAPI.start();
+    sessionId.value = sessionData.session_id;
+
+    // Simpan session ID
+    storage.setSessionId(sessionId.value);
+
+    const pertanyaanData = await angketAPI.getRand();
+    pertanyaan.value = pertanyaanData.data;
+    currentQuestionIndex.value = 0;
+    selectedOption.value = 3;
+
+    // Simpan state awal
+    saveAngketState();
+
+    // Navigasi ke /jalurku khusus untuk user tanpa latestJurusanId
+    if (!user.value || !latestJurusanId.value) {
+      router.push('/jalurku');
+      currentView.value = 'angket';
+    } else {
+      router.push('/jalurku');
+      currentView.value = 'dashboard';
+    }
+
+    isInitialLoading.value = true;
+    setTimeout(() => {
+      isInitialLoading.value = false;
+    }, 1350);
+  } catch (err) {
+    alert('Error memulai angket: ' + err.message);
+  } finally {
+    isStartingAngket.value = false;
+  }
+};
+
+const saveAngketState = () => {
+  if (sessionId.value && pertanyaan.value.length > 0) {
+    storage.setAngketState({
+      sessionId: sessionId.value,
+      pertanyaan: pertanyaan.value,
+      currentQuestionIndex: currentQuestionIndex.value,
+      timestamp: Date.now()
+    });
+    storage.setSessionId(sessionId.value);
+  }
+};
+
+const clearAngketSession = () => {
+  storage.removeSessionId();
+  storage.removeAngketState();
+};
 
 onMounted(() => {
   AOS.init({
