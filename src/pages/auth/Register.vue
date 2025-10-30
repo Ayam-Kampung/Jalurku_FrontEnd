@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen flex flex-col items-center justify-center bg-white px-6">
+  <section class="font-inter min-h-screen flex flex-col items-center justify-center bg-white px-6">
     <!-- Card -->
     <div class="w-full max-w-md bg-white text-black rounded-2xl shadow-xl p-8 space-y-6">
       <!-- Logo -->

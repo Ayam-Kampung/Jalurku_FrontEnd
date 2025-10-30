@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex flex-col items-center justify-center">
+  <div class="font-inter h-screen flex flex-col items-center justify-center">
 
     <!-- Dashboard View -->
     <div data-aos="flip-up" data-aos-duration="500" v-if="currentView === 'dashboard'" class="flex flex-col items-center justify-center min-h-screen lg:w-full max-w-4xl">
@@ -68,7 +68,7 @@
 
     <!-- Angket View -->
     <div data-aos="fade-up" data-aos-easing="ease-out-expo" data-aos-duration="600" v-if="currentView === 'angket' && currentQuestion" class="w-full justify-center max-w-2xl lg:max-w-4xl h-screen mt-20 lg:mt-24 px-5">
-      <p class="font-inter">{{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
+      <p>{{ currentQuestionIndex + 1 }} dari {{ pertanyaan.length }}</p>
       <div style="background: #f0f0f0; height: 5px; margin: 10px 0;"
         class="hover:scale-105 transition-all duration-300">
         <div style="background: #4CAF50; height: 5px;" :style="{ width: progress + '%' }"

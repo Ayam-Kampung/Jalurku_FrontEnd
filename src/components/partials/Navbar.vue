@@ -37,7 +37,7 @@
       <!-- Menu Utama -->
       <div
         :class="[
-          'font-poppins text-sm transform origin-top flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-7 absolute lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none px-5 py-4 lg:p-0 z-[1000] transition-all duration-300 ease-in-out',
+          'font-inter text-sm transform origin-top flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-7 absolute lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none px-5 py-4 lg:p-0 z-[1000] transition-all duration-300 ease-in-out',
           menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 lg:opacity-100 lg:scale-y-100'
         ]"
       >
