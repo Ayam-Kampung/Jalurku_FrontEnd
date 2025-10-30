@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="font-inter">
     <!-- Pengenalan -->
     <div class="flex flex-col items-center space-y-4">
       <!-- Gambar -->

@@ -1,11 +1,13 @@
 <template>
-  <section>
+  <section class="font-inter">
     <!-- Pengenalan -->
     <div class="flex flex-col items-center space-y-4">
       <!-- Gambar -->
       <div id="fadeIn" class="w-full mt-20 relative group overflow-hidden shadow-lg">
-        <div class="w-full h-60 md:h-[300px] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-          :style="{ backgroundImage: `url(${rplImage})` }"></div>
+        <div
+          class="w-full h-60 md:h-[300px] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+          :style="{ backgroundImage: `url(${rplImage})` }"
+        ></div>
         <!-- Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
       </div>
@@ -14,9 +16,11 @@
       <div class="text-left lg:max-w-7xl lg:mx-auto py-6 gap-2 space-y-4 w-full">
         <!-- Judul -->
         <div class="mx-5 space-y-2">
-          <h2 id="heading" class="text-4xl inter">Rekayasa Perangkat Lunak</h2>
-          <span id="zoom"
-            class="bg-green-500 text-white text-sm font-semibold px-2 py-1 rounded-md my-2 inline-flex items-center gap-1">
+          <h2 id="heading" class="text-4xl font-semibold">Rekayasa Perangkat Lunak</h2>
+          <span
+            id="zoom"
+            class="bg-green-500 text-white text-sm font-semibold px-2 py-1 rounded-md my-2 inline-flex items-center gap-1"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v22m6-10a6 6 0 01-12 0" />
@@ -24,8 +28,9 @@
             RPL
           </span>
         </div>
+
         <!-- Paragraf -->
-        <div id="fadeIn" class="text-sm md:text-base inter space-y-5 lg:space-y-6 mx-5">
+        <div id="fadeIn" class="text-sm md:text-base space-y-5 lg:space-y-6 mx-5">
           <p>
             Rekayasa Perangkat Lunak (RPL) adalah jurusan yang berfokus pada
             pembuatan dan pengembangan
@@ -59,26 +64,27 @@
     <!-- Bagian Pekerjaan -->
     <div class="bg-red-600 py-10 mt-10">
       <div class="max-w-7xl mx-auto px-5">
-        <h2 class="text-white text-3xl font-bold inter mb-8">PEKERJAAN</h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 inter text-red-600">
-          <div v-for="job in jobs" :key="job"
-            class="bg-white p-3 text-center rounded-md shadow flex items-center justify-center hover:scale-105 transition-transform">
+        <h2 class="text-white text-3xl font-bold mb-8">PEKERJAAN</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-red-600">
+          <div
+            v-for="job in jobs"
+            :key="job"
+            class="bg-white p-3 text-center rounded-md shadow flex items-center justify-center hover:scale-105 transition-transform"
+          >
             {{ job }}
           </div>
         </div>
       </div>
-      
     </div>
-     <div>
-          <AlumniSlider :alumnis="alumnis" />
-      <LogoSlider />
+
+    <!-- Alumni -->
+    <div>
+      <AlumniSlider :alumnis="alumnis" />
     </div>
-     <!-- Logo Slider -->
   </section>
 </template>
 
 <script setup>
-import LogoSlider from '@/components/LogoSlider.vue'
 import rplImage from '@/assets/images/rpl_images.jpg'
 import alumni1 from '@/assets/images/alumni_1.png'
 import alumni2 from '@/assets/images/alumni_2.png'
@@ -102,10 +108,8 @@ const jobs = [
   'AI Developer'
 ]
 
-// Data alumni carousel
 const alumnis = [
   {
-    // berupa sample 
     name: 'Mauuren Greneman',
     year: '2022',
     title: 'Full Stack Web Developer',
@@ -116,8 +120,8 @@ const alumnis = [
     image: alumni1,
     universities: [
       { src: ugm, alt: 'UGM', title: 'Universitas Gadjah Mada' },
-      { src: google, alt: 'GOOGLE', title: 'google' },
-      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'AYAMKAMPUNG' }
+      { src: google, alt: 'GOOGLE', title: 'Google' },
+      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'Ayam Kampung' }
     ]
   },
   {
@@ -132,21 +136,8 @@ const alumnis = [
     universities: [
       { src: undip, alt: 'UNDIP', title: 'Universitas Diponegoro' },
       { src: meta, alt: 'META', title: 'Meta' },
-      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'AYAMKAMPUNG' }
-
+      { src: ayamkampung, alt: 'AYAMKAMPUNG', title: 'Ayam Kampung' }
     ]
   }
 ]
-
-// Logika carousel
-import { ref } from 'vue'
-const currentIndex = ref(0)
-
-function nextSlide() {
-  currentIndex.value = (currentIndex.value + 1) % alumnis.length
-}
-
-function prevSlide() {
-  currentIndex.value = (currentIndex.value - 1 + alumnis.length) % alumnis.length
-}
 </script>
